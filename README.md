@@ -346,7 +346,7 @@ Marketing renders, product photos and logos are kept for presentation.
 <div align="center">
 
 **Rohit Patil**
-Full Stack Developer · Akruti Developer Ltd.
+Full Stack Developer 
 
 [![GitHub](https://img.shields.io/badge/GitHub-Rohit55--Code-181717?style=for-the-badge&logo=github)](https://github.com/Rohit55-Code)
 
