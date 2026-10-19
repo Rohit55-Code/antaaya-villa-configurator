@@ -1,0 +1,11 @@
+{
+  "name": "antaaya/configer",
+  "description": "Project dependencies for AntaayaVillasWeb - Configer",
+  "type": "project",
+  "require": {
+    "php": ">=8.0",
+    "phpmailer/phpmailer": "^7.1"
+  },
+  "minimum-stability": "stable",
+  "license": "proprietary"
+}

@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Layout | Antaaya Villas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/AVL White SVG .svg" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/favicon-size.svg">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════
+       CSS
+  ═══════════════════════════════ -->
+    <style>
+        /* ── RESET ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ── VARIABLES ── */
+        :root {
+            --gold: #76ca09;
+            --gold-light: #76ca09;
+            --dark: #1a1812;
+            --cream: #f5f0e8;
+            --overlay-bg: rgba(255, 255, 255, 0.527);
+            --villa-border: rgba(118, 202, 9, 0.89);
+            --villa-fill: rgba(118, 202, 9, 0.562);
+        }
+
+        /* ── BODY ── */
+        body {
+            margin: 0;
+            background: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            width: 100vw;
+
+        }
+
+        /* ══════════════════════════════════════════
+       MAP STAGE  (fixed 1920×1080 canvas)
+    ══════════════════════════════════════════ */
+        .map-stage {
+            position: relative;
+            width: 1920px;
+            height: 1080px;
+            transform-origin: top left;
+            background: #fff;
+            overflow: hidden;
+        }
+
+
+
+        .map-heading-overlay {
+            position: absolute;
+            top: 80px;
+            left: 100px;
+            z-index: 45;
+            background: transparent;
+            color: #000000;
+            padding: 16px 22px;
+            border-radius: 10px;
+            max-width: calc(100% - 48px);
+
+            pointer-events: none;
+        }
+
+        .map-logo-overlay {
+            position: absolute;
+            top: 24px;
+            right: 10px;
+            z-index: 45;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
+            height: auto;
+            padding: 8px 12px;
+
+            border-radius: 12px;
+
+            pointer-events: none;
+        }
+
+        .map-logo-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .map-icon-overlay {
+            position: absolute;
+            left: 80px;
+            bottom: 50px;
+            z-index: 45;
+            width: 150px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+
+            border-radius: 16px;
+
+            pointer-events: none;
+        }
+
+        .map-icon-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .map-heading-overlay h1 {
+            font-style: normal;
+            margin: 0;
+            font-size: 55px;
+            line-height: 1.1;
+            letter-spacing: 0.01em;
+            font-weight: 600;
+        }
+
+        /* Base SVG / image */
+        .map-base {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* ── SVG overlay decorations ── */
+        .svg-overlay {
+            position: absolute;
+            overflow: visible;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Vertical rule line */
+        .deco-line {
+            border-left: 1px solid #000;
+            width: 0;
+            height: 67px;
+            position: absolute;
+            left: 1163px;
+            top: 550px;
+            z-index: 2;
+        }
+
+
+
+        /* ══════════════════════════════════════════
+       DIM OVERLAY  (fades the map on click)
+    ══════════════════════════════════════════ */
+        /* side strips outside scaled stage match dimmer colour on click */
+        body {
+            transition: background 0.40s ease;
+        }
+
+        body.villa-active {
+            background: var(--overlay-bg) !important;
+        }
+
+        .map-dimmer {
+            position: absolute;
+            inset: 0;
+            background: var(--overlay-bg);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.40s ease;
+            z-index: 30;
+            cursor: pointer;
+        }
+
+        .map-stage.villa-active .map-dimmer {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ══════════════════════════════════════════
+       VILLA / CLUBHOUSE BLOCKS
+    ══════════════════════════════════════════ */
+        .villa-block {
+            position: absolute;
+            z-index: 20;
+            cursor: pointer;
+            transition: z-index 0s;
+        }
+
+        .villa-block.active {
+            z-index: 40 !important;
+        }
+
+        /* Inner border shell */
+        .villa-shell {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+            border: 1.5px solid rgba(0, 0, 0, 0.55);
+            background: transparent;
+            transition:
+                background 0.28s ease,
+                border-color 0.28s ease,
+                box-shadow 0.28s ease;
+        }
+
+        /* ── DEFAULT status borders (no hover) ── */
+        .villa-block[data-status="available"] .villa-shell {
+            border-color: rgba(83, 165, 16, 0.719);
+        }
+
+        .villa-block[data-status="soldout"] .villa-shell {
+            border-color: rgba(94, 94, 94, 0.63);
+        }
+
+        /* ── HOVER & ACTIVE — available → green ── */
+        .villa-block[data-status="available"]:hover .villa-shell,
+        .villa-block[data-status="available"].active .villa-shell {
+            background: rgba(110, 184, 13, 0.568);
+            border-color: #76ca09;
+            box-shadow: 0 0 0 2px #3B6D11,
+                inset 0 0 18px rgba(118, 202, 9, 0.18);
+        }
+
+        /* ── HOVER & ACTIVE — soldout → Red ── */
+        .villa-block[data-status="soldout"]:hover .villa-shell,
+        .villa-block[data-status="soldout"].active .villa-shell {
+            background: rgba(255, 0, 0, 0.774);
+            border-color: #ff0000;
+            box-shadow: 0 0 0 2px #ff0000,
+                inset 0 0 18px rgba(255, 0, 0, 0.15);
+        }
+
+        /* ── HOVER & ACTIVE — clubhouse (no data-status) → gold ── */
+        .villa-block:not([data-status]):hover .villa-shell,
+        .villa-block:not([data-status]).active .villa-shell {
+            background: var(--villa-fill);
+            border-color: var(--gold-light);
+            box-shadow: 0 0 0 2px var(--gold),
+                inset 0 0 18px rgba(201, 168, 76, 0.14);
+        }
+
+        /* ── Floating name label ── */
+        .villa-label {
+            position: absolute;
+            bottom: calc(100% + 5px);
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.09em;
+            color: #111;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 2px 7px;
+            border-radius: 2px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.20s ease, background 0.20s ease, color 0.20s ease;
+        }
+
+        /* label colour matches status on hover */
+        .villa-block[data-status="available"]:hover .villa-label,
+        .villa-block[data-status="available"].active .villa-label {
+            opacity: 1;
+            background: rgba(10, 8, 5, 0.88);
+            color: #76ca09;
+        }
+
+        .villa-block[data-status="soldout"]:hover .villa-label,
+        .villa-block[data-status="soldout"].active .villa-label {
+            opacity: 1;
+            background: rgba(10, 8, 5, 0.88);
+            color: #ffffff;
+        }
+
+        .villa-block:not([data-status]):hover .villa-label,
+        .villa-block:not([data-status]).active .villa-label {
+            opacity: 1;
+            background: rgba(10, 8, 5, 0.88);
+            color: var(--gold-light);
+        }
+
+        /* ══════════════════════════════════════════
+       INFO CARD (appears on click)
+       ══════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+   INFO CARD
+══════════════════════════════════════════ */
+        .info-card {
+            position: absolute;
+            z-index: 60;
+            width: 520px;
+            height: auto;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(10px) scale(0.96);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+
+        }
+
+        .info-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        /* outer shell is now transparent — no background, no border */
+        .card-body {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .card-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            z-index: 10;
+            font-size: 13px;
+            line-height: 1;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .card-close:hover {
+            color: var(--gold);
+        }
+
+        /* card-row needs to align to stretch so image fills height */
+        .card-row {
+            display: flex;
+            align-items: stretch;
+            position: relative;
+        }
+
+        /* ── BASE (all cards) ───────────────────────── */
+        .card-img {
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            /* 🔥 consistent overlap system */
+            transform: translateX(40px);
+            background: none;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
+            padding: 0;
+        }
+
+        .card-img img {
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            /* remove auto sizing — controlled per variant below */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ── STANDARD villas (3–6 BHK) ─────────────── */
+        .card-img.img-standard {
+            width: 230px;
+            height: 420px;
+            overflow: hidden;
+            /* clips image to fixed box */
+        }
+
+        /* ── LARGE — 8 BHK & Clubhouse ─────────────── */
+        .card-img.img-large {
+            width: 440px;
+            height: 440px;
+            /* wider but shorter — suits landscape floor plans */
+            overflow: hidden;
+        }
+
+        /* content panel shifts right to absorb wider image 
+        .card-img.img-large~.card-content {
+            padding-left: calc(96px + 20px);
+        } */
+
+        /* CONTENT PANEL — shorter, left padding accounts for new overlap */
+        .card-content {
+            flex: 0 0 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* 🔥 match translateX value */
+            padding: 22px 20px 20px 60px;
+            background: rgba(0, 0, 0, 0.76);
+            border: none;
+            border-radius: 0 20px 20px 0;
+            backdrop-filter: blur(10px);
+            box-shadow:
+                0 12px 48px rgba(0, 0, 0, 0.65),
+                0 0 0 1px rgba(201, 168, 76, 0.10);
+            position: relative;
+            z-index: 1;
+            align-self: center;
+            /* vertically centers the text panel against the taller image */
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--gold-light);
+            letter-spacing: 0.06em;
+            margin-bottom: 3px;
+        }
+
+        .card-sub {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgb(255, 255, 255);
+            margin-bottom: 14px;
+        }
+
+        .card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #76ca09, transparent);
+            margin-bottom: 20px;
+        }
+
+        .card-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 14px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .meta-key {
+            font-size: 12px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+        }
+
+        .meta-val {
+            font-size: 13px !important;
+            font-weight: 500;
+            color: rgb(255, 255, 255);
+        }
+
+        .meta-available {
+            font-size: 13px !important;
+            color: #2ecc71;
+            font-weight: 600;
+        }
+
+        .meta-sold {
+            font-size: 13px !important;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .card-btn {
+            margin-top: auto;
+            padding: 8px 14px;
+            font-size: 11px;
+            border-radius: 5px;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: #000000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .card-btn:hover {
+            background: transparent;
+            color: #ffffff;
+        }
+
+        /* ══════════════════════════════════════════
+       LEGEND
+    ══════════════════════════════════════════ */
+        /* ══════════════════════════════════════════
+   LEGEND
+══════════════════════════════════════════ */
+        .map-legend {
+            position: absolute;
+            bottom: 24px;
+            right: 28px;
+            z-index: 50;
+            pointer-events: all;
+
+        }
+
+        .legend-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 900;
+
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+
+            color: #1d1d1d;
+            margin-bottom: 6px;
+        }
+
+        .legend-row {
+            margin-bottom: 5px;
+        }
+
+        .legend-filter-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.09em;
+            color: #444;
+            transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+            width: 100%;
+            text-align: left;
+            outline: none !important;
+        }
+
+        .legend-filter-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .legend-filter-btn.active-available {
+            background: rgba(118, 202, 9, 0.555);
+            border-color: #76ca09;
+            color: #27500A;
+            box-shadow: 0 0 0 1.5px #3B6D11;
+        }
+
+        .legend-filter-btn.active-sold {
+            background: rgba(255, 0, 0, 0.39);
+            border-color: #ff0000;
+            color: #ff0000;
+            box-shadow: 0 0 0 1.5px #f50000b0;
+        }
+
+        .legend-swatch {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .swatch-available {
+            background: rgba(118, 202, 9, 0.25);
+            border: 1.5px solid #3B6D11;
+        }
+
+        .swatch-sold {
+            background: rgba(255, 2, 2, 0.445);
+            border: 1.5px solid #ff0202;
+        }
+
+        .legend-check {
+            margin-left: auto;
+            font-size: 11px;
+            opacity: 0;
+            transition: opacity 0.15s;
+        }
+
+        .legend-filter-btn.active-available .legend-check,
+        .legend-filter-btn.active-sold .legend-check {
+            opacity: 1;
+        }
+
+        /* ── Villa status overlay colours ── */
+        .villa-block[data-status="available"] .villa-shell {
+            border-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .villa-block[data-status="soldout"] .villa-shell {
+            border-color: rgba(0, 0, 0, 0.61);
+        }
+
+        /* Filter highlight — available */
+        .villa-block.filter-highlight-available .villa-shell {
+            background: rgba(118, 202, 9, 0.486) !important;
+            border-color: #76ca09 !important;
+            box-shadow: 0 0 0 2.5px #3B6D11, inset 0 0 14px rgba(118, 202, 9, 0.18) !important;
+        }
+
+        /* Filter highlight — soldout */
+        .villa-block.filter-highlight-sold .villa-shell {
+            background: rgba(255, 0, 0, 0.774) !important;
+            border-color: #ff0000 !important;
+            box-shadow: 0 0 0 2.5px #df2323, inset 0 0 14px rgba(136, 135, 128, 0.15) !important;
+        }
+
+        /* Dim villas that don't match the active filter */
+        .villa-block.filter-dim .villa-shell {
+            background: transparent !important;
+            border-color: rgba(0, 0, 0, 0.18) !important;
+            box-shadow: none !important;
+            opacity: 0.35;
+        }
+
+        /* ══════════════════════════════════════════
+   SITE ANNOTATIONS (5 measurement points)
+══════════════════════════════════════════ */
+        .site-annotations {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .annotate-point {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translateX(-50%) scale(0.85);
+            opacity: 0;
+            animation: annotateFadeIn 0.7s ease forwards;
+        }
+
+        .annotate-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+
+        .annotate-line {
+            width: 1px;
+            background: #111;
+        }
+
+        .annotate-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #76ca09;
+            border: 2px solid #111;
+            box-sizing: border-box;
+            animation: dotPulse 1.8s ease-in-out infinite;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes annotateFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(118, 202, 9, 0.55);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(118, 202, 9, 0);
+            }
+        }
+
+        .annotate-point:nth-of-type(5) {
+            animation-delay: 2.0s;
+        }
+
+        .annotate-point:nth-of-type(4) {
+            animation-delay: 2.3s;
+        }
+
+        .annotate-point:nth-of-type(3) {
+            animation-delay: 2.6s;
+        }
+
+        .annotate-point:nth-of-type(2) {
+            animation-delay: 2.9s;
+        }
+
+        .annotate-point:nth-of-type(1) {
+            animation-delay: 3.2s;
+        }
+
+
+        /* ══════════════════════════════════════════
+   INTRO ANIMATION — Logo / Heading / Compass / Legend
+══════════════════════════════════════════ */
+        .map-logo-overlay,
+        .map-heading-overlay {
+            opacity: 0;
+            animation: overlayFadeInDown 0.8s ease forwards;
+        }
+
+        .map-icon-overlay,
+        .map-legend {
+            opacity: 0;
+            animation: overlayFadeInUp 0.8s ease forwards;
+        }
+
+        .map-logo-overlay {
+            animation-delay: 0.2s;
+        }
+
+        .map-heading-overlay {
+            animation-delay: 0.5s;
+        }
+
+        .map-icon-overlay {
+            animation-delay: 0.8s;
+        }
+
+        .map-legend {
+            animation-delay: 1.1s;
+        }
+
+        @keyframes overlayFadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes overlayFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Hidden Top-Right Nav Toggle -->
+    <div class="corner-nav" id="corner-nav">
+        <button class="corner-nav-toggle" id="corner-nav-toggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="corner-nav-menu" id="corner-nav-menu">
+            <a href="#" class="corner-nav-link">Gallery</a>
+            <a href="SiteVisit-Record.html" class="corner-nav-link">Site Visit Record</a>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+     MAP STAGE
+══════════════════════════════════════════ -->
+    <div class="map-stage" id="mapStage">
+
+        <div class="map-heading-overlay">
+            <h1>Master Layout</h1>
+        </div>
+
+        <div class="map-logo-overlay">
+            <img src="image/avl-logo.png" alt="Antaaya Villas Logo" />
+        </div>
+
+        <div class="map-icon-overlay">
+            <img src="image/north-icon.png" alt="Map Icon" />
+        </div>
+
+        <!-- Background dim layer — inside stage so z-index stacking stays correct -->
+        <div class="map-dimmer" id="mapDimmer"></div>
+
+        <!-- Base map -->
+        <img class="map-base" src="image/master-layout-svg-new.svg" alt="Master Layout" />
+
+        <!-- Decorative lines -->
+        <div class="deco-line"></div>
+
+        <!-- Site Annotations -->
+        <div class="site-annotations">
+
+            <!-- 6m Internal Road (left gap) -->
+            <div class="annotate-point" style="left:12.5%; top:27%;">
+                <span class="annotate-label">6m Internal Road</span>
+                <span class="annotate-line" style="height:100px;"></span>
+                <span class="annotate-dot"></span>
+            </div>
+
+            <!-- 6m Internal Road (right gap) -->
+            <div class="annotate-point" style="left:48.6%; top:27%;">
+                <span class="annotate-label">6m Internal Road </span>
+                <span class="annotate-line" style="height:100px;"></span>
+                <span class="annotate-dot"></span>
+            </div>
+
+            <!-- 12m Internal Road -->
+            <div class="annotate-point" style="left:30%; top:63%;">
+                <span class="annotate-dot"></span>
+                <span class="annotate-line" style="height:100px;"></span>
+                <span class="annotate-label">12m Internal Road</span>
+            </div>
+
+            <!-- Entrance Gate -->
+            <div class="annotate-point" style="left:89%; top:63%;">
+                <span class="annotate-dot"></span>
+                <span class="annotate-line" style="height:100px;"></span>
+                <span class="annotate-label">Entrance Gate</span>
+            </div>
+
+            <!-- Mumbai Pune Old Highway -->
+            <div class="annotate-point" style="left:94%; top:27%;">
+                <span class="annotate-label">Mumbai Pune Old Highway</span>
+                <span class="annotate-line" style="height:100px;"></span>
+                <span class="annotate-dot"></span>
+            </div>
+
+        </div>
+
+        <!-- ══════════════════════════════════════════
+       VILLA BLOCKS
+       data-name   : display title
+       data-type   : Residential / Amenity
+       data-beds   : bedroom config
+       data-size   : built-up area
+       data-img    : path to villa image (optional)
+  ══════════════════════════════════════════ -->
+
+        <!-- Clubhouse -->
+        <div class="villa-block" id="clubhouse" style="left:430px;top:418px;width:108px;height:71px"
+            data-name="Clubhouse" data-type="Amenity" data-beds="—" data-size="4500 sq.ft"
+            data-img="image/villas/clubhouse.png">
+            <div class="villa-shell"></div>
+            <span class="villa-label">Clubhouse</span>
+        </div>
+
+        <!-- ALARA Villa 1 -->
+        <div class="villa-block" id="villa-1" style="left:1435px;top:550px;width:46px;height:68px" data-name="ALARA 1"
+            data-type="A1-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-card-side="left"
+            data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 1</span>
+        </div>
+
+        <!-- ALARA Villa 2 -->
+        <div class="villa-block" id="villa-2" style="left:1389px;top:550px;width:46px;height:68px" data-name="ALARA 2"
+            data-type="A1-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-card-side="left"
+            data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 2</span>
+        </div>
+
+        <!-- ALARA Villa 3 -->
+        <div class="villa-block" id="villa-3" style="left:1300px;top:550px;width:46px;height:68px" data-name="ALARA 3"
+            data-type="A2-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-card-side="left"
+            data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 3</span>
+        </div>
+
+        <!-- ALARA Villa 4 -->
+        <div class="villa-block" id="villa-4" style="left:1255px;top:550px;width:46px;height:68px" data-name="ALARA 4"
+            data-type="A2-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-card-side="left"
+            data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 4</span>
+        </div>
+
+        <!-- ALARA Villa 5 -->
+        <div class="villa-block" id="villa-5" style="left:1164px;top:550px;width:46px;height:67px" data-name="ALARA 5"
+            data-type="A3-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-img-sold="image/villas/rhs-villa-soldout.png"
+            data-villa-type="rhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 5</span>
+        </div>
+
+        <!-- ALARA Villa 6 -->
+        <div class="villa-block" id="villa-6" style="left:1118px;top:550px;width:46px;height:67px" data-name="ALARA 6"
+            data-type="A3-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 6</span>
+        </div>
+
+        <!-- EMIRA Villa 1 -->
+        <div class="villa-block" id="villa-7" style="left:984px;top:550px;width:91px;height:66px" data-name="EMIRA 1"
+            data-type="A4-1,2" data-beds="8 BHK" data-size="560 sq.m" data-img="image/villas/9bhk-villa-layout.png"
+            data-img-sold="image/villas/9bhk-villa-soldout.png" data-villa-type="combo" data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">EMIRA 1</span>
+        </div>
+
+
+
+        <!-- ALARA Villa 9 -->
+        <div class="villa-block" id="villa-8" style="left:826px;top:560px;width:67px;height:46px" data-name="ALARA 9"
+            data-type="A5-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 9</span>
+        </div>
+
+        <!-- ALARA Villa 8 -->
+        <div class="villa-block" id="villa-9" style="left:826px;top:513px;width:67px;height:46px" data-name="ALARA 8"
+            data-type="A5-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 8</span>
+        </div>
+
+        <!-- EMIRA Villa 2 -->
+        <div class="villa-block" id="villa-10" style="left:697px;top:544px;width:91px;height:66px" data-name="EMIRA 2"
+            data-type="A6-1,2" data-beds="8 BHK" data-size="560 sq.m" data-img="image/villas/9bhk-villa-layout.png"
+            data-img-sold="image/villas/9bhk-villa-soldout.png" data-villa-type="combo" data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">EMIRA 2</span>
+        </div>
+
+        <!-- ALARA Villa 10 -->
+        <div class="villa-block" id="villa-11" style="left:606px;top:544px;width:46px;height:66px" data-name="ALARA 10"
+            data-type="A7-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 10</span>
+        </div>
+
+        <!-- ALARA Villa 11 -->
+        <div class="villa-block" id="villa-12" style="left:562px;top:544px;width:44px;height:66px" data-name="ALARA 11"
+            data-type="A7-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 11</span>
+        </div>
+
+        <!-- ALARA Villa 12 -->
+        <div class="villa-block" id="villa-13" style="left:471px;top:544px;width:46px;height:66px" data-name="ALARA 12"
+            data-type="A8-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 12</span>
+        </div>
+
+        <!-- ALARA Villa 13 -->
+        <div class="villa-block" id="villa-14" style="left:425px;top:544px;width:46px;height:66px" data-name="ALARA 13"
+            data-type="A8-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 13</span>
+        </div>
+
+        <!-- ALARA Villa 14 -->
+        <div class="villa-block" id="villa-15" style="left:336px;top:544px;width:46px;height:66px" data-name="ALARA 14"
+            data-type="A9-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 14</span>
+        </div>
+
+        <!-- ALARA Villa 15 -->
+        <div class="villa-block" id="villa-16" style="left:290px;top:544px;width:46px;height:66px" data-name="ALARA 15"
+            data-type="A9-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 15</span>
+        </div>
+
+        <!-- EMIRA Villa 3 -->
+        <div class="villa-block" id="villa-17" style="left:132px;top:599px;width:70px;height:92px" data-name="EMIRA 3"
+            data-type="A10-1,2" data-beds="8 BHK" data-size="560 sq.m" data-img="image/villas/9bhk-villa-layout.png"
+            data-img-sold="image/villas/9bhk-villa-soldout.png" data-villa-type="combo" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">EMIRA 3</span>
+        </div>
+
+        <!-- ALARA Villa 16 -->
+        <div class="villa-block" id="villa-18" style="left:134px;top:492px;width:66px;height:47px" data-name="ALARA 16"
+            data-type="A11-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/lhs-villa-layout.png"
+            data-img-sold="image/villas/lhs-villa-soldout.png" data-villa-type="lhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 16</span>
+        </div>
+
+        <!-- ALARA Villa 17 -->
+        <div class="villa-block" id="villa-19" style="left:134px;top:445px;width:66px;height:47px" data-name="ALARA 17"
+            data-type="A11-02" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-status="soldout">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 17</span>
+        </div>
+
+        <!-- ALARA Villa 7 -->
+        <div class="villa-block" id="villa-20" style="left:827px;top:425px;width:67px;height:47px" data-name="ALARA 7"
+            data-type="B1-01" data-beds="5 BHK" data-size="280 sq.m" data-img="image/villas/rhs-villa-layout.png"
+            data-img-sold="image/villas/rhs-villa-soldout.png" data-villa-type="rhs" data-status="available">
+            <div class="villa-shell"></div>
+            <span class="villa-label">ALARA 7</span>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+                  INFO CARD
+        ══════════════════════════════════════════ -->
+        <div class="info-card" id="infoCard">
+            <div class="card-body">
+
+                <span class="card-close" id="cardClose">✕</span>
+
+                <!-- FLEX ROW -->
+                <div class="card-row">
+
+                    <!-- LEFT IMAGE -->
+                    <div class="card-img" id="cardImg"></div>
+
+                    <!-- RIGHT CONTENT -->
+                    <div class="card-content">
+                        <div class="card-title" id="cardTitle">Villa 1</div>
+                        <div class="card-sub" id="cardSub">Residential · Premium Villa</div>
+
+                        <div class="card-divider"></div>
+
+                        <div class="card-meta">
+                            <div class="meta-item">
+                                <span class="meta-key">Series</span>
+                                <span class="meta-val" id="metaType">—</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-key">Configuration</span>
+                                <span class="meta-val" id="metaBeds">—</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-key">Plot Area</span>
+                                <span class="meta-val" id="metaSize">—</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-key">Status</span>
+                                <span class="meta-val" id="metaStatus">—</span>
+                            </div>
+                        </div>
+
+                        <!-- BUTTON -->
+                        <button class="card-btn" id="cardBtn">
+                            View Details →
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ── LEGEND ── -->
+        <div class="map-legend">
+            <div class="legend-heading">Legend</div>
+            <div class="legend-row">
+                <button class="legend-filter-btn" id="btn-available" onclick="toggleFilter('available')">
+                    <div class="legend-swatch swatch-available"></div>
+                    Available Villas
+                    <span class="legend-check">✓</span>
+                </button>
+            </div>
+            <div class="legend-row">
+                <button class="legend-filter-btn" id="btn-sold" onclick="toggleFilter('soldout')">
+                    <div class="legend-swatch swatch-sold"></div>
+                    Sold Out Villas
+                    <span class="legend-check">✓</span>
+                </button>
+            </div>
+        </div>
+
+    </div><!-- /map-stage -->
+
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:9876543210" class="floating-btn all-btn" title="Contact All">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/9876543210" class="floating-btn whatsapp-btn" title="Contact on WhatsApp"
+            target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="Configure.js"></script>
+    <script>
+        // Mirror villa-active class from mapStage → body
+        // so the body background (side strips outside the scaled stage) fades to match the dimmer
+        (function () {
+            const stage = document.getElementById('mapStage');
+            if (!stage) return;
+            const obs = new MutationObserver(function () {
+                document.body.classList.toggle('villa-active', stage.classList.contains('villa-active'));
+            });
+            obs.observe(stage, { attributes: true, attributeFilter: ['class'] });
+        })();
+    </script>
+</body>
+
+</html>

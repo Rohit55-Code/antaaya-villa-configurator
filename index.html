@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure | Antaaya Villas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/AVL White SVG .svg" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/favicon-size.svg">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Hidden Top-Right Nav Toggle -->
+    <div class="corner-nav" id="corner-nav">
+        <button class="corner-nav-toggle" id="corner-nav-toggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="corner-nav-menu" id="corner-nav-menu">
+            <a href="#" class="corner-nav-link">Gallery</a>
+            <a href="SiteVisit-Record.html" class="corner-nav-link">Site Visit Record</a>
+        </div>
+    </div>
+
+    <!-- hero section in front on first bg img-->
+    <section class="hero" id="home">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="video/Configure.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay">
+            <div class="hero-branding">
+                <a href="#"><img src="image/Akruti Black Logo (Fetured Project).svg" alt="Akruti Logo"
+                        class="hero-branding-logo-akruti"></a>
+                <span class="hero-branding-separator"></span>
+                <a href="#"><img src="image/Antaaya SVG (fetured project).svg" alt="Antaaya Logo"
+                        class="hero-branding-logo"></a>
+            </div>
+            <div class="hero-logo-wrap">
+                <span class="hero-subtitle">VILLAS | LONAVALA</span>
+            </div>
+            <h1 class="hero-heading">Design Your <br> <em> Dream Villa </em></h1>
+            <p class="hero-text">Tailor your villa to perfection — choose your layout,
+                amenities, and finishes to match your lifestyle.</p>
+            <a href="#" class="hero-btn" id="explore-btn">Configure Villas</a>
+
+        </div>
+    </section>
+
+    <section class="index-map hidden" id="villa-location-section">
+        <div class="index-avl-map">
+            <img src="image/avl-map.png" alt="">
+
+            <!-- TOP-LEFT LOGO -->
+            <div class="index-map-logo">
+                <a href="index.html">
+                    <img src="image/Akruti Black Logo (Fetured Project).svg" alt="Akruti Logo">
+                </a>
+            </div>
+
+            <!-- OVERLAY BOX -->
+            <a href="masterlayout.html" class="index-map-overlay" id="plot-target">
+                <img src="image/Antaaya Villa Lonavala Logo.png" alt="Antaaya Villa Lonavala Logo Logo">
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:9876543210" class="floating-btn all-btn" title="Contact All">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/9876543210" class="floating-btn whatsapp-btn" title="Contact on WhatsApp"
+            target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="Configure.js"></script>
+</body>
+
+</html>

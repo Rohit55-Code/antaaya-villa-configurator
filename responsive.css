@@ -1,0 +1,1802 @@
+﻿/* ============================
+   SECTION ZOOM — .hero-overlay
+   Shrinks only the hero text/branding panel to 90%/80% at these
+   breakpoints so it fits inside its 70vh box without being cut off.
+   .hero-video is NOT touched — it stays full-bleed at every size.
+   Add more selectors to these same two rules (comma-separated) as
+   more sections need this same treatment.
+============================ */
+
+/* ============================
+   Index page and global
+============================ */
+@media (max-width: 1440px) and (min-width: 1025px) {
+
+    .hero-overlay,
+    .corner-nav,
+    .floating-buttons {
+        zoom: 0.8;
+    }
+
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    .hero-overlay,
+    .corner-nav,
+    .floating-buttons {
+        zoom: 0.8;
+    }
+
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+
+    .corner-nav,
+    .floating-buttons {
+        zoom: 0.7;
+    }
+
+    .hero-overlay {
+        zoom: 0.8;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+
+    .corner-nav,
+    .floating-buttons {
+        zoom: 0.65;
+    }
+
+    .hero-overlay {
+        zoom: 0.8;
+    }
+}
+
+
+/* ============================
+   Plans page
+============================ */
+@media (max-width: 1440px) and (min-width: 1025px) {
+
+    .villa-section-heading {
+        zoom: 0.72;
+    }
+
+    .villa-cards-wrapper {
+        zoom: 0.7;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    .villa-section-heading {
+        zoom: 0.72;
+    }
+
+    .villa-cards-wrapper {
+        zoom: 0.7;
+    }
+}
+
+
+/* ====================================
+  Summery PAGES
+======================================= */
+@media (max-width: 1440px) and (min-width: 1025px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .download-bar {
+        transform: none !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 16px !important;
+        gap: 10px !important;
+    }
+
+    .download-btn,
+    .download-btn-secondary {
+        width: 100% !important;
+        white-space: nowrap !important;
+        font-size: 11px !important;
+        padding: 10px 10px !important;
+        letter-spacing: 0.05em !important;
+    }
+
+
+}
+
+
+/* ====================================
+  SITE VISIT RECORD PAGES
+======================================= */
+@media (max-width: 1440px) and (min-width: 1025px) {
+
+    .site-visit-page {
+        zoom: 0.9 !important;
+    }
+
+
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    .site-visit-page {
+        zoom: 0.85 !important;
+    }
+}
+
+/* ===== Closing brand section — Tablet ===== */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    .closing-section {
+        height: auto !important;
+        min-height: 80vh !important;
+        padding: 60px clamp(20px, 5vw, 40px) 100px !important;
+    }
+
+    .closing-content {
+        gap: 14px 22px !important;
+    }
+
+    .closing-logo-img {
+        height: 130px !important;
+    }
+
+    .closing-tagline {
+        font-size: 30px !important;
+    }
+
+    .closing-brand {
+        bottom: 24px !important;
+        right: 24px !important;
+    }
+
+    .closing-mark-img {
+        height: 56px !important;
+    }
+}
+
+/* ===== Closing brand section — Mobile ===== */
+@media (max-width: 480px) {
+
+    .closing-section {
+        height: auto !important;
+        min-height: 60vh !important;
+        padding: 50px 24px 90px !important;
+    }
+
+    .closing-content {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+    }
+
+    .closing-logo-img {
+        height: 90px !important;
+    }
+
+    .closing-tagline {
+        font-size: 24px !important;
+    }
+
+    .closing-brand {
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+
+    .closing-mark-img {
+        height: 44px !important;
+    }
+}
+
+/* ============================
+   Hero Section Responsive Styles
+============================ */
+/* ============================
+   BIG LAPTOP (1536px and below)
+============================ */
+/* ============================
+   LAPTOP (1024px and below)
+============================ */
+@media (max-width: 1024px) {
+
+    .hero {
+        position: relative !important;
+        width: 100% !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    /* VIDEO MUST COVER HERO */
+    .hero-video {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .hero-overlay {
+        max-width: 1100px;
+        width: 100%;
+        height: 80vh;
+        padding: 0 20px;
+    }
+
+    .hero-branding {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        width: 100%;
+        height: 20vh;
+        margin-top: 50px;
+    }
+
+    .hero-branding a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-branding-logo-akruti {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .hero-branding-logo {
+        width: 100%;
+        max-width: 230px;
+    }
+
+    .hero-logo-wrap {
+        max-width: 360px;
+        width: 100%;
+    }
+
+    .hero-subtitle {
+        font-size: 22px;
+    }
+
+    .hero-heading {
+        font-size: 30px;
+    }
+
+    .hero-heading em {
+        font-size: 60px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+        max-width: 600px;
+    }
+
+    .hero-btn {
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 8px 22px;
+    }
+
+}
+
+/* ============================
+   TABLET (768px and below)
+============================ */
+@media (max-width: 768px) {
+    .hero {
+        position: relative !important;
+        width: 100% !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    /* VIDEO MUST COVER HERO */
+    .hero-video {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .hero-overlay {
+        max-width: 1100px;
+        width: 100%;
+        height: 80vh;
+        padding: 0 20px;
+    }
+
+    .hero-branding {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        width: 100%;
+        height: 20vh;
+        margin-top: 50px;
+    }
+
+    .hero-branding a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-branding-logo-akruti {
+        width: 100%;
+        max-width: 180px;
+    }
+
+    .hero-branding-logo {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .hero-logo-wrap {
+        max-width: 340px;
+        width: 100%;
+    }
+
+    .hero-subtitle {
+        font-size: 19px;
+    }
+
+    .hero-heading {
+        font-size: 28px;
+    }
+
+    .hero-heading em {
+        font-size: 50px;
+    }
+
+    .hero-text {
+        font-size: 15px;
+        max-width: 600px;
+    }
+
+    .hero-btn {
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 8px 22px;
+    }
+
+
+}
+
+/* ============================
+   MOBILE (480px and below)
+============================ */
+@media (max-width: 480px) {
+
+    .hero {
+        position: relative !important;
+        width: 100% !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+    }
+
+    /* VIDEO MUST COVER HERO */
+    .hero-video {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .hero-overlay {
+        max-width: 1100px;
+        width: 100%;
+        height: 60vh;
+        padding: 0 10px;
+        margin-bottom: 50px;
+    }
+
+    .hero-branding {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        width: 100%;
+        height: 20vh;
+        margin-top: 0;
+    }
+
+    .hero-branding a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-branding-logo-akruti {
+        width: 100%;
+        max-width: 160px;
+        margin-bottom: 0 !important;
+    }
+
+    .hero-branding-logo {
+        margin-bottom: 0 !important;
+        width: 100%;
+        max-width: 190px;
+    }
+
+    .hero-branding-separator {
+        display: none !important;
+    }
+
+    .hero-logo-wrap {
+        max-width: 300px;
+        width: 100%;
+        margin-top: 10px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .hero-heading {
+        font-size: 23px;
+    }
+
+    .hero-heading em {
+        font-size: 40px;
+    }
+
+    .hero-text {
+        font-size: 14px;
+        max-width: 600px;
+    }
+
+    .hero-btn {
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 8px 22px;
+    }
+
+}
+
+
+
+/* ============================
+ index map Section Responsive Styles
+============================ */
+/* ============================
+   BIG LAPTOP (1536px and below)
+============================ */
+@media (max-width: 1536px) {
+
+    .index-map {
+        width: 100%;
+        padding: 0;
+        /* remove extra spacing */
+
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 999;
+
+        transform: translate(-50%, -50%) scale(0.75);
+        top: 50%;
+        left: 50%;
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.1s ease;
+    }
+
+    .index-map.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .index-avl-map {
+        position: relative;
+        /* IMPORTANT */
+        width: 100% !important;
+        height: 100% !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .index-map-logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+    }
+
+    .index-map-logo img {
+        width: 140px;
+    }
+
+    .index-map-overlay {
+        position: absolute;
+        /* 🎯 ADJUST THESE VALUES TO MATCH YOUR RED BOX */
+        bottom: 16%;
+        /* move up/down */
+        left: 46%;
+        /* move left/right */
+        transform: translate(-50%, 50%);
+
+        background: #000000c2;
+        padding: 5px 25px;
+        border-radius: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .index-map-overlay img {
+        width: 180px;
+    }
+}
+
+/* ============================
+   LAPTOP (1024px and below)
+============================ */
+@media (max-width: 1024px) {
+    .index-map-logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+    }
+
+    .index-map-logo img {
+        width: 110px;
+    }
+
+    .index-map-overlay {
+        position: absolute;
+        /* 🎯 ADJUST THESE VALUES TO MATCH YOUR RED BOX */
+        bottom: 15%;
+        /* move up/down */
+        left: 46.5%;
+        /* move left/right */
+        transform: translate(-50%, 50%);
+
+        background: #000000c2;
+        padding: 5px 25px;
+        border-radius: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .index-map-overlay img {
+        width: 180px;
+    }
+}
+
+/* ============================
+   TABLET (768px and below)
+============================ */
+@media (max-width: 768px) {
+    .index-map-logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+    }
+
+    .index-map-logo img {
+        width: 90px;
+    }
+
+    .index-map-overlay {
+        position: absolute;
+        /* 🎯 ADJUST THESE VALUES TO MATCH YOUR RED BOX */
+        bottom: 15%;
+        /* move up/down */
+        left: 46.5%;
+        /* move left/right */
+        transform: translate(-50%, 50%);
+
+        background: #000000c2;
+        padding: 5px 25px;
+        border-radius: 50px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .index-map-overlay img {
+        width: 180px;
+    }
+}
+
+/* ============================
+   MOBILE (480px and below)
+============================ */
+@media (max-width: 480px) {
+
+    .index-avl-map {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        scroll-behavior: smooth;
+    }
+
+    /* Make image wider than screen so scroll works */
+    .index-avl-map img {
+        width: 180%;
+        /* adjust (160–220%) based on your map */
+        height: 100%;
+        display: block;
+
+    }
+
+    .index-map-logo {
+        position: fixed;
+        top: 20px;
+        left: 15px;
+        z-index: 5;
+    }
+
+    .index-map-logo img {
+        width: 90px !important;
+    }
+
+    /* 🎯 Overlay on red plot */
+    .index-map-overlay {
+        position: absolute;
+        bottom: 17%;
+        /* adjust based on your red plot */
+        left: 68%;
+        /* move towards center-right */
+
+        transform: translate(-50%, 50%);
+        background: #000000c2;
+        padding: 6px 22px;
+        border-radius: 50px;
+
+        z-index: 4;
+    }
+
+    .index-map-overlay img {
+        width: 120px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ══════════════════ NEW CODE ADDED BELOW THIS LINE ══════════════════
+   Nothing above this line was touched. Everything below is new —
+   covers pages that had no responsive code at all: masterlayout,
+   summary/brochure, plans, and the configurator (rhs/lhs/combo).
+═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────────
+   GLOBAL SAFETY NET (prevents horizontal scroll / cut-off content
+   anywhere, on any page, any device)
+─────────────────────────────────────────────────────────────────────── */
+html {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   CORNER NAV + FLOATING BUTTONS (shared across index / masterlayout / plans)
+─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .corner-nav {
+        top: 16px !important;
+        right: 16px !important;
+    }
+
+    .corner-nav-menu {
+        min-width: 190px !important;
+    }
+
+    .floating-buttons {
+        bottom: 20px !important;
+        right: 15px !important;
+        gap: 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .corner-nav {
+        top: 12px !important;
+        right: 12px !important;
+    }
+
+    .corner-nav-toggle {
+        width: 34px !important;
+        height: 34px !important;
+    }
+
+    .corner-nav-menu {
+        min-width: 170px !important;
+        top: 46px !important;
+    }
+
+    .corner-nav-link {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+    }
+
+    .floating-buttons {
+        bottom: 16px !important;
+        right: 12px !important;
+        gap: 10px !important;
+    }
+
+    .floating-btn {
+        width: 40px !important;
+        height: 40px !important;
+
+    }
+
+    .floating-btn i {
+        font-size: 15px !important;
+    }
+
+    .whatsapp-btn i {
+        font-size: 18px !important;
+    }
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   MASTER LAYOUT PAGE (masterlayout.html) — #mapStage
+   The 1920×1080 map canvas is already scaled to fit the screen by
+   Configure.js (scaleMap()). These rules just make sure the page itself
+   never grows a scrollbar around that scaled canvas, and that the
+   heading / legend read cleanly at the widths in between your JS
+   breakpoints.
+─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .map-heading-overlay {
+        top: 60px;
+        left: 60px;
+    }
+
+    .map-heading-overlay h1 {
+        font-size: 34px;
+    }
+
+    .map-logo-overlay {
+        width: 160px;
+        top: 16px;
+        right: 6px;
+    }
+
+    .map-icon-overlay {
+        width: 90px;
+        left: 50px;
+        bottom: 34px;
+    }
+
+    .map-legend {
+        bottom: 16px;
+        right: 18px;
+    }
+
+    .legend-heading {
+        font-size: 24px;
+    }
+
+    .legend-filter-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .map-heading-overlay {
+        top: 46px;
+        left: 40px;
+    }
+
+    .map-heading-overlay h1 {
+        font-size: 26px;
+    }
+
+    .map-logo-overlay {
+        width: 130px;
+        top: 12px;
+        right: 4px;
+    }
+
+    .map-icon-overlay {
+        width: 70px;
+        left: 30px;
+        bottom: 24px;
+    }
+
+    .map-legend {
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .legend-heading {
+        font-size: 19px;
+        margin-bottom: 4px;
+    }
+
+    .legend-filter-btn {
+        padding: 4px 7px;
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .legend-swatch {
+        width: 11px;
+        height: 11px;
+    }
+}
+
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   VILLA PLANS SELECTION (plans.html) — .villa-card cards
+─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) and (min-width: 481px) {
+
+    .villa-section-heading {
+        max-width: 90% !important;
+        margin: 0 auto 24px !important;
+    }
+
+    .villa-section-heading h1 {
+        font-size: 30px !important;
+    }
+
+    .villa-section-heading p {
+        font-size: 14px !important;
+    }
+
+    .villa-cards-wrapper {
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-top: 150px !important;
+        gap: 180px !important;
+        width: 100% !important;
+    }
+
+    .villa-card {
+        width: 320px !important;
+        max-width: 90vw !important;
+        padding-top: 110px !important;
+    }
+
+
+
+    .villa-image-left,
+    .villa-image-right {
+        width: 420px !important;
+        max-width: 90vw !important;
+        top: -55px !important;
+    }
+
+    .villa-image-center {
+        width: 320px !important;
+        max-width: 78vw !important;
+        top: -30px !important;
+    }
+
+    .villa-content {
+        padding: 65px 20px 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .villa-section-heading h1 {
+        font-size: 24px !important;
+    }
+
+    .villa-section-heading p {
+        font-size: 13px !important;
+    }
+
+    .villa-cards-wrapper {
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-top: 130px !important;
+        gap: 160px !important;
+        width: 100% !important;
+    }
+
+    .villa-card {
+        width: 90vw !important;
+        max-width: 320px !important;
+        padding-top: 90px !important;
+    }
+
+
+
+    .villa-image-left,
+    .villa-image-right {
+        width: 340px !important;
+        max-width: 88vw !important;
+        top: -45px !important;
+    }
+
+    .villa-image-center {
+        width: 300px !important;
+        max-width: 78vw !important;
+        top: -25px !important;
+    }
+
+    .villa-content {
+        padding: 65px 16px 18px !important;
+    }
+
+    .villa-name {
+        font-size: 20px !important;
+    }
+
+    .card-meta {
+        gap: 10px 6px !important;
+    }
+
+    .meta-key,
+    .meta-val {
+        font-size: 12px !important;
+    }
+
+    .villa-btn {
+        width: 85% !important;
+        padding: 8px 14px !important;
+        font-size: 13px !important;
+    }
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   VILLA CONFIGURATOR (rhs.html / lhs.html / combo.html)
+   Desktop = left visual canvas + fixed 800px right options panel.
+   1440 / 1024 = every value below is the real desktop value × the exact
+   screen ratio (1440/1920 = 0.75, 1024/1920 = 0.5333), so it renders as
+   a true miniature of the desktop panel — same proportions, just smaller.
+   (Earlier `zoom` attempt is removed — it kept the panel's full height
+   while shrinking content inside it, which is what caused the blank gap
+   and the shrunken floor-plan canvas.)
+   Tablet & mobile (768 / 480) = stacked layout, untouched below.
+─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 1440px) {
+    header {
+        padding: 22px 32px !important;
+    }
+
+    .logo img {
+        width: 110px !important;
+    }
+
+
+
+    .right-panel {
+        width: 600px !important;
+    }
+
+    .key-status-panel {
+        width: 130px !important;
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .plan-img {
+        max-height: calc(100vh - 140px) !important;
+        max-width: 100% !important;
+    }
+
+    .plan-point {
+        width: 19px !important;
+        height: 19px !important;
+        font-size: 10px !important;
+    }
+
+    .plan-overlay {
+        zoom: 1 !important;
+        position: absolute !important;
+    }
+
+    .plan-stage {
+        zoom: 1 !important;
+    }
+
+
+    .villa-info-section {
+        padding: 21px 24px !important;
+    }
+
+    .villa-tag {
+        font-size: 9px !important;
+        padding: 5px 9px !important;
+    }
+
+    .villa-name {
+        font-size: 26px !important;
+    }
+
+    .villa-subtitle {
+        font-size: 11px !important;
+    }
+
+    .villa-info-grid {
+        gap: 8px !important;
+    }
+
+    .villa-info-item {
+        padding: 0 10px !important;
+    }
+
+    .villa-info-label,
+    .villa-info-value {
+        font-size: 11px !important;
+    }
+
+    .section-header {
+        padding: 8px 24px 12px !important;
+    }
+
+    .section-title {
+        font-size: 16px !important;
+    }
+
+    .option-group {
+        padding: 15px 24px !important;
+    }
+
+    .option-btn {
+        padding: 9px 12px !important;
+        font-size: 9px !important;
+    }
+
+    .sub-tab {
+        padding: 7px 6px !important;
+        font-size: 9px !important;
+    }
+
+    .feature-cards-container {
+        gap: 9px !important;
+    }
+
+
+
+    .feature-card-name {
+        font-size: 11px !important;
+        padding: 9px 6px !important;
+    }
+
+    .feature-card-checkbox {
+        width: 15px !important;
+        height: 15px !important;
+        font-size: 12px !important;
+        margin-right: 9px !important;
+    }
+
+    .legend-box,
+    .legent-count-box {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .legend-box {
+        padding: 18px 21px !important;
+    }
+
+    .legend-title {
+        font-size: 14px !important;
+    }
+
+    .legend-list li {
+        font-size: 12px !important;
+        gap: 8px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .legent-count-box {
+        padding: 12px 30px !important;
+    }
+
+    .legent-count-title {
+        font-size: 14px !important;
+    }
+
+    .legent-count-table .row {
+        grid-template-columns: 1fr 90px 90px !important;
+        font-size: 11px !important;
+    }
+
+    .legent-count-table .col.name,
+    .legent-count-table .col.dimension,
+    .legent-count-table .col.area {
+        font-size: 12px !important;
+    }
+
+    .villa-description-container {
+        padding: 8px 11px !important;
+    }
+
+    .villa-description-title-right {
+        font-size: 14px !important;
+        margin-top: -38px !important;
+    }
+
+    .description-section-heading {
+        font-size: 13px !important;
+    }
+
+    .description-table th {
+        padding: 6px 12px !important;
+        font-size: 10px !important;
+    }
+
+    .description-table td {
+        padding: 8px 12px !important;
+        font-size: 11px !important;
+    }
+
+    .right-footer {
+        padding: 15px 24px !important;
+    }
+
+    .step-hint {
+        font-size: 11px !important;
+    }
+
+    .prev-btn {
+        padding: 6px 15px !important;
+        font-size: 10px !important;
+    }
+
+    .next-btn {
+        padding: 5px 15px !important;
+        font-size: 10px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    header {
+        padding: 18px 24px !important;
+    }
+
+    .logo img {
+        width: 100px !important;
+    }
+
+    .center-canvas {
+        padding: 5px !important;
+    }
+
+    .plan-img {
+        max-height: calc(100vh - 160px) !important;
+        max-width: 100% !important;
+    }
+
+    .plan-stage {
+        width: 100% !important;
+        height: 100% !important;
+        zoom: 1 !important;
+    }
+
+
+
+    .plan-overlay {
+        position: absolute !important;
+        pointer-events: none !important;
+        z-index: 15 !important;
+        zoom: 1 !important;
+
+    }
+
+    .header-nav {
+        gap: 20px !important;
+        font-size: 13px !important;
+    }
+
+    .right-panel {
+        width: 450px !important;
+    }
+
+    .key-status-panel {
+        width: 120px !important;
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .plan-point {
+        width: 17px !important;
+        height: 17px !important;
+        font-size: 9px !important;
+    }
+
+    .villa-info-section {
+        padding: 15px 17px !important;
+    }
+
+    .villa-tag {
+        font-size: 8px !important;
+        padding: 4px 7px !important;
+    }
+
+    .villa-name {
+        font-size: 19px !important;
+    }
+
+    .villa-subtitle {
+        font-size: 9px !important;
+    }
+
+    .villa-info-grid {
+        gap: 6px !important;
+    }
+
+    .villa-info-item {
+        padding: 0 7px !important;
+    }
+
+    .villa-info-label,
+    .villa-info-value {
+        font-size: 9px !important;
+    }
+
+    .section-header {
+        padding: 6px 17px 9px !important;
+    }
+
+    .section-title {
+        font-size: 15px !important;
+    }
+
+    .option-group {
+        padding: 11px 17px !important;
+    }
+
+    .option-btn {
+        padding: 6px 9px !important;
+        font-size: 8px !important;
+    }
+
+    .sub-tab {
+        padding: 5px 4px !important;
+        font-size: 8px !important;
+    }
+
+    .feature-cards-container {
+        gap: 6px !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+
+
+    .feature-card-name {
+        font-size: 9px !important;
+        padding: 6px 4px !important;
+    }
+
+    .feature-card-checkbox {
+        width: 11px !important;
+        height: 11px !important;
+        font-size: 9px !important;
+        margin-right: 6px !important;
+    }
+
+    .legend-box,
+    .legent-count-box {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .legend-box {
+        padding: 13px 15px !important;
+    }
+
+    .legend-title {
+        font-size: 12px !important;
+    }
+
+    .legend-list li {
+        font-size: 11px !important;
+        gap: 6px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .legent-count-box {
+        padding: 9px 21px !important;
+    }
+
+    .legent-count-title {
+        font-size: 12px !important;
+    }
+
+    .legent-count-table .row {
+        grid-template-columns: 1fr 80px 80px !important;
+        font-size: 9px !important;
+    }
+
+    .legent-count-table .col.name,
+    .legent-count-table .col.dimension,
+    .legent-count-table .col.area {
+        font-size: 10px !important;
+    }
+
+    .villa-description-container {
+        padding: 5px 8px !important;
+    }
+
+    .villa-description-title-right {
+        font-size: 11px !important;
+        margin-top: -27px !important;
+    }
+
+    .description-section-heading {
+        font-size: 10px !important;
+    }
+
+    .description-table th {
+        padding: 4px 9px !important;
+        font-size: 9px !important;
+    }
+
+    .description-table td {
+        padding: 6px 9px !important;
+        font-size: 10px !important;
+    }
+
+    .right-footer {
+        padding: 11px 17px !important;
+    }
+
+    .step-hint {
+        font-size: 9px !important;
+    }
+
+    .prev-btn {
+        padding: 4px 11px !important;
+        font-size: 9px !important;
+    }
+
+    .next-btn {
+        padding: 4px 11px !important;
+        font-size: 9px !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Header shrinks but stays a single row */
+    header {
+        padding: 14px 18px !important;
+        height: auto !important;
+        min-height: 60px !important;
+    }
+
+    .logo img {
+        width: 90px !important;
+    }
+
+    .header-nav {
+        gap: 14px !important;
+        font-size: 11px !important;
+    }
+
+    /* Stack canvas above the options panel */
+    .configurator {
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 100vh !important;
+        padding-top: 60px !important;
+        /* room for the header */
+    }
+
+    .center-canvas {
+        width: 100% !important;
+        height: 46vh !important;
+        flex-shrink: 0 !important;
+        zoom: 1 !important;
+    }
+
+    .plan-img {
+        max-height: 42vh !important;
+        max-width: 100% !important;
+    }
+
+    .plan-stage {
+        height: 100% !important;
+        zoom: 1 !important;
+    }
+
+    .plan-overlay {
+        position: absolute !important;
+
+        pointer-events: none !important;
+        z-index: 15 !important;
+        zoom: 1 !important;
+    }
+
+
+    .day-night-section,
+    .day-night-view {
+        height: 46vh !important;
+    }
+
+    .key-status-panel {
+        width: 110px !important;
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .floor-badge {
+        top: 10px !important;
+        left: 10px !important;
+        font-size: 11px !important;
+        padding: 5px 10px !important;
+    }
+
+    .right-panel {
+        width: 100% !important;
+        flex-shrink: 1 !important;
+        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15) !important;
+        border-left: none !important;
+    }
+
+    /* Let the whole page scroll naturally instead of a boxed-in
+       internal scroll area — much easier to use with touch */
+    .left-scroll {
+        flex: none !important;
+        overflow-y: visible !important;
+    }
+
+    .villa-info-section {
+        padding: 20px !important;
+    }
+
+    .villa-name {
+        font-size: 24px !important;
+    }
+
+    .villa-info-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    .section-header {
+        padding: 10px 20px 14px !important;
+    }
+
+    .section-title {
+        font-size: 14px !important;
+    }
+
+    .option-group {
+        padding: 14px 20px !important;
+    }
+
+    .feature-cards-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+    }
+
+
+
+    .legend-box,
+    .legent-count-box {
+        width: 100% !important;
+        padding: 18px 20px !important;
+    }
+
+    .legent-count-table .row {
+        grid-template-columns: 1fr 80px 80px !important;
+        font-size: 13px !important;
+    }
+
+    .villa-description-container {
+        padding: 10px 4px !important;
+    }
+
+    .villa-description-title-right {
+        margin-top: -30px !important;
+        font-size: 16px !important;
+    }
+
+    .floor-plans-row {
+        flex-direction: column;
+        gap: 16px !important;
+    }
+
+    .terrace-total-row {
+        flex-direction: column;
+        gap: 16px !important;
+    }
+
+    .total-block,
+    .terrace-block {
+        width: 100% !important;
+    }
+
+    .description-table th {
+        padding: 7px 12px !important;
+        font-size: 11px !important;
+    }
+
+    .description-table td {
+        padding: 9px 12px !important;
+        font-size: 13px !important;
+    }
+
+    .right-footer {
+        padding: 16px 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        padding: 10px 14px !important;
+        min-height: 56px !important;
+    }
+
+    .logo img {
+        width: 78px !important;
+    }
+
+    .header-nav {
+        gap: 12px !important;
+        font-size: 10px !important;
+    }
+
+    .configurator {
+        padding-top: 70px !important;
+        /* room for the header once it wraps to two lines */
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+
+    .center-canvas {
+        height: 38vh !important;
+        width: 100% !important;
+        flex-shrink: 0 !important;
+        zoom: 1 !important;
+    }
+
+    .plan-img {
+        max-height: 32vh !important;
+        max-width: 100% !important;
+    }
+
+    .plan-stage {
+        height: 100% !important;
+        zoom: 1 !important;
+    }
+
+    .plan-overlay {
+        position: absolute !important;
+        pointer-events: none !important;
+        z-index: 15 !important;
+        zoom: 1 !important;
+    }
+
+    .day-night-section,
+    .day-night-view {
+        height: 38vh !important;
+    }
+
+    .key-status-panel {
+        width: 84px !important;
+        padding: 6px 8px !important;
+    }
+
+    .plan-point {
+        width: 14px !important;
+        height: 14px !important;
+        font-size: 7px !important;
+        font-weight: 500 !important;
+    }
+
+    .villa-info-section {
+        padding: 18px 16px !important;
+    }
+
+    .villa-tag {
+        font-size: 9px !important;
+        padding: 5px 10px !important;
+    }
+
+    .villa-name {
+        font-size: 21px !important;
+    }
+
+    .villa-info-grid {
+        gap: 8px !important;
+    }
+
+    .villa-info-item {
+        padding: 8px 6px !important;
+    }
+
+    .villa-info-label,
+    .villa-info-value {
+        font-size: 12px !important;
+    }
+
+    .section-header {
+        padding: 8px 16px 12px !important;
+    }
+
+    .section-title {
+        font-size: 13px !important;
+    }
+
+    .section-header p {
+        font-size: 13px !important;
+    }
+
+    .option-group {
+        padding: 12px 16px !important;
+    }
+
+    .option-btn {
+        padding: 10px 12px !important;
+        font-size: 10px !important;
+    }
+
+    .sub-tab {
+        padding: 8px 6px !important;
+        font-size: 10px !important;
+    }
+
+    .feature-cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+    }
+
+
+    .feature-card-name {
+        font-size: 12px !important;
+        padding: 8px 6px !important;
+    }
+
+    .feature-card-checkbox {
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 8px !important;
+    }
+
+    .legend-box,
+    .legent-count-box {
+        width: 100% !important;
+        padding: 14px 16px !important;
+        margin-left: 0 !important;
+    }
+
+    .legend-title,
+    .legent-count-title {
+        font-size: 15px !important;
+    }
+
+    .legend-list li {
+        font-size: 13px !important;
+    }
+
+    .legent-count-table .row {
+        grid-template-columns: 1fr 62px 62px !important;
+        font-size: 11px !important;
+    }
+
+    .legent-count-table .col.name,
+    .legent-count-table .col.dimension,
+    .legent-count-table .col.area {
+        font-size: 12px !important;
+    }
+
+    .villa-description-title-right {
+        text-align: center !important;
+        margin-top: 0 !important;
+        margin-bottom: 12px !important;
+        font-size: 14px !important;
+    }
+
+    .description-section-heading {
+        font-size: 13px !important;
+    }
+
+    .description-table th {
+        padding: 6px 8px !important;
+        font-size: 10px !important;
+    }
+
+    .description-table td {
+        padding: 7px 8px !important;
+        font-size: 11px !important;
+    }
+
+    .confirm-modal {
+        padding: 20px 18px !important;
+    }
+
+    .confirm-modal h3 {
+        font-size: 18px !important;
+    }
+
+    .confirm-modal p {
+        font-size: 13px !important;
+    }
+
+    .right-footer {
+        padding: 12px 16px !important;
+    }
+
+    .footer-actions {
+        grid-template-columns: auto 1fr auto !important;
+        gap: 8px !important;
+    }
+
+    .step-hint {
+        font-size: 11px !important;
+    }
+
+    .prev-btn,
+    .next-btn {
+        padding: 7px 14px !important;
+        font-size: 11px !important;
+    }
+
+    .toast {
+        padding: 10px 20px !important;
+        font-size: 12px !important;
+        bottom: 20px !important;
+    }
+
+    .day-night-control {
+        top: 10px !important;
+        right: 10px !important;
+    }
+
+    .day-night-toggle-btn .fav-icon {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 13px !important;
+    }
+}

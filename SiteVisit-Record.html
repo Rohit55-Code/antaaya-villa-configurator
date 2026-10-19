@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Visit Record | Antaaya Villas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/AVL White SVG .svg" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/favicon-size.svg">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<style>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    :root {
+        --accent: #8dc63f;
+        --accent-dark: #6fa52f;
+        --ink: #101410;
+        --glass-bg: rgba(20, 24, 18, 0.32);
+        --glass-bg-soft: rgba(255, 255, 255, 0.06);
+        --glass-border: rgba(255, 255, 255, 0.22);
+        --text-light: #F4F6F1;
+        --text-mute: rgba(244, 246, 241, 0.68);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--text-light);
+        min-height: 100vh;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ===== Fixed full-bleed background ===== */
+    .bg-fixed {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('image/summary/last-page.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -2;
+    }
+
+    .bg-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(180deg, rgba(8, 10, 7, .55) 0%, rgba(8, 10, 7, .45) 30%, rgba(8, 10, 7, .62) 70%, rgba(6, 8, 5, .85) 100%);
+    }
+
+    /* ===== Navbar ===== */
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px clamp(20px, 4vw, 56px);
+        background: linear-gradient(180deg, rgba(0, 0, 0, .38) 0%, rgba(0, 0, 0, 0) 100%);
+        backdrop-filter: blur(2px);
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+
+
+    .nav-logo-img {
+        height: 60px;
+        width: auto;
+        display: block;
+    }
+
+
+
+    .nav-divider {
+        width: 1px;
+        height: 18px;
+        background: rgba(255, 255, 255, .35);
+    }
+
+
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(18px, 3vw, 40px);
+    }
+
+    .nav-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        opacity: .88;
+        transition: opacity .2s, color .2s;
+        position: relative;
+        padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: width .25s ease;
+    }
+
+    .nav-links a:hover {
+        opacity: 1;
+        color: var(--accent);
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    @media (max-width:560px) {
+
+
+        .nav-links {
+            gap: 14px;
+        }
+
+        .nav-links a {
+            font-size: 10px;
+            letter-spacing: .1em;
+        }
+    }
+
+    /* ===== Page scroll content ===== */
+    .site-visit-page {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px 0;
+    }
+
+    .hero-spacer {
+        width: 100%;
+        height: 105vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-heading {
+        text-align: center;
+        max-width: 640px;
+        margin-bottom: 0;
+    }
+
+    .hero-eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .3em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 14px;
+    }
+
+    .hero-heading h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+        font-size: clamp(2.1rem, 5.2vw, 3.6rem);
+        line-height: 1.1;
+        color: #fff;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, .35);
+    }
+
+    .hero-heading h1 em {
+        font-style: italic;
+        color: var(--accent);
+        font-weight: 300;
+    }
+
+    .hero-heading p {
+        margin-top: 12px;
+        font-size: 13.5px;
+        font-weight: 300;
+        letter-spacing: .03em;
+        color: var(--text-mute);
+    }
+
+    .scroll-cue {
+        margin-top: 56px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: .7;
+        animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+
+    .scroll-cue span {
+        font-size: 9.5px;
+        font-weight: 600;
+        letter-spacing: .3em;
+        text-transform: uppercase;
+        color: var(--text-mute);
+    }
+
+    .scroll-cue .scroll-line {
+        width: 1px;
+        height: 34px;
+        background: linear-gradient(180deg, var(--accent), transparent);
+    }
+
+    @keyframes scrollPulse {
+
+        0%,
+        100% {
+            transform: translateY(0);
+            opacity: .7;
+        }
+
+        50% {
+            transform: translateY(8px);
+            opacity: 1;
+        }
+    }
+
+    /* ===== Glass Card ===== */
+    .card {
+        width: 100%;
+        max-width: 900px;
+        margin-top: -40px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(22px) saturate(140%);
+        -webkit-backdrop-filter: blur(22px) saturate(140%);
+        border: 1px solid var(--glass-border);
+        border-radius: 22px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .12);
+        overflow: hidden;
+        margin-bottom: 40px;
+    }
+
+    .card-body {
+        padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) clamp(2.25rem, 4vw, 3.25rem);
+    }
+
+    .section-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 1.25rem;
+        margin-top: 2.1rem;
+    }
+
+    .section-head:first-child {
+        margin-top: 0;
+    }
+
+    .section-pip {
+        width: 10px;
+        height: 6px;
+        flex-shrink: 0;
+        background:
+            radial-gradient(circle, var(--accent) 40%, transparent 41%) left / 6px 6px no-repeat,
+            radial-gradient(circle, var(--accent) 40%, transparent 41%) right / 6px 6px no-repeat;
+    }
+
+    .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--accent);
+    }
+
+    .section-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, .18);
+    }
+
+    .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .g3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    .stack {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .field-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-mute);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+    }
+
+    .field-label .req {
+        color: var(--accent);
+    }
+
+    /* ===== Underline / glass inputs (no boxes) ===== */
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    input[type=number],
+    input[type=date],
+    select,
+    textarea {
+        width: 100%;
+        padding: 9px 2px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        color: #fff !important;
+        background: transparent;
+        border: none;
+        border-bottom: 1.5px solid rgba(255, 255, 255, .32);
+        border-radius: 0;
+        outline: none;
+        transition: border-color .25s, box-shadow .25s;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-bottom-color: var(--accent);
+        box-shadow: 0 1px 0 0 var(--accent);
+        background: rgba(255, 255, 255, .04);
+    }
+
+    input[readonly] {
+        color: var(--text-light) !important;
+        -webkit-text-fill-color: var(--text-light) !important;
+        font-weight: 500;
+        cursor: default;
+        opacity: 1 !important;
+    }
+
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238dc63f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 2px center;
+        padding-right: 22px;
+        cursor: pointer;
+    }
+
+    select option {
+        color: #fff;
+        background: #1a1f17;
+    }
+
+    select option:checked,
+    select option:hover {
+        background: #2a3324;
+        color: #8dc63f;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 90px;
+        line-height: 1.65;
+        border: 1.5px solid rgba(255, 255, 255, .28) !important;
+        border-radius: 10px;
+        padding: 12px 14px;
+    }
+
+    textarea:focus {
+        box-shadow: 0 0 0 3px rgba(141, 198, 63, .18) !important;
+    }
+
+    ::placeholder {
+        color: rgba(255, 255, 255, .42);
+    }
+
+    .time-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .time-picker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        padding: 6px 2px;
+        background: transparent;
+        border: none;
+        border-bottom: 1.5px solid rgba(255, 255, 255, .32);
+        border-radius: 0;
+        width: 100%;
+        min-height: 42px;
+        transition: border-color .25s;
+    }
+
+    .time-picker:focus-within {
+        border-bottom-color: var(--accent);
+    }
+
+    .t-sel {
+        flex: 1;
+        text-align: center;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 6px 2px !important;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px !important;
+        font-weight: 500;
+        color: #fff !important;
+        cursor: pointer;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100% !important;
+    }
+
+    .t-sel.ampm {
+        color: var(--accent) !important;
+        font-weight: 600 !important;
+        font-size: 12px !important;
+        text-align: right;
+        background-image: none !important;
+        padding-right: 0 !important;
+    }
+
+    .t-colon {
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, .5);
+        padding: 0 2px;
+        line-height: 1;
+    }
+
+    .pill-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 2px;
+    }
+
+    .pill-group label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 16px;
+        border: 1.5px solid rgba(255, 255, 255, .32);
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 12.5px;
+        font-weight: 500;
+        transition: all .15s ease-in-out;
+        user-select: none;
+        background: rgba(255, 255, 255, .04);
+        position: relative;
+        min-height: 38px;
+    }
+
+    .pill-group input[type=radio],
+    .pill-group input[type=checkbox] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        margin: 0;
+    }
+
+    .pill-group label span {
+        color: var(--text-light);
+        transition: color .15s;
+        pointer-events: none;
+    }
+
+    .pill-group input:checked+span {
+        color: #10150d !important;
+        font-weight: 700;
+    }
+
+    .pill-group label:has(input:checked) {
+        background: var(--accent);
+        border-color: var(--accent);
+    }
+
+    .pill-group label:hover:not(:has(input:checked)) {
+        border-color: var(--accent);
+        background: rgba(141, 198, 63, .12);
+    }
+
+    .p-hot span {
+        color: #3ca812 !important;
+    }
+
+    .p-warm span {
+        color: #ffc15e !important;
+    }
+
+    .p-cold span {
+        color: #7ec8ff !important;
+    }
+
+    .p-new span {
+        color: #c9a6ff !important;
+    }
+
+    .p-hot {
+        border-color: #3ca812 !important;
+    }
+
+    .p-warm {
+        border-color: #ffc15e !important;
+    }
+
+    .p-cold {
+        border-color: #7ec8ff !important;
+    }
+
+    .p-new {
+        border-color: #c9a6ff !important;
+    }
+
+    .p-hot:has(input:checked) {
+        background: #3ca812 !important;
+        border-color: #3ca8127a !important;
+    }
+
+    .p-warm:has(input:checked) {
+        background: #ffc15e !important;
+        border-color: #ffc15e !important;
+    }
+
+    .p-cold:has(input:checked) {
+        background: #7ec8ff !important;
+        border-color: #7ec8ff !important;
+    }
+
+    .p-new:has(input:checked) {
+        background: #c9a6ff !important;
+        border-color: #c9a6ff !important;
+    }
+
+    .p-hot:has(input:checked) span,
+    .p-warm:has(input:checked) span,
+    .p-cold:has(input:checked) span,
+    .p-new:has(input:checked) span {
+        color: #10150d !important;
+    }
+
+    .phone-row {
+        display: flex;
+        gap: 6px;
+    }
+
+    .phone-row select {
+        width: 84px;
+        flex-shrink: 0;
+    }
+
+    .phone-row input {
+        flex: 1;
+    }
+
+    .other-wrap {
+        display: none;
+        margin-top: 10px;
+        animation: slideDown 0.2s ease-out;
+    }
+
+    .other-wrap.visible {
+        display: block;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .maharera-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .22);
+        border-radius: 8px;
+        padding: 6px 13px;
+    }
+
+    .maharera-pill .lbl {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        color: var(--text-mute);
+    }
+
+    .maharera-pill .sep {
+        width: 1px;
+        height: 13px;
+        background: rgba(255, 255, 255, .25);
+        display: inline-block;
+    }
+
+    .maharera-pill .val {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--accent);
+        letter-spacing: .05em;
+    }
+
+    .visit-submit-btn {
+        width: auto;
+        display: block;
+        margin: 2.5rem auto 0;
+        padding: 8px 28px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        color: #000000;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+        border: 1px solid rgba(118, 202, 9, 0.8);
+        border-radius: 11px;
+        cursor: pointer;
+        transition: opacity .2s, transform .1s, box-shadow .2s;
+    }
+
+    .visit-submit-btn:hover {
+        background: rgba(0, 0, 0, 0.644);
+        color: #ffffff;
+        border: 1px solid rgba(118, 202, 9, 0.8);
+    }
+
+    .visit-submit-btn:active {
+        transform: scale(.99);
+    }
+
+    .visit-submit-btn:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+    .toast {
+        display: none;
+        margin-top: 1rem;
+        padding: 13px 16px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 500;
+        border: 1px solid;
+        backdrop-filter: blur(6px);
+    }
+
+    .toast.success {
+        background: rgba(141, 198, 63, .15);
+        color: #cdeea4;
+        border-color: rgba(141, 198, 63, .5);
+    }
+
+    .toast.error {
+        background: rgba(255, 100, 80, .15);
+        color: #ffb3a3;
+        border-color: rgba(255, 100, 80, .5);
+    }
+
+
+
+    /* ===== Closing brand section (matches hero reference) ===== */
+    .closing-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 clamp(24px, 6vw, 80px);
+    }
+
+    .closing-content {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 18px 28px;
+    }
+
+    .closing-logo-img {
+        height: 180px;
+        width: auto;
+        display: block;
+    }
+
+    .closing-mark-img {
+        height: 80px;
+        width: auto;
+        display: block;
+    }
+
+
+
+    .closing-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+
+    .closing-tagline {
+        font-family: 'Brush Script MT', cursive;
+        font-style: italic;
+        font-size: 42px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .closing-brand {
+        position: absolute;
+        bottom: clamp(28px, 5vw, 56px);
+        right: clamp(24px, 6vw, 80px);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+
+
+
+    @media (max-width:560px) {
+        .closing-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+    }
+
+
+
+    @media (max-width:700px) {
+
+        .g2,
+        .time-grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+
+    }
+
+    @media (max-width:480px) {
+        .card-body {
+            padding: 1.5rem 1.25rem 2rem;
+        }
+
+        .pill-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .pill-group label {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    /* ===== Thank-you overlay ===== */
+    #thankyou-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(6, 8, 5, .92);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        animation: fadeInOverlay .4s ease;
+    }
+
+    #thankyou-overlay.show {
+        display: flex;
+    }
+
+    @keyframes fadeInOverlay {
+        from {
+            opacity: 0;
+            transform: scale(.97);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .ty-icon {
+        width: 72px;
+        height: 72px;
+        background: rgba(141, 198, 63, .15);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        margin: 0 auto 1.5rem;
+        border: 2px solid rgba(141, 198, 63, .4);
+    }
+
+    .ty-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        font-weight: 300;
+        color: #fff;
+        line-height: 1.15;
+        margin-bottom: .6rem;
+    }
+
+    .ty-title em {
+        font-style: italic;
+        color: var(--accent);
+    }
+
+    .ty-sub {
+        font-size: 14px;
+        color: var(--text-mute);
+        font-weight: 300;
+        letter-spacing: .04em;
+        margin-bottom: 2.5rem;
+    }
+
+    .ty-bar-wrap {
+        width: 200px;
+        height: 3px;
+        background: rgba(255, 255, 255, .15);
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .ty-bar {
+        height: 100%;
+        width: 0%;
+        background: var(--accent);
+        border-radius: 4px;
+        transition: width linear;
+    }
+
+    .ty-hint {
+        font-size: 11px;
+        color: var(--text-mute);
+        letter-spacing: .06em;
+        margin-top: .75rem;
+        opacity: .7;
+    }
+
+    /* ====================================
+  SITE VISIT RECORD PAGES
+======================================= */
+    @media (max-width: 1440px) and (min-width: 1025px) {
+
+        .navbar {
+            zoom: 0.8;
+        }
+
+
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+
+        .navbar {
+            zoom: 0.7;
+        }
+    }
+
+    /* ===== Form Tabs ===== */
+    .form-tabs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(6px, 1.5vw, 10px);
+        margin-top: 34px;
+        flex-wrap: wrap;
+        background: var(--glass-bg-soft);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 40px;
+        padding: 6px;
+    }
+
+    .form-tab {
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        outline: none !important;
+        background: transparent;
+        color: var(--text-mute);
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        padding: 11px 22px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: color .2s, background .2s, box-shadow .2s;
+        white-space: nowrap;
+    }
+
+    .form-tab:hover {
+        color: var(--text-light);
+    }
+
+    .form-tab.active {
+        color: #10150d;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+    }
+
+    @media (max-width:560px) {
+        .form-tab {
+            padding: 9px 15px;
+            font-size: 10px;
+            letter-spacing: .06em;
+        }
+    }
+
+    /* ===== Form panels (shared card hosts multiple forms) ===== */
+    .form-panel {
+        display: none;
+    }
+
+    .form-panel.active {
+        display: block;
+        animation: slideDown .25s ease-out;
+    }
+
+    /* ===== Vertical reference/radio-card list (matches underline theme) ===== */
+    .ref-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 2px;
+    }
+
+    .ref-list label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 13px;
+        border: 1.5px solid rgba(255, 255, 255, .22);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, .03);
+        font-size: 12.5px;
+        color: var(--text-light);
+        cursor: pointer;
+        transition: all .15s ease;
+    }
+
+    .ref-list label::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 255, 255, .4);
+        flex: 0 0 auto;
+        transition: all .15s ease;
+    }
+
+    .ref-list input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .ref-list input:checked+label {
+        border-color: var(--accent);
+        background: rgba(141, 198, 63, .12);
+        color: var(--accent);
+    }
+
+    .ref-list input:checked+label::before {
+        border-color: var(--accent);
+        background: radial-gradient(circle, var(--accent) 0 45%, transparent 50%);
+    }
+
+    .ref-divider {
+        font-size: 10.5px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--text-mute);
+        margin: 14px 0 6px;
+    }
+
+    .readonly-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(255, 255, 255, .06);
+        border: 1px solid rgba(255, 255, 255, .22);
+        border-radius: 8px;
+        padding: 6px 13px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-mute);
+    }
+</style>
+
+<body>
+
+    <div class="bg-fixed"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html" aria-label="Go to home page">
+                <img src="image/Akruti White Background Logo.svg" alt="Akruti" class="nav-logo-img">
+            </a>
+            <span class="nav-divider"></span>
+            <a href="index.html" aria-label="Go to home page">
+                <img src="image/Antaaya White Logo.svg" alt="Antaaya" class="nav-logo-img">
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="#">Gallery</a>
+            <a href="SiteVisit-Record.html">Site Visit Record</a>
+        </div>
+    </nav>
+
+    <!-- hero section and From section -->
+    <div class="site-visit-page">
+
+        <!-- hero section -->
+        <div class="hero-spacer">
+            <div class="hero-heading">
+                <div class="hero-eyebrow">Antaaya Villas · Lonavala</div>
+                <h1>Site Visit<br><em>Log &amp; Record</em></h1>
+                <p>Capture every client journey from arrival to departure</p>
+            </div>
+
+            <!-- Form Tabs -->
+            <div class="form-tabs" id="formTabs">
+                <button type="button" class="form-tab active" data-tab="sitevisit">Site Visit</button>
+                <button type="button" class="form-tab" data-tab="broker">Broker Entry</button>
+                <button type="button" class="form-tab" data-tab="enquiry">Enquiry</button>
+            </div>
+
+            <div class="scroll-cue" id="scrollCue">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+
+        <!-- From section -->
+        <div class="card" id="formCard">
+            <div class="card-body">
+
+                <!-- ============ PANEL: SITE VISIT ============ -->
+                <div class="form-panel active" id="panel-sitevisit">
+                    <form id="cvf" autocomplete="off">
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Visit Info</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div style="margin-bottom:18px;">
+                            <div class="maharera-pill">
+                                <span class="lbl">MahaRERA Reg. No.</span>
+                                <span class="sep"></span>
+                                <span class="val">P5XXXXXXXXXXXX</span>
+                            </div>
+                        </div>
+
+                        <div class="g2" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Date <span class="req">*</span></label>
+                                <input type="date" name="date" id="date_field" readonly>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Assigned Executive <span class="req">*</span></label>
+                                <select name="assigned_executive" required>
+                                    <option value="" disabled selected>Select executive</option>
+                                    <option>Sales Executive 1</option>
+                                    <option>Sales Executive 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="time-grid" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Time In</label>
+                                <div class="time-picker">
+                                    <select class="t-sel" id="ti_h" onchange="updateTime('in')"></select>
+                                    <span class="t-colon">:</span>
+                                    <select class="t-sel" id="ti_m" onchange="updateTime('in')"></select>
+                                    <select class="t-sel ampm" id="ti_ap" onchange="updateTime('in')">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="time_in" id="time_in_val">
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Time Out</label>
+                                <div class="time-picker">
+                                    <select class="t-sel" id="to_h" onchange="updateTime('out')"></select>
+                                    <span class="t-colon">:</span>
+                                    <select class="t-sel" id="to_m" onchange="updateTime('out')"></select>
+                                    <select class="t-sel ampm" id="to_ap" onchange="updateTime('out')">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="time_out" id="time_out_val">
+                            </div>
+                        </div>
+
+                        <div class="field" style="margin-bottom:18px;">
+                            <label class="field-label">Visit Type</label>
+                            <div class="pill-group">
+                                <label><input type="radio" name="visit_type" value="First Visit"><span>First
+                                        Visit</span></label>
+                                <label><input type="radio" name="visit_type"
+                                        value="Revisit"><span>Revisit</span></label>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Client Info</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Client Name <span class="req">*</span></label>
+                                <input type="text" name="client_name" placeholder="Full name" required>
+                            </div>
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Primary Contact <span class="req">*</span></label>
+                                    <div class="phone-row">
+                                        <select name="client_contact_code" id="primary_code">
+                                            <option value="+91">🇮🇳 +91</option>
+                                            <option value="+1">🇺🇸 +1</option>
+                                            <option value="+44">🇬🇧 +44</option>
+                                            <option value="+971">🇦🇪 +971</option>
+                                            <option value="+65">🇸🇬 +65</option>
+                                            <option value="+61">🇦🇺 +61</option>
+                                            <option value="+49">🇩🇪 +49</option>
+                                            <option value="+33">🇫🇷 +33</option>
+                                            <option value="+81">🇯🇵 +81</option>
+                                            <option value="+86">🇨🇳 +86</option>
+                                        </select>
+                                        <input type="tel" name="client_contact" id="primary_num"
+                                            placeholder="XXXXX XXXXX" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">Alternative Contact</label>
+                                    <div class="phone-row">
+                                        <select name="client_alt_code" id="alt_code">
+                                            <option value="+91">🇮🇳 +91</option>
+                                            <option value="+1">🇺🇸 +1</option>
+                                            <option value="+44">🇬🇧 +44</option>
+                                            <option value="+971">🇦🇪 +971</option>
+                                            <option value="+65">🇸🇬 +65</option>
+                                            <option value="+61">🇦🇺 +61</option>
+                                            <option value="+49">🇩🇪 +49</option>
+                                            <option value="+33">🇫🇷 +33</option>
+                                            <option value="+81">🇯🇵 +81</option>
+                                            <option value="+86">🇨🇳 +86</option>
+                                        </select>
+                                        <input type="tel" name="client_alt_contact" id="alt_num"
+                                            placeholder="XXXXX XXXXX">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Email ID</label>
+                                    <input type="email" name="client_email" placeholder="name@email.com">
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">City / Location</label>
+                                    <input type="text" name="client_city" placeholder="e.g. Mumbai, Pune">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Occupation</label>
+                                <input type="text" name="client_occupation" placeholder="e.g. Business, Service">
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Source &amp; Requirement</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Source <span class="req">*</span></label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="source" value="Walk-in"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Walk-in</span></label>
+                                    <label><input type="radio" name="source" value="Broker"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Broker</span></label>
+                                    <label><input type="radio" name="source" value="Digital Marketing"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Digital
+                                            Marketing</span></label>
+                                    <label><input type="radio" name="source" value="Reference"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Reference</span></label>
+                                    <label><input type="radio" name="source" value="Hoarding"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Hoarding</span></label>
+                                    <label><input type="radio" name="source" value="Website"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Website</span></label>
+                                    <label><input type="radio" name="source" value="Other"
+                                            onchange="toggleOther('source');toggleMahaRERA();toggleReference()"><span>Other…</span></label>
+                                </div>
+                                <div class="other-wrap" id="source_other_wrap">
+                                    <input type="text" name="source_other" placeholder="Specify source">
+                                </div>
+                            </div>
+                            <div class="other-wrap" id="reference_wrap">
+                                <div class="field">
+                                    <label class="field-label">Referred By</label>
+                                    <input type="text" name="reference" placeholder="Referrer's name">
+                                </div>
+                            </div>
+                            <div class="other-wrap" id="maharera_wrap">
+                                <div class="field">
+                                    <label class="field-label">MahaRERA No.</label>
+                                    <input type="text" name="maharera_no" placeholder="e.g. P52100012345"
+                                        style="text-transform:uppercase;" oninput="this.value=this.value.toUpperCase()">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Requirement <span class="req">*</span></label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="requirement" value="5 BHK"
+                                            onchange="toggleOther('requirement')"><span>5 BHK</span></label>
+                                    <label><input type="radio" name="requirement" value="8 BHK"
+                                            onchange="toggleOther('requirement')"><span>8 BHK</span></label>
+                                    <label><input type="radio" name="requirement" value="Other"
+                                            onchange="toggleOther('requirement')"><span>Other…</span></label>
+                                </div>
+                                <div class="other-wrap" id="requirement_other_wrap">
+                                    <input type="text" name="requirement_other" placeholder="e.g. 4 BHK, Villa, Plot…">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Budget</label>
+                                <input type="text" name="budget" placeholder="e.g. ₹1.5 Cr – ₹2 Cr">
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Purpose of Purchase</label>
+                                <select name="purpose" onchange="togglePurpose()">
+                                    <option value="" disabled selected>Select purpose</option>
+                                    <option>Investment</option>
+                                    <option>Weekend Home</option>
+                                    <option>Self Use</option>
+                                    <option>Second Home</option>
+                                    <option>Retirement Home</option>
+                                    <option>Rental Income</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div class="other-wrap" id="purpose_other_wrap">
+                                    <input type="text" name="purpose_other" placeholder="Specify purpose">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Loan Required</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="loan_required" value="Yes"
+                                            onchange="toggleLoan()"><span>Yes</span></label>
+                                    <label><input type="radio" name="loan_required" value="No"
+                                            onchange="toggleLoan()"><span>No</span></label>
+                                </div>
+                                <div class="other-wrap" id="loan_required_other_wrap">
+                                    <input type="text" name="loan_details"
+                                        placeholder="Bank / amount / pre-approval status">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Visit Details</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="g2" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Visit Status</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="visit_status" value="Visit Done"><span>Visit
+                                            Done</span></label>
+                                    <label><input type="radio" name="visit_status"
+                                            value="Re-visit"><span>Re-visit</span></label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Lead Status</label>
+                                <div class="pill-group">
+                                    <label class="p-new"><input type="radio" name="lead_status"
+                                            value="New"><span>New</span></label>
+                                    <label class="p-hot"><input type="radio" name="lead_status"
+                                            value="Hot"><span>Hot</span></label>
+                                    <label class="p-warm"><input type="radio" name="lead_status"
+                                            value="Warm"><span>Warm</span></label>
+                                    <label class="p-cold"><input type="radio" name="lead_status"
+                                            value="Cold"><span>Cold</span></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Feedback / Remarks</label>
+                            <textarea name="feedback"
+                                placeholder="Client feedback, interest level, property shown, follow-up notes…"></textarea>
+                        </div>
+
+                        <button type="submit" class="visit-submit-btn" id="submit_btn">Record Site Visit</button>
+                        <div class="toast" id="toast"></div>
+
+                    </form>
+                </div>
+                <!-- ============ /PANEL: SITE VISIT ============ -->
+
+                <!-- ============ PANEL: BROKER ENTRY ============ -->
+                <div class="form-panel" id="panel-broker">
+                    <form id="bkf" autocomplete="off">
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Broker Details</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Broker Name</label>
+                                    <input type="text" name="brokerName" placeholder="Full name">
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">Contact No.</label>
+                                    <input type="tel" name="contact" placeholder="10-digit mobile number"
+                                        pattern="[0-9+\-\s]{10,15}">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Email ID</label>
+                                <input type="email" name="email" placeholder="broker@email.com">
+                            </div>
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Occupation</label>
+                                    <input type="text" name="occupation" placeholder="e.g. Real Estate Consultant">
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">Company / Organization</label>
+                                    <input type="text" name="company" placeholder="Firm or agency name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Client Brought (Optional)</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="g2" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Client Name</label>
+                                <input type="text" name="clientName" placeholder="Full name (optional)">
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Client Mobile No.</label>
+                                <input type="tel" name="clientContact" placeholder="XXXXX XXXXX (optional)">
+                            </div>
+                        </div>
+                        <div class="field" style="margin-bottom:18px;">
+                            <label class="field-label">Client Budget</label>
+                            <input type="text" name="clientBudget" placeholder="e.g. ₹1.5 Cr – ₹2 Cr (optional)">
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Visit &amp; Registration</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Visit Type</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="visitType" value="First Visit"><span>First
+                                            Visit</span></label>
+                                    <label><input type="radio" name="visitType"
+                                            value="Revisit"><span>Revisit</span></label>
+                                    <label><input type="radio" name="visitType" value="Other"><span>Other</span></label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">RERA Registered?</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="reraRegistered" value="Yes"
+                                            onchange="toggleBkOther('rera')"><span>Yes</span></label>
+                                    <label><input type="radio" name="reraRegistered" value="No"
+                                            onchange="toggleBkOther('rera')"><span>No</span></label>
+                                </div>
+                                <div class="other-wrap" id="rera_other_wrap">
+                                    <input type="text" name="reraNumber" placeholder="e.g. A5121000XXXX">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Reference</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">How did the broker come to know about the project?</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="reference" value="Walk-in"
+                                            onchange="toggleBkOther('bksrc')"><span>Walk-in</span></label>
+                                    <label><input type="radio" name="reference" value="Digital Marketing"
+                                            onchange="toggleBkOther('bksrc')"><span>Digital Marketing</span></label>
+                                    <label><input type="radio" name="reference" value="Website"
+                                            onchange="toggleBkOther('bksrc')"><span>Website</span></label>
+                                    <label><input type="radio" name="reference" value="Other"
+                                            onchange="toggleBkOther('bksrc')"><span>Other</span></label>
+                                </div>
+                                <div class="other-wrap" id="bksrc_other_wrap">
+                                    <input type="text" name="sourceOther" placeholder="Specify source">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Referred By</label>
+                                <input type="text" name="referredBy" placeholder="Referrer's name (if any)">
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Commercials &amp; Notes</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Expected Brokerage</label>
+                                <input type="text" name="brokerage" value="2%" readonly>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Feedback</label>
+                                <textarea name="feedback" placeholder="Broker's feedback on the site visit"></textarea>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Description</label>
+                                <textarea name="description"
+                                    placeholder="Any additional notes or observations"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="visit-submit-btn" id="bk_submit_btn">Submit Broker Entry</button>
+                        <div class="toast" id="bk_toast"></div>
+
+                    </form>
+                </div>
+                <!-- ============ /PANEL: BROKER ENTRY ============ -->
+
+                <!-- ============ PANEL: ENQUIRY ============ -->
+                <div class="form-panel" id="panel-enquiry">
+                    <form id="eqf" autocomplete="off">
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Client &amp; Date</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Date</label>
+                                <input type="date" id="eq_date_field" readonly>
+                                <input type="hidden" name="date" id="eq_date_val">
+                            </div>
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Client Name</label>
+                                    <input type="text" name="clientName" placeholder="Full name">
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">Client Contact No.</label>
+                                    <input type="tel" name="clientContact" placeholder="XXXXX XXXXX">
+                                </div>
+                            </div>
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Email ID</label>
+                                    <input type="email" name="email" placeholder="client@email.com">
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">Client Location</label>
+                                    <input type="text" name="clientLocation" placeholder="City / area">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Source</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">How did the client come to know about the project?</label>
+                                <div class="pill-group" id="eq_sourceGroup">
+                                    <label><input type="radio" name="source" value="Website"
+                                            onchange="toggleEqOther('eqsrc');toggleEqReference()"><span>Website</span></label>
+                                    <label><input type="radio" name="source" value="Hoarding"
+                                            onchange="toggleEqOther('eqsrc');toggleEqReference()"><span>Hoarding</span></label>
+                                    <label><input type="radio" name="source" value="Digital Marketing"
+                                            onchange="toggleEqOther('eqsrc');toggleEqReference()"><span>Digital
+                                            Marketing</span></label>
+                                    <label><input type="radio" name="source" value="Reference"
+                                            onchange="toggleEqOther('eqsrc');toggleEqReference()"><span>Reference</span></label>
+                                    <label><input type="radio" name="source" value="Other"
+                                            onchange="toggleEqOther('eqsrc');toggleEqReference()"><span>Other</span></label>
+                                </div>
+                                <div class="other-wrap" id="eqsrc_other_wrap">
+                                    <input type="text" name="sourceOther" placeholder="Specify source">
+                                </div>
+                                <div class="other-wrap" id="eq_reference_wrap">
+                                    <div class="ref-list">
+                                        <label><input type="radio" name="referredBy"
+                                                value="Mr. Rushikesh Dhakane"><span>Mr.
+                                                Rushikesh Dhakane</span></label>
+                                        <label><input type="radio" name="referredBy"
+                                                value="Mr. Prajwal Karanjule"><span>Mr.
+                                                Prajwal Karanjule</span></label>
+                                        <label><input type="radio" name="referredBy"
+                                                value="Mr. Balasaheb Karanjule"><span>Mr. Balasaheb
+                                                Karanjule</span></label>
+                                        <label><input type="radio" name="referredBy" value="Other"
+                                                onchange="toggleEqOther('eqref')"><span>Other</span></label>
+                                    </div>
+                                    <div class="other-wrap" id="eqref_other_wrap">
+                                        <input type="text" name="referredByOther" placeholder="Referrer's name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Enquiry Profile</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Investor / Broker</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="clientType"
+                                            value="Investor"><span>Investor</span></label>
+                                    <label><input type="radio" name="clientType"
+                                            value="Broker"><span>Broker</span></label>
+                                    <label><input type="radio" name="clientType" value="Other"
+                                            onchange="toggleEqOther('eqtype')"><span>Other</span></label>
+                                </div>
+                                <div class="other-wrap" id="eqtype_other_wrap">
+                                    <input type="text" name="clientTypeOther" placeholder="Specify">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Villa Type</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="villaType" value="5 BHK"><span>5 BHK</span></label>
+                                    <label><input type="radio" name="villaType" value="8 BHK"><span>8 BHK</span></label>
+                                    <label><input type="radio" name="villaType" value="Other"
+                                            onchange="toggleEqOther('eqvilla')"><span>Other</span></label>
+                                </div>
+                                <div class="other-wrap" id="eqvilla_other_wrap">
+                                    <input type="text" name="villaTypeOther" placeholder="Specify villa type">
+                                </div>
+                            </div>
+                            <div class="g2">
+                                <div class="field">
+                                    <label class="field-label">Investment Purpose</label>
+                                    <input type="text" name="investmentPurpose"
+                                        placeholder="e.g. Self-use, rental income, resale">
+                                </div>
+                                <div class="field">
+                                    <label class="field-label">Budget</label>
+                                    <input type="text" name="budget" placeholder="e.g. ₹1.5 Cr – ₹2 Cr">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Enquiry Details</label>
+                                <textarea name="enquiryDetails"
+                                    placeholder="What the client is asking, discussed, or looking for"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="section-head">
+                            <div class="section-line"></div>
+                            <div class="section-pip"></div>
+                            <span class="section-title">Lead Tracking</span>
+                            <div class="section-pip"></div>
+                            <div class="section-line"></div>
+                        </div>
+
+                        <div class="stack" style="margin-bottom:18px;">
+                            <div class="field">
+                                <label class="field-label">Lead</label>
+                                <div class="pill-group">
+                                    <label><input type="radio" name="lead" value="New"><span>New</span></label>
+                                    <label><input type="radio" name="lead"
+                                            value="Repeated"><span>Repeated</span></label>
+                                    <label><input type="radio" name="lead" value="Other"
+                                            onchange="toggleEqOther('eqlead')"><span>Other</span></label>
+                                </div>
+                                <div class="other-wrap" id="eqlead_other_wrap">
+                                    <input type="text" name="leadOther" placeholder="Specify">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="field-label">Lead Status</label>
+                                <div class="pill-group">
+                                    <label class="p-hot"><input type="radio" name="leadStatus"
+                                            value="Hot"><span>Hot</span></label>
+                                    <label class="p-warm"><input type="radio" name="leadStatus"
+                                            value="Warm"><span>Warm</span></label>
+                                    <label class="p-cold"><input type="radio" name="leadStatus"
+                                            value="Cold"><span>Cold</span></label>
+                                    <label><input type="radio" name="leadStatus" value="Site Visit Scheduled"><span>Site
+                                            Visit Scheduled</span></label>
+                                    <label><input type="radio" name="leadStatus"
+                                            value="Cancelled"><span>Cancelled</span></label>
+                                    <label><input type="radio" name="leadStatus" value="Other"
+                                            onchange="toggleEqOther('eqstatus')"><span>Other</span></label>
+                                </div>
+                                <div class="other-wrap" id="eqstatus_other_wrap">
+                                    <input type="text" name="leadStatusOther" placeholder="Specify">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="visit-submit-btn" id="eq_submit_btn">Submit Enquiry</button>
+                        <div class="toast" id="eq_toast"></div>
+
+                    </form>
+                </div>
+                <!-- ============ /PANEL: ENQUIRY ============ -->
+
+            </div>
+        </div>
+
+        <div class="closing-section">
+            <div class="closing-content">
+                <img src="image/avl-logo-white.png" alt="Antaaya" class="closing-logo-img">
+                <div class="closing-row">
+                    <span class="closing-tagline">Build Memories Forever!</span>
+                </div>
+            </div>
+            <div class="closing-brand">
+                <img src="image/Akruti White Background Logo.svg" alt="Akruti" class="closing-mark-img">
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        const CRM_INTAKE_URL = "/crm/api/public_intake.php";
+        const CRM_QUEUE_KEY = "crm_intake_retry_queue";
+
+        function getCrmQueue() {
+            try { return JSON.parse(localStorage.getItem(CRM_QUEUE_KEY) || '[]'); }
+            catch { return []; }
+        }
+        function saveCrmQueue(queue) {
+            try { localStorage.setItem(CRM_QUEUE_KEY, JSON.stringify(queue)); } catch { /* ignore */ }
+        }
+        function queueForRetry(body) {
+            const queue = getCrmQueue();
+            queue.push({ body, queuedAt: Date.now() });
+            saveCrmQueue(queue);
+        }
+        async function sendToCRM(body) {
+            const res = await fetch(CRM_INTAKE_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            });
+            if (!res.ok) throw new Error('CRM responded with ' + res.status);
+            return res;
+        }
+        function syncToCRM(formType, payload) {
+            const body = { form_type: formType, ...payload };
+            sendToCRM(body).catch(() => queueForRetry(body));
+        }
+        async function flushCrmQueue() {
+            const queue = getCrmQueue();
+            if (!queue.length) return;
+            const stillFailed = [];
+            for (const item of queue) {
+                try { await sendToCRM(item.body); }
+                catch { stillFailed.push(item); }
+            }
+            saveCrmQueue(stillFailed);
+        }
+        window.addEventListener('load', () => setTimeout(flushCrmQueue, 1500));
+        window.addEventListener('online', flushCrmQueue);
+
+        const SITEVISIT_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_SITEVISIT_SCRIPT_ID/exec";
+        const pad = n => String(n).padStart(2, '0');
+
+        function buildHours(id) {
+            const s = document.getElementById(id);
+            for (let h = 1; h <= 12; h++) { const o = document.createElement('option'); o.value = o.textContent = pad(h); s.appendChild(o); }
+        }
+        function buildMins(id) {
+            const s = document.getElementById(id);
+            for (let m = 0; m < 60; m++) { const o = document.createElement('option'); o.value = o.textContent = pad(m); s.appendChild(o); }
+        }
+        buildHours('ti_h'); buildMins('ti_m');
+        buildHours('to_h'); buildMins('to_m');
+
+        function setTimePicker(prefix, d) {
+            let h = d.getHours(), m = d.getMinutes();
+            const ap = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            document.getElementById(prefix + '_h').value = pad(h);
+            document.getElementById(prefix + '_m').value = pad(m);
+            document.getElementById(prefix + '_ap').value = ap;
+            updateTime(prefix === 'ti' ? 'in' : 'out');
+        }
+        function updateTime(which) {
+            const p = which === 'in' ? 'ti' : 'to';
+            const val = document.getElementById(p + '_h').value + ':' + document.getElementById(p + '_m').value + ' ' + document.getElementById(p + '_ap').value;
+            document.getElementById(which === 'in' ? 'time_in_val' : 'time_out_val').value = val;
+        }
+        function readTimePicker(p) {
+            return document.getElementById(p + '_h').value + ':' + document.getElementById(p + '_m').value + ' ' + document.getElementById(p + '_ap').value;
+        }
+
+        const now = new Date();
+        document.getElementById('date_field').value = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+        setTimePicker('ti', now); setTimePicker('to', now);
+
+        // ---------- Generic helpers (scoped to a given form so the three
+        // panels never read each other's same-named fields) ----------
+        function getVal(scope, name) {
+            const els = scope.querySelectorAll('[name="' + name + '"]');
+            if (!els.length) return '';
+            if (els[0].type === 'radio') { return scope.querySelector('[name="' + name + '"]:checked')?.value || ''; }
+            return els[0].value.trim();
+        }
+        function showToast(toastId, msg, type) {
+            const t = document.getElementById(toastId);
+            t.textContent = msg; t.className = 'toast ' + type; t.style.display = 'block';
+            if (type === 'success') setTimeout(() => t.style.display = 'none', 7000);
+        }
+
+        const cvfForm = document.getElementById('cvf');
+
+        function toggleOther(key) { toggleOtherIn(cvfForm, key); }
+        function toggleOtherIn(scope, key) {
+            const val = scope.querySelector('[name="' + key + '"]:checked')?.value;
+            const wrap = document.getElementById(key + '_other_wrap');
+            if (wrap) wrap.classList.toggle('visible', val === 'Other');
+        }
+        function toggleMahaRERA() {
+            const val = cvfForm.querySelector('[name="source"]:checked')?.value;
+            const wrap = document.getElementById('maharera_wrap');
+            const isBroker = val === 'Broker';
+            wrap.classList.toggle('visible', isBroker);
+            if (!isBroker) cvfForm.querySelector('[name="maharera_no"]').value = '';
+        }
+        function toggleReference() {
+            const val = cvfForm.querySelector('[name="source"]:checked')?.value;
+            const wrap = document.getElementById('reference_wrap');
+            const isReference = val === 'Reference';
+            wrap.classList.toggle('visible', isReference);
+            if (!isReference) cvfForm.querySelector('[name="reference"]').value = '';
+        }
+        function togglePurpose() {
+            const val = cvfForm.querySelector('[name="purpose"]').value;
+            document.getElementById('purpose_other_wrap').classList.toggle('visible', val === 'Other');
+        }
+        function toggleLoan() {
+            const val = cvfForm.querySelector('[name="loan_required"]:checked')?.value;
+            const wrap = document.getElementById('loan_required_other_wrap');
+            const show = val === 'Yes';
+            wrap.classList.toggle('visible', show);
+            if (!show) cvfForm.querySelector('[name="loan_details"]').value = '';
+        }
+
+        document.getElementById('cvf').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const source = getVal(cvfForm, 'source') === 'Other' ? (getVal(cvfForm, 'source_other') || 'Other') : getVal(cvfForm, 'source');
+            const requirement = getVal(cvfForm, 'requirement') === 'Other' ? (getVal(cvfForm, 'requirement_other') || 'Other') : getVal(cvfForm, 'requirement');
+            const purpose = getVal(cvfForm, 'purpose') === 'Other' ? (getVal(cvfForm, 'purpose_other') || 'Other') : getVal(cvfForm, 'purpose');
+
+            const primaryCode = document.getElementById('primary_code').value;
+            const altCode = document.getElementById('alt_code').value;
+            const primaryNum = document.getElementById('primary_num').value.trim();
+            const altNum = document.getElementById('alt_num').value.trim();
+
+            const timeIn = readTimePicker('ti');
+            const timeOut = readTimePicker('to');
+
+            if (!getVal(cvfForm, 'date') || !getVal(cvfForm, 'assigned_executive') || !getVal(cvfForm, 'client_name')) {
+                showToast('toast', 'Please fill all required fields.', 'error'); return;
+            }
+            if (!primaryNum) { showToast('toast', 'Please enter the primary contact number.', 'error'); return; }
+            if (!source) { showToast('toast', 'Please select a source.', 'error'); return; }
+            if (!requirement) { showToast('toast', 'Please select a requirement.', 'error'); return; }
+
+            const payload = {
+                date: getVal(cvfForm, 'date'),
+                time_in: timeIn,
+                time_out: timeOut,
+                visit_type: getVal(cvfForm, 'visit_type'),
+                assigned_executive: getVal(cvfForm, 'assigned_executive'),
+                client_name: getVal(cvfForm, 'client_name'),
+                client_contact: primaryCode + ' ' + primaryNum,
+                client_alt_contact: altNum ? altCode + ' ' + altNum : '',
+                client_email: getVal(cvfForm, 'client_email'),
+                client_city: getVal(cvfForm, 'client_city'),
+                client_occupation: getVal(cvfForm, 'client_occupation'),
+                maharera_no: getVal(cvfForm, 'maharera_no'),
+                source: source,
+                reference: getVal(cvfForm, 'reference'),
+                requirement: requirement,
+                budget: getVal(cvfForm, 'budget'),
+                purpose: purpose,
+                loan_required: getVal(cvfForm, 'loan_required'),
+                loan_details: getVal(cvfForm, 'loan_details'),
+                visit_status: getVal(cvfForm, 'visit_status'),
+                lead_status: getVal(cvfForm, 'lead_status'),
+                feedback: getVal(cvfForm, 'feedback'),
+                submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            };
+
+            const btn = document.getElementById('submit_btn');
+            btn.disabled = true; btn.textContent = 'Recording…';
+
+            try {
+                const params = new URLSearchParams(payload);
+                await fetch(SITEVISIT_SCRIPT_URL + '?' + params.toString(), {
+                    method: 'GET',
+                    mode: 'no-cors',
+                });
+                syncToCRM('sitevisit', payload);
+                cvfForm.reset();
+                cvfForm.querySelectorAll('.other-wrap').forEach(el => el.classList.remove('visible'));
+                const n = new Date();
+                document.getElementById('date_field').value = n.getFullYear() + '-' + pad(n.getMonth() + 1) + '-' + pad(n.getDate());
+                setTimePicker('ti', n); setTimePicker('to', n);
+                btn.disabled = false; btn.textContent = 'Record Site Visit';
+                alert('Site visit has been recorded successfully.');
+            } catch (err) {
+                showToast('toast', 'Error submitting. Check your internet and try again.', 'error');
+                btn.disabled = false; btn.textContent = 'Record Site Visit';
+            }
+        });
+
+        // ==========================================================
+        // TAB SWITCHING
+        // ==========================================================
+        const tabButtons = document.querySelectorAll('.form-tab');
+        const panels = {
+            sitevisit: document.getElementById('panel-sitevisit'),
+            broker: document.getElementById('panel-broker'),
+            enquiry: document.getElementById('panel-enquiry'),
+        };
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const key = btn.dataset.tab;
+                tabButtons.forEach(b => b.classList.toggle('active', b === btn));
+                Object.keys(panels).forEach(k => panels[k].classList.toggle('active', k === key));
+                document.getElementById('formCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // ==========================================================
+        // BROKER ENTRY FORM
+        // ==========================================================
+        const BROKER_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_BROKER_SCRIPT_ID/exec";
+        const bkForm = document.getElementById('bkf');
+
+        function toggleBkOther(key) {
+            const map = {
+                rera: { name: 'reraRegistered', wrap: 'rera_other_wrap', match: 'Yes' },
+                bksrc: { name: 'reference', wrap: 'bksrc_other_wrap', match: 'Other' },
+            };
+            const cfg = map[key];
+            const val = bkForm.querySelector('[name="' + cfg.name + '"]:checked')?.value;
+            document.getElementById(cfg.wrap).classList.toggle('visible', val === cfg.match);
+        }
+
+        bkForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            if (!bkForm.checkValidity()) {
+                bkForm.reportValidity();
+                showToast('bk_toast', 'Please check the highlighted field.', 'error');
+                return;
+            }
+
+            const payload = {
+                brokerName: getVal(bkForm, 'brokerName'),
+                email: getVal(bkForm, 'email'),
+                contact: getVal(bkForm, 'contact'),
+                occupation: getVal(bkForm, 'occupation'),
+                company: getVal(bkForm, 'company'),
+                clientName: getVal(bkForm, 'clientName'),
+                clientContact: getVal(bkForm, 'clientContact'),
+                clientBudget: getVal(bkForm, 'clientBudget'),
+                visitType: getVal(bkForm, 'visitType'),
+                reraRegistered: getVal(bkForm, 'reraRegistered'),
+                reraNumber: getVal(bkForm, 'reraNumber'),
+                reference: getVal(bkForm, 'reference') === 'Other' ? (getVal(bkForm, 'sourceOther') || 'Other') : getVal(bkForm, 'reference'),
+                referredBy: getVal(bkForm, 'referredBy'),
+                brokerage: getVal(bkForm, 'brokerage'),
+                feedback: getVal(bkForm, 'feedback'),
+                description: getVal(bkForm, 'description'),
+                submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            };
+
+            const btn = document.getElementById('bk_submit_btn');
+            btn.disabled = true; btn.textContent = 'Submitting…';
+
+            try {
+                await fetch(BROKER_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                syncToCRM('broker', payload);
+                bkForm.reset();
+                bkForm.querySelectorAll('.other-wrap').forEach(el => el.classList.remove('visible'));
+                btn.disabled = false; btn.textContent = 'Submit Broker Entry';
+                alert('Broker entry has been recorded successfully.');
+            } catch (err) {
+                showToast('bk_toast', 'Error submitting. Check your internet and try again.', 'error');
+                btn.disabled = false; btn.textContent = 'Submit Broker Entry';
+            }
+        });
+
+        // ==========================================================
+        // ENQUIRY FORM
+        // ==========================================================
+        const ENQUIRY_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_ENQUIRY_SCRIPT_ID/exec";
+        const eqForm = document.getElementById('eqf');
+
+        function setEqToday() {
+            const now = new Date();
+            const iso = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+            document.getElementById('eq_date_field').value = iso;
+            document.getElementById('eq_date_val').value = iso;
+        }
+        setEqToday();
+
+        function toggleEqOther(key) {
+            const map = {
+                eqsrc: { name: 'source', wrap: 'eqsrc_other_wrap' },
+                eqref: { name: 'referredBy', wrap: 'eqref_other_wrap' },
+                eqtype: { name: 'clientType', wrap: 'eqtype_other_wrap' },
+                eqvilla: { name: 'villaType', wrap: 'eqvilla_other_wrap' },
+                eqlead: { name: 'lead', wrap: 'eqlead_other_wrap' },
+                eqstatus: { name: 'leadStatus', wrap: 'eqstatus_other_wrap' },
+            };
+            const cfg = map[key];
+            const val = eqForm.querySelector('[name="' + cfg.name + '"]:checked')?.value;
+            document.getElementById(cfg.wrap).classList.toggle('visible', val === 'Other');
+        }
+        function toggleEqReference() {
+            const val = eqForm.querySelector('[name="source"]:checked')?.value;
+            const wrap = document.getElementById('eq_reference_wrap');
+            const show = val === 'Reference';
+            wrap.classList.toggle('visible', show);
+            if (!show) {
+                eqForm.querySelectorAll('[name="referredBy"]').forEach(el => el.checked = false);
+                document.getElementById('eqref_other_wrap').classList.remove('visible');
+            }
+        }
+
+        eqForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const source = getVal(eqForm, 'source') === 'Other' ? (getVal(eqForm, 'sourceOther') || 'Other') : getVal(eqForm, 'source');
+            const referredBy = getVal(eqForm, 'referredBy') === 'Other' ? (getVal(eqForm, 'referredByOther') || 'Other') : getVal(eqForm, 'referredBy');
+            const clientType = getVal(eqForm, 'clientType') === 'Other' ? (getVal(eqForm, 'clientTypeOther') || 'Other') : getVal(eqForm, 'clientType');
+            const villaType = getVal(eqForm, 'villaType') === 'Other' ? (getVal(eqForm, 'villaTypeOther') || 'Other') : getVal(eqForm, 'villaType');
+            const lead = getVal(eqForm, 'lead') === 'Other' ? (getVal(eqForm, 'leadOther') || 'Other') : getVal(eqForm, 'lead');
+            const leadStatus = getVal(eqForm, 'leadStatus') === 'Other' ? (getVal(eqForm, 'leadStatusOther') || 'Other') : getVal(eqForm, 'leadStatus');
+
+            const payload = {
+                date: getVal(eqForm, 'date'),
+                clientName: getVal(eqForm, 'clientName'),
+                clientContact: getVal(eqForm, 'clientContact'),
+                email: getVal(eqForm, 'email'),
+                clientLocation: getVal(eqForm, 'clientLocation'),
+                source: source,
+                referredBy: referredBy,
+                clientType: clientType,
+                villaType: villaType,
+                investmentPurpose: getVal(eqForm, 'investmentPurpose'),
+                budget: getVal(eqForm, 'budget'),
+                enquiryDetails: getVal(eqForm, 'enquiryDetails'),
+                lead: lead,
+                leadStatus: leadStatus,
+                submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+            };
+
+            const btn = document.getElementById('eq_submit_btn');
+            btn.disabled = true; btn.textContent = 'Submitting…';
+
+            try {
+                await fetch(ENQUIRY_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                syncToCRM('enquiry', payload);
+                eqForm.reset();
+                eqForm.querySelectorAll('.other-wrap').forEach(el => el.classList.remove('visible'));
+                setEqToday();
+                btn.disabled = false; btn.textContent = 'Submit Enquiry';
+                alert('Enquiry has been recorded successfully.');
+            } catch (err) {
+                showToast('eq_toast', 'Error submitting. Check your internet and try again.', 'error');
+                btn.disabled = false; btn.textContent = 'Submit Enquiry';
+            }
+        });
+    </script>
+
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:9876543210" class="floating-btn all-btn" title="Contact All">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/9876543210" class="floating-btn whatsapp-btn" title="Contact on WhatsApp"
+            target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="Configure.js"></script>
+</body>
+
+</html>

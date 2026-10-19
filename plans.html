@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villas Plans | Antaaya Villas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/AVL White SVG .svg" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/favicon-size.svg">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <style>
+        /* ───────── RESET ───────── */
+        body {
+            margin: 0;
+            background: #ffffff;
+            font-family: Arial, sans-serif;
+
+        }
+
+        /* ───────── SECTION ───────── */
+        .villa-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .villa-section-heading {
+            text-align: center;
+            margin-bottom: 36px;
+            max-width: 900px;
+        }
+
+        .villa-section-heading h1 {
+            font-style: normal;
+            font-size: 44px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .villa-section-heading p {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* ───────── WRAPPER ───────── */
+        .villa-cards-wrapper {
+
+            display: flex;
+            margin-top: 180px;
+            gap: 150px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        /* ───────── CARD BASE ───────── */
+        .villa-card {
+            position: relative;
+            width: 350px;
+            padding-top: 100px;
+            /* space for top overlapping image */
+        }
+
+        /* ───────── TEXT CARD ───────── */
+        .villa-content {
+            background: rgb(255, 255, 255);
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            padding: 70px 22px 22px;
+            /* top padding to avoid image clash */
+            min-height: 200px;
+
+            box-shadow:
+                0 24px 60px rgba(0, 0, 0, 0.5),
+                0 8px 20px rgba(0, 0, 0, 0.3);
+
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ───────── COMMON IMAGE STYLE ───────── */
+        .villa-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+
+            filter:
+                drop-shadow(0 18px 24px rgba(0, 0, 0, 0.55)) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.40));
+        }
+
+        /* ───────── IMAGE SECTIONS (TOP OVERLAY) ───────── */
+
+        /* LEFT CARD IMAGE */
+        .villa-image-left {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translate(-50%, -30%);
+            /* overlap into card */
+            width: 450px;
+            z-index: 3;
+        }
+
+        .villa-image-left img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* CENTER CARD IMAGE */
+        .villa-image-center {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translate(-50%, -35%);
+            width: 400px;
+            z-index: 3;
+        }
+
+        .villa-image-center img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* RIGHT CARD IMAGE */
+        .villa-image-right {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translate(-50%, -30%);
+            width: 450px;
+            z-index: 3;
+        }
+
+        .villa-image-right img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* ───────── TEXT STYLING ───────── */
+        .villa-name {
+            color: #6ab805;
+            font-size: 25px;
+            font-weight: 600;
+            text-align: center;
+            margin: 10px 0 6px;
+        }
+
+        .card-sub {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgb(0, 0, 0);
+            margin-bottom: 6px;
+        }
+
+        /* ── Two-column meta grid ── */
+        .card-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 10px;
+            padding: 0 10px;
+            margin-bottom: 16px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        /* Green label — matches image 1 */
+        .meta-key {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #76ca09;
+            text-transform: uppercase;
+        }
+
+        /* Black value text */
+        .meta-val {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000;
+        }
+
+        /* Status available green */
+        .villa-status.meta-available,
+        .meta-val.meta-available {
+            color: #6ab805;
+            font-weight: 500;
+        }
+
+        /* Status soldout red */
+        .villa-status.meta-sold,
+        .meta-val.meta-sold {
+            color: #e53935;
+            font-weight: 600;
+        }
+
+
+
+        /* ───────── BUTTON ───────── */
+        .villa-btn {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            width: 70%;
+            margin-top: 14px;
+            background: #76ca09;
+            color: #000;
+            padding: 6px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s ease;
+        }
+
+        .villa-btn:hover {
+            background: #8fdf15;
+            transform: translateY(-1px);
+        }
+
+        .card-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #76ca09, transparent);
+            margin-bottom: 20px;
+        }
+
+        /* ── Active card ── */
+        .villa-card--active {
+            position: relative;
+            z-index: 10;
+            transform: scale(1.04);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .villa-card--active .villa-content {
+            border: none;
+            background: #333333;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.4),
+                0 24px 60px rgba(0, 0, 0, 0.60);
+        }
+
+        .villa-card--active .villa-content .card-sub,
+        .villa-card--active .villa-content .meta-val {
+            color: #ffffff;
+
+        }
+
+        /* ── Inactive cards — blurred + dimmed + clickable ── */
+        .villa-card--inactive {
+            position: relative;
+            z-index: 1;
+            filter: blur(0.5px) brightness(1);
+            transform: scale(0.97);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            /* shows hand cursor so user knows it's clickable */
+        }
+
+        .villa-card--inactive:hover {
+            filter: blur(0px) brightness(0.75);
+            /* slightly reveal on hover */
+            transform: scale(0.99);
+        }
+
+        /* ───────── SOLDOUT CARD ───────── */
+        .villa-card--soldout {
+            cursor: not-allowed;
+        }
+
+        .villa-card--soldout .villa-content {
+            opacity: 0.75;
+        }
+
+        /* ───────── SOLDOUT TAG ───────── */
+        .soldout-tag {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            background: #e53935;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* ───────── HEADING ANIMATION ───────── */
+        .villa-section-heading h1,
+        .villa-section-heading p {
+            opacity: 0;
+        }
+
+        .villa-section-heading h1 {
+            animation: headingFadeIn 0.9s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .villa-section-heading p {
+            animation: subheadingFadeIn 0.9s ease forwards;
+            animation-delay: 0.55s;
+        }
+
+        @keyframes headingFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-24px);
+                letter-spacing: 0.1em;
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                letter-spacing: 0.02em;
+            }
+        }
+
+        @keyframes subheadingFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Hidden Top-Right Nav Toggle -->
+    <div class="corner-nav" id="corner-nav">
+        <button class="corner-nav-toggle" id="corner-nav-toggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="corner-nav-menu" id="corner-nav-menu">
+            <a href="#" class="corner-nav-link">Gallery</a>
+            <a href="SiteVisit-Record.html" class="corner-nav-link">Site Visit Record</a>
+        </div>
+    </div>
+
+    <section class="villa-section">
+
+        <div class="villa-section-heading">
+            <h1>Villa Floor Plans</h1>
+            <p>Explore our premium villa layouts and choose the perfect configuration for your dream home.</p>
+        </div>
+
+        <div class="villa-cards-wrapper">
+
+            <!-- LEFT -->
+            <div class="villa-card left">
+                <div class="villa-image-left">
+                    <img src="image/villas/lhs-villa-layout.png">
+                </div>
+                <div class="villa-content">
+                    <h3 class="villa-name"></h3>
+                    <div class="card-sub" id="cardSub">Residential · Premium Villa</div>
+                    <div class="card-divider"></div>
+                    <div class="card-meta">
+                        <div class="meta-item">
+                            <span class="meta-key">Series</span>
+                            <span class="meta-val villa-type"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Configuration</span>
+                            <span class="meta-val villa-beds"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Plot Area</span>
+                            <span class="meta-val villa-size"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Status</span>
+                            <span class="meta-val villa-status"></span>
+                        </div>
+                    </div>
+                    <a href="lhs.html" class="villa-btn">Configure Your Villa →</a>
+                </div>
+            </div>
+
+            <!-- CENTER -->
+            <div class="villa-card center">
+                <div class="villa-image-center">
+                    <img src="image/villas/9bhk-villa-layout.png">
+                </div>
+                <div class="villa-content">
+                    <h3 class="villa-name"></h3>
+                    <div class="card-sub" id="cardSub">Residential · Premium Villa</div>
+                    <div class="card-divider"></div>
+                    <div class="card-meta">
+                        <div class="meta-item">
+                            <span class="meta-key">Series</span>
+                            <span class="meta-val villa-type"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Configuration</span>
+                            <span class="meta-val villa-beds"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Plot Area</span>
+                            <span class="meta-val villa-size"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Status</span>
+                            <span class="meta-val villa-status"></span>
+                        </div>
+                    </div>
+                    <a href="combo.html" class="villa-btn">Configure Your Villa →</a>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="villa-card right">
+                <div class="villa-image-right">
+                    <img src="image/villas/rhs-villa-layout.png">
+                </div>
+                <div class="villa-content">
+                    <h3 class="villa-name"></h3>
+                    <div class="card-sub" id="cardSub">Residential · Premium Villa</div>
+                    <div class="card-divider"></div>
+                    <div class="card-meta">
+                        <div class="meta-item">
+                            <span class="meta-key">Series</span>
+                            <span class="meta-val villa-type"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Configuration</span>
+                            <span class="meta-val villa-beds"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Plot Area</span>
+                            <span class="meta-val villa-size"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-key">Status</span>
+                            <span class="meta-val villa-status"></span>
+                        </div>
+                    </div>
+                    <a href="rhs.html" class="villa-btn">Configure Your Villa →</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:9876543210" class="floating-btn all-btn" title="Contact All">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/9876543210" class="floating-btn whatsapp-btn" title="Contact on WhatsApp"
+            target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="Configure.js"></script>
+</body>
+
+</html>

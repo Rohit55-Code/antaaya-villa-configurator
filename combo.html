@@ -1,0 +1,3494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo Villa | Antaaya Villas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/AVL White SVG .svg" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/favicon-size.svg">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg,
+                    #f8f9fb 0%,
+                    #eef1f4 100%);
+            color: #e8e0d5;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 48px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: none;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #76ca09, transparent);
+            opacity: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 130px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .logo span {
+            font-weight: 600;
+            color: #020202;
+            font-size: 18px;
+        }
+
+        /* Center logo container - removed, no longer needed */
+        .header-center-logo {
+            display: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #000000;
+        }
+
+        .header-nav a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .header-nav a:hover {
+            color: #76ca09;
+        }
+
+        /* ── MAIN LAYOUT ── */
+        .configurator {
+            display: flex;
+            height: 100vh;
+            padding-top: 64px;
+        }
+
+        /* ── RIGHT PANEL ── */
+        .right-panel {
+            width: 800px;
+            flex-shrink: 0;
+            /* SOFT WHITE GLASS (NOT TOO BLURRY) */
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            /* subtle separation line */
+            border-left: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 10;
+
+            /* Strong left shadow */
+            box-shadow: -10px 0 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .left-scroll {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .left-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .left-scroll::-webkit-scrollbar-track {
+            background: #161616;
+        }
+
+        .left-scroll::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+        }
+
+        /* ── VILLA INFO SECTION ── */
+        .villa-info-section {
+            background: #ffffff;
+            padding: 28px 32px;
+            margin-bottom: 0;
+        }
+
+        .villa-info-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .villa-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #76ca09;
+            margin-bottom: 8px;
+            background: rgba(118, 202, 9, 0.1);
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+
+        .villa-name {
+            font-size: 34px;
+            font-weight: 700;
+            color: #76ca09;
+            line-height: 1.1;
+            margin-bottom: 0;
+            letter-spacing: 0.8px;
+            text-align: center;
+        }
+
+        .villa-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #000000;
+            opacity: 1;
+        }
+
+        .villa-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .villa-info-item {
+            background: rgb(255, 255, 255);
+            padding: 0 14px;
+            border-radius: 5px;
+            border-left: none;
+            border: none;
+            text-align: center;
+        }
+
+        .villa-info-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #76ca09;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .villa-info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .villa-status {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #76ca09;
+            background: rgba(118, 202, 9, 0.15);
+            padding: 6px 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(118, 202, 9, 0.3);
+        }
+
+        .villa-config-btn {
+            width: 100%;
+            padding: 12px 16px;
+            background: #76ca09;
+            border: none;
+            border-radius: 5px;
+            color: #000000;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .villa-config-btn:hover {
+            background: #76ca099c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(118, 202, 9, 0.25);
+        }
+
+        .villa-config-btn:active {
+            transform: translateY(0);
+        }
+
+        .section-header {
+            padding: 10px 32px 16px;
+            border-bottom: none;
+        }
+
+        .section-header p {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000;
+            line-height: 1.4;
+            margin-top: 12px;
+        }
+
+        .section-title {
+            font-size: 30px;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.2;
+        }
+
+        .section-sub {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #76ca09;
+            margin-bottom: 4px;
+        }
+
+        /* ── OPTION GROUPS ── */
+        .option-group {
+            padding: 20px 32px;
+            border-bottom: none;
+        }
+
+
+
+
+        .option-btn {
+            width: 100%;
+            padding: 12px 16px;
+            background: #000000;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #76ca09;
+            transform: scaleY(0);
+            transition: transform 0.25s;
+        }
+
+        .option-btn:hover {
+
+            color: #76ca09;
+        }
+
+        .option-btn.active {
+            border-color: #76ca09;
+            color: #000000;
+            background: #76ca0948;
+        }
+
+        .option-btn.active::before {
+            transform: scaleY(1);
+        }
+
+        .option-btn .check {
+            width: 18px;
+            height: 18px;
+            border: 1px solid currentColor;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .option-btn.active .check {
+            background: #76ca09;
+            border-color: #76ca09;
+            color: #000000;
+        }
+
+        /* sub-tabs inside option group */
+        .sub-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 12px;
+        }
+
+        .sub-tab {
+            flex: 1;
+            padding: 9px 8px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            background: #1e1e1e;
+            color: #ffffff;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s;
+        }
+
+        .sub-tab:not(:last-child) {
+            border-right: none;
+        }
+
+        .sub-tab.active {
+            background: #76ca0948;
+
+            color: #000000;
+        }
+
+        .sub-tab:hover:not(.active) {
+            color: #76ca09;
+
+        }
+
+        .sub-tab-text {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── FEATURE CARDS ── */
+        .feature-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card {
+            border: none;
+            border-radius: 5px;
+            padding: 0;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: 1fr auto;
+            gap: 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+            /* clean elevation */
+            box-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.06),
+                0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 28px rgba(0, 0, 0, 0.10);
+        }
+
+        .feature-card.disabled {
+            opacity: 0.9;
+            cursor: not-allowed;
+        }
+
+        #standard-features-group .feature-card.disabled,
+        #standard-features-group-gf-int .feature-card.disabled,
+        #standard-features-group-ff .feature-card.disabled,
+        #standard-features-group-tf .feature-card.disabled {
+            opacity: 1;
+            cursor: default;
+        }
+
+        .feature-card.selected {
+            background: #f7fff2;
+            border-color: #76ca09;
+        }
+
+        .feature-card:not(.disabled):hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 44px rgba(118, 202, 9, 0.16);
+        }
+
+        .feature-card-image {
+            width: 100%;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            overflow: hidden;
+            max-height: 140px;
+            grid-column: 1 / -1;
+            grid-row: 1;
+            position: relative;
+        }
+
+        .feature-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .overlay-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.466);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay-logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .feature-card:hover .overlay-logo {
+            opacity: 1;
+        }
+
+        .feature-card-name {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+
+            color: #000000;
+            padding: 12px 8px;
+            line-height: 1.3;
+            grid-column: 1;
+            grid-row: 2;
+            align-self: center;
+            text-align: left;
+        }
+
+        .feature-card-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e7e7e7;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.2s;
+            color: #76ca09;
+            grid-column: 2;
+            grid-row: 2;
+            align-self: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .feature-card.selected .feature-card-checkbox {
+            background: #76ca09;
+            color: #000000;
+            border-color: #76ca09;
+        }
+
+        .feature-card.disabled .feature-card-checkbox {
+            border-color: #ccc;
+            opacity: 0.5;
+        }
+
+        .feature-toggle-btn {
+            width: auto;
+            /* remove full width */
+            display: inline-block;
+            /* shrink to content */
+            padding: 8px 16px;
+            border-radius: 5px;
+            background: #76ca09;
+            color: #000000;
+            border: none;
+
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .feature-toggle-btn:hover {
+            transform: translateY(-3px);
+            background: #76ca09;
+        }
+
+        .feature-toggle-btn:hover {
+            background: #76ca09;
+        }
+
+        .feature-toggle-btn.active {
+            background: #76ca09;
+            color: #000000;
+        }
+
+
+        .group-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: #76ca09;
+            color: #000000;
+            border-radius: 5px;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .feature-group.hidden {
+            display: none;
+        }
+
+        /* ── CONFORM BUTTON ── */
+        .confirm-addon-btn {
+            width: 100%;
+            padding: 10px 16px;
+            background: #76ca09;
+            border: none;
+            border-radius: 5px;
+            color: #0e0e0e;
+
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.25s;
+            font-weight: 600;
+        }
+
+        .confirm-addon-btn:hover {
+            background: #76ca099c;
+            transform: translateY(-2px);
+        }
+
+        .confirm-addon-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ── NEXT BUTTON FOOTER ── */
+        .right-footer {
+            padding: 20px 32px;
+            background: #ffffff;
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .footer-actions {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .step-hint {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #000000;
+            margin: 0;
+            display: block;
+            text-align: center;
+        }
+
+        .step-hint::before,
+        .step-hint::after {
+            content: none;
+        }
+
+        .prev-btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: 1;
+
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.25s, transform 0.15s, opacity 0.25s;
+
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #918f8f63;
+            border: none;
+            color: #000000;
+        }
+
+        /* overlay */
+        .prev-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.08);
+            /* lighter for dark button */
+            transform: translateX(-100%);
+        }
+
+        /* animate on hover */
+        .prev-btn:hover:not(:disabled)::after {
+            animation: sweepIn 0.6s ease forwards;
+        }
+
+        /* SAME keyframe (reuse) */
+        @keyframes sweepIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        /* reset when mouse leaves */
+        .prev-btn:not(:hover)::after {
+            animation: none;
+            transform: translateX(-100%);
+        }
+
+        /* hover background */
+        .prev-btn:hover:not(:disabled) {
+            background: #918f8f63;
+        }
+
+        /* disabled state */
+        .prev-btn:disabled {
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+
+        /* click */
+        .prev-btn:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .prev-btn:hover:not(:disabled) {
+            background: #76ca09;
+        }
+
+        .prev-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .next-btn {
+            padding: 7px 20px;
+            border-radius: 5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.25s, transform 0.15s, opacity 0.25s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #76ca09;
+            border: none;
+            color: #0e0e0e;
+        }
+
+
+        /* overlay */
+        .next-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.226);
+            transform: translateX(-100%);
+        }
+
+        /* animate on hover */
+        .next-btn:hover::after {
+            animation: sweepIn 0.6s ease forwards;
+        }
+
+        /* keyframe: stops at center */
+        @keyframes sweepIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0%);
+                /* stays visible */
+            }
+        }
+
+        /* IMPORTANT: reset instantly when mouse leaves */
+        .next-btn:not(:hover)::after {
+            animation: none;
+            transform: translateX(-100%);
+        }
+
+        /* hover background */
+        .next-btn:hover {
+            background: #76ca09;
+        }
+
+        /* click */
+        .next-btn:active {
+            transform: scale(0.98);
+        }
+
+        .next-btn:focus,
+        .prev-btn:focus,
+        .feature-toggle-btn:focus,
+        .unitToggle:focus,
+        .modal-cancel-btn:focus,
+        .modal-confirm-btn:focus,
+        .confirm-addon-btn:focus,
+        .plan-point:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* arrow */
+        .next-btn-arrow {
+            font-size: 18px;
+            transition: transform 0.25s ease;
+        }
+
+        .next-btn:hover .next-btn-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ── CENTER CANVAS ── */
+        .center-canvas {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #ffffff;
+            overflow: hidden;
+        }
+
+        .plan-stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plan-img {
+            max-height: calc(100vh - 180px);
+            max-width: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .plan-img.visible {
+            display: block;
+        }
+
+        /* overlay for interactive points */
+        .plan-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: none;
+            z-index: 15;
+        }
+
+        .day-night-section {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: none;
+        }
+
+        .day-night-section.active {
+            display: block;
+        }
+
+        .day-night-view {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .day-night-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .day-night-img.visible {
+            display: block;
+        }
+
+
+
+        .day-night-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 60;
+        }
+
+        .day-night-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none !important;
+            background: transparent !important;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .day-night-toggle-btn:focus,
+        .day-night-toggle-btn:focus-visible,
+        .day-night-toggle-btn:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .day-night-toggle-btn .fav-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #ffffff;
+            color: #000000;
+            font-size: 16px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .day-night-toggle-btn:hover .fav-icon {
+            transform: scale(1.08);
+        }
+
+        .day-night-toggle-btn.active .fav-icon {
+            background: #76ca09;
+            color: #000;
+        }
+
+        .plan-point {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(224, 224, 224, 0.678);
+            color: #0c0c0c;
+            font-size: 11px;
+            font-weight: 600;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .plan-point:hover,
+        .plan-point.active {
+            transform: scale(1.12);
+            background: #76ca09;
+            border-color: none;
+            color: #000000;
+        }
+
+        .legend-list li {
+            cursor: pointer;
+        }
+
+        .legend-list li.active,
+        .row.active {
+            background: rgba(133, 133, 133, 0.301);
+            color: #0b0b0b;
+            font-weight: 600;
+            border-radius: 5px;
+            padding: 0 12px;
+        }
+
+        .legend-list li.active span,
+        .row.active .col.name span {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        /* ── KEY STATUS PANEL ── */
+        .key-status-panel {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 20;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            box-shadow: none;
+            width: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-status-panel img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            box-shadow: none;
+        }
+
+
+
+
+
+
+        .key-status-panel.hidden {
+            display: none;
+        }
+
+        /* ── LOADER OVERLAY ── */
+        .image-loader {
+            position: absolute;
+            inset: 0;
+            z-index: 999;
+
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            /* reduced blur */
+            -webkit-backdrop-filter: blur(10px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .image-loader.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ── CIRCLE LOADER ── */
+        .loader-content {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Circle background */
+        .loader-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid rgba(0, 0, 0, 0.08);
+            position: absolute;
+        }
+
+        /* Animated progress ring */
+        .loader-progress {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #000;
+            border-right-color: #000;
+
+            position: absolute;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        /* % Text inside */
+        .loader-text {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+            /* smaller */
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 0.05em;
+        }
+
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: scale(0.97) translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.97) translateY(-8px);
+            }
+        }
+
+        .floor-badge {
+            position: absolute;
+            border-radius: 5px;
+            top: 20px;
+            left: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #000000;
+            border: none;
+            padding: 7px 14px;
+            background: #76ca09a4;
+            transition: all 0.3s;
+        }
+
+        /* ── FLOOR SECTION PANELS ── */
+        .floor-section {
+            display: none;
+        }
+
+        .floor-section.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── PROGRESS BAR ── */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #2e2e2e;
+            z-index: 200;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #76ca09, #76ca099c);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .confirm-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 400;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .confirm-modal-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .confirm-modal {
+            width: min(420px, calc(100% - 32px));
+            background: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 28px 26px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+            text-align: left;
+        }
+
+        .confirm-modal h3 {
+            margin: 0 0 16px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        .confirm-modal p {
+            margin: 0 0 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        .confirm-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .modal-cancel-btn,
+        .modal-confirm-btn {
+            padding: 8px 18px;
+            border-radius: 5px;
+
+
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .modal-cancel-btn {
+            background: transparent;
+            color: #161616;
+            border: 1px solid #2e2e2e;
+        }
+
+        .modal-confirm-btn {
+            background: #76ca09;
+            color: #0e0e0e;
+            border: none;
+        }
+
+        .modal-cancel-btn:hover {
+            background: #000000;
+            color: #ffffff;
+
+        }
+
+        .modal-confirm-btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* ── TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(120%);
+            background: #76ca09;
+            border-radius: 999px;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: none;
+            padding: 14px 32px;
+            max-width: 90%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.24);
+            opacity: 0;
+            z-index: 300;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+
+        /* ── LEGEND BOX ── */
+        .legend-box {
+            width: 400px;
+            padding: 24px 28px;
+            border-radius: 16px;
+            margin-left: 10px;
+
+            /* Soft glass background */
+            background: rgb(255, 255, 255);
+            backdrop-filter: blur(14px);
+        }
+
+        .legend-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #000000;
+            letter-spacing: 0.05em;
+        }
+
+        .legend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .legend-list li {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+
+            font-size: 15px;
+            color: #222;
+            letter-spacing: 0.03em;
+
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        /* Number styling */
+        .legend-list li span {
+            min-width: 20px;
+            color: #000000;
+            /* your accent green */
+            font-weight: 500;
+        }
+
+        /* Hover micro-interaction */
+        .legend-list li:hover {
+            transform: translateX(4px);
+            color: #000;
+        }
+
+
+        /* ── LEGEND COUNT BOX ── */
+        .legent-count-box {
+            width: 700px;
+            background: #ffffff;
+            padding: 16px 40px;
+        }
+
+        .legent-count-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .legent-count-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #000000;
+            letter-spacing: 0.05em;
+        }
+
+        .unitToggle {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 5px;
+            border: none;
+            background: #918f8f63;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .unitToggle:hover {
+            background: #76ca09;
+        }
+
+        /* Table Layout */
+        .legent-count-table {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legent-count-table .row {
+            display: grid;
+            grid-template-columns: 1fr 120px 120px;
+            align-items: center;
+            font-size: 14px;
+            transition: transform 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+        }
+
+        /* Hover micro-interaction */
+        .legent-count-table .row:hover {
+            transform: translateX(4px);
+            color: #000;
+        }
+
+        .legent-count-table .col.name {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 2px;
+
+            font-size: 15px;
+            color: #222;
+            letter-spacing: 0.03em;
+        }
+
+        .legent-count-table .col.dimension {
+            text-align: right;
+            font-size: 15px;
+            color: #222;
+        }
+
+        .legent-count-table .col.area {
+            text-align: right;
+            font-size: 15px;
+            color: #222;
+        }
+
+        /* ── VILLA DESCRIPTION SECTION ── */
+        .villa-description-container {
+            padding: 10px 15px;
+        }
+
+
+
+        .villa-description-title-right {
+            text-align: right;
+            margin-top: -50px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            letter-spacing: 0.08em;
+            margin-bottom: 30px;
+
+        }
+
+        .description-section-heading {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .description-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 0.5px solid rgba(0, 0, 0, 0.12);
+            margin-bottom: 10px;
+        }
+
+        .description-table thead tr {
+            background-color: #e6e6e6;
+        }
+
+        .description-table th {
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #000000;
+            text-align: left;
+            letter-spacing: 0.05em;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .description-table th:not(:first-child) {
+            text-align: right;
+        }
+
+        .description-table td {
+            padding: 11px 16px;
+            font-size: 14px;
+            color: #888;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .description-table td:not(:first-child) {
+            text-align: right;
+        }
+
+        .description-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .description-table tr:hover td {
+            background-color: #f9f9f7;
+            transition: background 0.15s ease;
+        }
+
+        .description-table td.label-cell {
+            font-weight: 500;
+            color: #111;
+        }
+
+        /* ── FLOOR PLANS SIDE BY SIDE ── */
+        .floor-plans-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 0;
+        }
+
+        .floor-plan-block {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .floor-plan-block .description-table {
+            margin-bottom: 0;
+        }
+
+        /* ── TOTAL AREA & TERRACE SIDE BY SIDE ── */
+        .terrace-total-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .total-block,
+        .terrace-total-row .terrace-block {
+            flex: 1;
+            min-width: 0;
+            width: auto;
+        }
+
+        .total-block .description-table,
+        .terrace-block .description-table {
+            margin-bottom: 0;
+        }
+    </style>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="image/Akruti Black Logo (Fetured Project).svg" alt="RHS Logo"></a>
+            <span>|</span>
+            <a href="index.html"><img src="image/Antaaya SVG (fetured project).svg" alt="RHS Logo"></a>
+        </div>
+
+        <div class="header-nav">
+            <a href="#">Gallery</a>
+            <a href="SiteVisit-Record.html">Site Visit Record</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONFIGURATOR -->
+    <div class="configurator">
+
+        <!-- ══════ CENTER CANVAS ══════ -->
+        <main class="center-canvas">
+            <div class="plan-stage">
+
+                <!-- key status -->
+                <div class="key-status-panel hidden" id="keyStatusPanel">
+                    <img id="keyStatusImage" src="" alt="" />
+                    <div class="status-source" data-floor="gf" data-src="image/villas/key-section-exterior.png"
+                        data-alt="Ground Floor Exterior Key Section"></div>
+                    <div class="status-source" data-floor="gf-int" data-src="image/villas/key-section-ground-floor.png"
+                        data-alt="Ground Floor Interior Key Section"></div>
+                    <div class="status-source" data-floor="ff" data-src="image/villas/key-section-first-floor.png"
+                        data-alt="First Floor Key Section"></div>
+                    <div class="status-source" data-floor="tf" data-src="image/villas/key-section-terrace.png"
+                        data-alt="Terrace Key Section"></div>
+                </div>
+
+                <div class="image-loader" id="imageLoader">
+                    <div class="loader-content">
+                        <div class="loader-circle"></div>
+                        <div class="loader-progress" id="loaderProgress"></div>
+                        <div class="loader-text" id="loaderText">0%</div>
+                    </div>
+                </div>
+
+                <!-- Villa layout Outer Garden images -->
+                <img class="plan-img visible" id="img-gf-garden-standard" src="image/combo/first-plan.png"
+                    alt="Ground Floor Garden Standard" />
+                <img class="plan-img" id="img-gf-garden-furnished" src="image/combo/first-plan-with-outer-furniture.png"
+                    alt="Ground Floor Garden Furnished" />
+
+                <div class="plan-overlay" id="plan-point-overlay-gf">
+                    <button class="plan-point" data-floor="gf" data-point="01"
+                        style="left: 22.4%; top: 82%;">01</button>
+                    <button class="plan-point" data-floor="gf" data-point="01"
+                        style="left: 73.8%; top: 82%;">01</button>
+                    <button class="plan-point" data-floor="gf" data-point="02"
+                        style="left: 22.4%; top: 72%;">02</button>
+                    <button class="plan-point" data-floor="gf" data-point="02"
+                        style="left: 73.8%; top: 72%;">02</button>
+                    <button class="plan-point" data-floor="gf" data-point="03" style="left: 48%; top: 73%;">03</button>
+                    <button class="plan-point" data-floor="gf" data-point="04"
+                        style="left: 37.5%; top: 68.3%;">04</button>
+                    <button class="plan-point" data-floor="gf" data-point="05"
+                        style="left: 24.5%; top: 32%;">05</button>
+                    <button class="plan-point" data-floor="gf" data-point="05" style="left: 72%; top: 32%;">05</button>
+                    <button class="plan-point" data-floor="gf" data-point="06"
+                        style="left: 25.5%; top: 19%;">06</button>
+                    <button class="plan-point" data-floor="gf" data-point="06" style="left: 70%; top: 19%;">06</button>
+                    <button class="plan-point" data-floor="gf" data-point="07" style="left: 48%; top: 19%;">07</button>
+                    <button class="plan-point" data-floor="gf" data-point="08" style="left: 52%; top: 10%;">08</button>
+                    <button class="plan-point" data-floor="gf" data-point="08"
+                        style="left: 44.5%; top: 10%;">08</button>
+                </div>
+
+                <!-- Ground Floor Interior images -->
+                <img class="plan-img" id="img-gf-int-unfurnished" src="image/combo/second-plan-with-outer-furniture.png"
+                    alt="Ground Floor Interior Unfurnished" />
+                <img class="plan-img" id="img-gf-int-furnished"
+                    src="image/combo/second-plan-with-outer-and-inner-furniture.png"
+                    alt="Ground Floor Interior Furnished" />
+
+                <div class="plan-overlay" id="plan-point-overlay-gf-int">
+                    <button class="plan-point" data-floor="gf-int" data-point="01"
+                        style="left: 37%; top: 59%;">01</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="02"
+                        style="left: 37%; top: 50%;">02</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="03"
+                        style="left: 48%; top: 34%;">03</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="04"
+                        style="left: 47.8%; top: 45.2%;">04</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="05"
+                        style="left: 28%; top: 58%;">05</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="06"
+                        style="left: 31.5%; top: 50.5%;">06</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="07"
+                        style="left: 42.6%; top: 58%;">07</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="08"
+                        style="left: 43%; top: 50.5%;">08</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="09"
+                        style="left: 50.5%; top: 58%;">09</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="10"
+                        style="left: 52.5%; top: 50.5%;">10</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="11"
+                        style="left: 58.5%; top: 50%;">11</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="12"
+                        style="left: 65%; top: 51%;">12</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="13"
+                        style="left: 24.5%; top: 33%;">13</button>
+                    <button class="plan-point" data-floor="gf-int" data-point="14"
+                        style="left: 72%; top: 33%;">14</button>
+                </div>
+
+
+                <!-- First Floor images -->
+                <img class="plan-img" id="img-ff-unfurnished" src="image/combo/third-plan-without-furniture.png"
+                    alt="First Floor Unfurnished" />
+                <img class="plan-img" id="img-ff-furnished" src="image/combo/third-plan-with-furniture.png"
+                    alt="First Floor Furnished" />
+
+                <div class="plan-overlay" id="plan-point-overlay-ff">
+                    <button class="plan-point" data-floor="ff" data-point="01" style="left: 37%; top: 32%;">01</button>
+                    <button class="plan-point" data-floor="ff" data-point="01" style="left: 59%; top: 32%;">01</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="02"
+                        style="left: 31.5%; top: 41.5%;">02</button>
+                    <button class="plan-point" data-floor="ff" data-point="02"
+                        style="left: 64.5%; top: 41.5%;">02</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="03"
+                        style="left: 44.5%; top: 32%;">03</button>
+                    <button class="plan-point" data-floor="ff" data-point="03" style="left: 51%; top: 32%;">03</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="04"
+                        style="left: 44.5%; top: 37%;">04</button>
+                    <button class="plan-point" data-floor="ff" data-point="04" style="left: 51%; top: 37%;">04</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="05" style="left: 38%; top: 23%;">05</button>
+                    <button class="plan-point" data-floor="ff" data-point="05" style="left: 58%; top: 23%;">05</button>
+
+
+                    <button class="plan-point" data-floor="ff" data-point="06"
+                        style="left: 65%; top: 60.5%;">06</button>
+                    <button class="plan-point" data-floor="ff" data-point="06"
+                        style="left: 29%; top: 60.5%;">06</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="07"
+                        style="left: 64.5%; top: 50%;">07</button>
+                    <button class="plan-point" data-floor="ff" data-point="07"
+                        style="left: 31.5%; top: 50%;">07</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="08" style="left: 51%; top: 61%;">08</button>
+                    <button class="plan-point" data-floor="ff" data-point="08" style="left: 43%; top: 61%;">08</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="09"
+                        style="left: 52.5%; top: 50%;">09</button>
+                    <button class="plan-point" data-floor="ff" data-point="09" style="left: 43%; top: 50%;">09</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="10" style="left: 58%; top: 67%;">10</button>
+                    <button class="plan-point" data-floor="ff" data-point="10" style="left: 38%; top: 67%;">10</button>
+
+                    <button class="plan-point" data-floor="ff" data-point="11"
+                        style="left: 58.2%; top: 49%;">11</button>
+                    <button class="plan-point" data-floor="ff" data-point="11"
+                        style="left: 37.2%; top: 49%;">11</button>
+                </div>
+
+                <!-- Terrace images -->
+                <img class="plan-img" id="img-tf-unfurnished" src="image/combo/terrace-without-furniture.png"
+                    alt="Terrace Unfurnished" />
+                <img class="plan-img" id="img-tf-furnished" src="image/combo/terrace-with-furniture.png"
+                    alt="Terrace Furnished" />
+
+                <div class="plan-overlay" id="plan-point-overlay-tf">
+                    <button class="plan-point" data-floor="tf" data-point="01" style="left: 48%; top: 36%;">01</button>
+                </div>
+
+                <!-- Day / Evening / Night view toggle section -->
+                <div class="day-night-section" id="dayNightSection">
+                    <div class="day-night-view">
+                        <img class="day-night-img visible" id="img-day" data-state="day" src="image/add-on/Day Time.png"
+                            alt="Day View" />
+                        <img class="day-night-img" id="img-evening" data-state="evening" src="image/add-on/Sunset.png"
+                            alt="Evening View" />
+                        <img class="day-night-img" id="img-night" data-state="night" src="image/add-on/night.jpeg"
+                            alt="Night View" />
+                    </div>
+                    <div class="day-night-control">
+                        <button class="day-night-toggle-btn" id="dayNightToggleBtn" type="button">
+                            <i class="fas fa-sun fav-icon" id="favIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="floor-badge" id="floor-badge">Villa Layout</div>
+            </div>
+        </main>
+
+        <!-- ══════ RIGHT PANEL ══════ -->
+        <aside class="right-panel">
+
+            <div class="left-scroll">
+
+                <!-- VILLA INFO SECTION -->
+                <div class="villa-info-section" id="villa-info-section">
+                    <div class="villa-info-header">
+                        <div class="villa-name" id="villa-name">Villa 11</div>
+                        <div class="villa-subtitle" id="villa-category">RESIDENTIAL - PREMIUM VILLA</div>
+                    </div>
+
+                    <div class="villa-info-grid">
+                        <div class="villa-info-item">
+                            <span class="villa-info-label">Series</span>
+                            <span class="villa-info-value" id="villa-series">A7-01</span>
+                        </div>
+                        <div class="villa-info-item">
+                            <span class="villa-info-label">Plot Area</span>
+                            <span class="villa-info-value" id="villa-area">280 sqm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VILLA LAYOUT OPTIONS -->
+                <div class="floor-section active" id="gf-options">
+                    <div class="section-header">
+                        <div class="section-sub">Section 01</div>
+                        <div class="section-title">Villa Layout</div>
+
+                    </div>
+
+                    <!-- Legend box -->
+                    <div class="legend-box">
+                        <div class="legend-title">Legend :</div>
+
+                        <ul class="legend-list">
+                            <li data-floor="gf" data-point="01"><span>1.</span> Entrance Gate</li>
+                            <li data-floor="gf" data-point="02"><span>2.</span> Driveway</li>
+                            <li data-floor="gf" data-point="03"><span>3.</span> Front Lawn / Garden Seating Area</li>
+                            <li data-floor="gf" data-point="04"><span>4.</span> Entrance Pathway</li>
+                            <li data-floor="gf" data-point="05"><span>5.</span> Swimming Pool</li>
+                            <li data-floor="gf" data-point="06"><span>6.</span> Pool Deck / Lounger Area</li>
+                            <li data-floor="gf" data-point="07"><span>7.</span> Back Lawn / Sit Out Area</li>
+                            <li data-floor="gf" data-point="08"><span>8.</span> Back Entrance Gate</li>
+                        </ul>
+                    </div>
+
+                    <!-- STANDARD FEATURES -->
+                    <div class="option-group">
+                        <button class="feature-toggle-btn active" type="button"
+                            onclick="toggleFeatureGroup('standard')">Included Features</button>
+                        <div class="feature-cards-container feature-group" id="standard-features-group">
+                            <div class="feature-card selected disabled" data-feature="standard-lawn"
+                                onclick="toggleFeature(event, this, true)">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/lawn.jpg" alt="Standard Lawn"
+                                        onerror="this.outerHTML='🌿'"></div>
+                                <div class="feature-card-name">Front & Back Lawn</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="plants"
+                                onclick="toggleFeature(event, this, true)">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/landscape.jpg"
+                                        alt="Plants & Hedging" onerror="this.outerHTML='🪴'"></div>
+                                <div class="feature-card-name">Landscape</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="pool"
+                                onclick="toggleFeature(event, this, true)">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/swimming-pool.jpg"
+                                        alt="Swimming Pool" onerror="this.outerHTML='🏊'"></div>
+                                <div class="feature-card-name">Swimming Pool</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="pathway"
+                                onclick="toggleFeature(event, this, true)">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/pathway-paving.jpg"
+                                        alt="Pathway Paving" onerror="this.outerHTML='🛤️'"></div>
+                                <div class="feature-card-name">Pathway Paving</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADD-ONS FEATURES -->
+                    <div class="option-group">
+                        <button class="feature-toggle-btn" type="button" id="addon-toggle-btn-gf">Add-On
+                            Options</button>
+                        <div class="feature-cards-container feature-group" id="addon-features-group-gf">
+                            <div class="feature-card" data-feature="outdoor-furniture"
+                                onclick="toggleFeature(event, this, false, 'gf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/outdoor -furniture.jpg"
+                                        alt="Outdoor Furniture" onerror="this.outerHTML='🪑'"></div>
+                                <div class="feature-card-name">Outdoor Furniture</div>
+                            </div>
+                            <div class="feature-card" data-feature="fire-pit"
+                                onclick="toggleFeature(event, this, false, 'gf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/lounges-chair.jpg"
+                                        alt="Fire Pit Lounge" onerror="this.outerHTML='🔥'"></div>
+                                <div class="feature-card-name">Lounge Chair</div>
+                            </div>
+                            <div class="feature-card" data-feature="heated-pool"
+                                onclick="toggleFeature(event, this, false, 'gf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/heated-pool2.jpg"
+                                        alt="Heated Pool" onerror="this.outerHTML='♨️'"></div>
+                                <div class="feature-card-name">Heated Pool</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUND FLOOR OPTIONS -->
+                <div class="floor-section" id="gf-int-options">
+                    <div class="section-header">
+                        <div class="section-sub">Section 02</div>
+                        <div class="section-title">Ground Floor </div>
+                    </div>
+
+                    <!-- LEGEND COUNT BOX -->
+                    <div class="legent-count-box">
+                        <div class="legent-count-header">
+                            <div class="legent-count-title">Legend :</div>
+                            <button class="unitToggle">Show sq.ft</button>
+                        </div>
+
+                        <div class="legent-count-table">
+
+                            <!-- Row 1 -->
+                            <div class="row" data-floor="gf-int" data-point="01" data-w="2.00" data-h="2.00"
+                                data-w-ft="6.56" data-h-ft="6.56">
+                                <div class="col name"><span>1.</span> Entrance Porch</div>
+                                <div class="col dimension">2.00 × 2.00</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="row" data-floor="gf-int" data-point="02" data-w="3.00" data-h="1.20"
+                                data-w-ft="9.84" data-h-ft="3.94">
+                                <div class="col name"><span>2.</span> Passage </div>
+                                <div class="col dimension">3.00 × 1.20</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div class="row" data-floor="gf-int" data-point="03" data-w="6.50" data-h="4.50"
+                                data-w-ft="21.33" data-h-ft="14.76">
+                                <div class="col name"><span>3.</span> Living Area & Dining Area </div>
+                                <div class="col dimension">6.50 × 4.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 4 -->
+                            <div class="row" data-floor="gf-int" data-point="04" data-w="3.00" data-h="2.50"
+                                data-w-ft="9.84" data-h-ft="8.20">
+                                <div class="col name"><span>4.</span> Staircase </div>
+                                <div class="col dimension">3.00 × 2.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 5 -->
+                            <div class="row" data-floor="gf-int" data-point="05" data-w="4.00" data-h="3.50"
+                                data-w-ft="13.12" data-h-ft="11.48">
+                                <div class="col name"><span>5.</span> Guest Bedroom </div>
+                                <div class="col dimension">4.00 × 3.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 6 -->
+                            <div class="row" data-floor="gf-int" data-point="06" data-w="2.50" data-h="1.50"
+                                data-w-ft="8.20" data-h-ft="4.92">
+                                <div class="col name"><span>6.</span> Guest Bedroom Toilet</div>
+                                <div class="col dimension">2.50 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 7 -->
+                            <div class="row" data-floor="gf-int" data-point="07" data-w="4.00" data-h="3.50"
+                                data-w-ft="13.12" data-h-ft="11.48">
+                                <div class="col name"><span>7.</span> Guest Bedroom 1</div>
+                                <div class="col dimension">4.00 × 3.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 8 -->
+                            <div class="row" data-floor="gf-int" data-point="08" data-w="2.50" data-h="1.50"
+                                data-w-ft="8.20" data-h-ft="4.92">
+                                <div class="col name"><span>8.</span> Guest Bedroom Toilet</div>
+                                <div class="col dimension">2.50 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 9 -->
+                            <div class="row" data-floor="gf-int" data-point="09" data-w="4.50" data-h="3.50"
+                                data-w-ft="14.76" data-h-ft="11.48">
+                                <div class="col name"><span>9.</span> Home Theatre Room</div>
+                                <div class="col dimension">4.50 × 3.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 10 -->
+                            <div class="row" data-floor="gf-int" data-point="10" data-w="2.50" data-h="1.50"
+                                data-w-ft="8.20" data-h-ft="4.92">
+                                <div class="col name"><span>10.</span> Guest Toilet </div>
+                                <div class="col dimension">2.50 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 11 -->
+                            <div class="row" data-floor="gf-int" data-point="11" data-w="3.00" data-h="1.20"
+                                data-w-ft="9.84" data-h-ft="3.94">
+                                <div class="col name"><span>11.</span> Passage</div>
+                                <div class="col dimension">3.00 × 1.20</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 12 -->
+                            <div class="row" data-floor="gf-int" data-point="12" data-w="3.50" data-h="3.00"
+                                data-w-ft="11.48" data-h-ft="9.84">
+                                <div class="col name"><span>12.</span> Kitchen</div>
+                                <div class="col dimension">3.50 × 3.00</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 13 -->
+                            <div class="row" data-floor="gf-int" data-point="13" data-w="6.00" data-h="2.50"
+                                data-w-ft="19.69" data-h-ft="8.20">
+                                <div class="col name"><span>13.</span> Swimming Pool 1</div>
+                                <div class="col dimension">6.00 × 2.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 14 -->
+                            <div class="row" data-floor="gf-int" data-point="14" data-w="6.00" data-h="2.50"
+                                data-w-ft="19.69" data-h-ft="8.20">
+                                <div class="col name"><span>14.</span> Swimming Pool 2</div>
+                                <div class="col dimension">6.00 × 2.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- STANDARD FEATURES -->
+                    <div class="option-group">
+                        <div class="group-label">Standard Features (Included)</div>
+                        <div class="feature-cards-container feature-group" id="standard-features-group-gf-int">
+                            <div class="feature-card selected disabled" data-feature="open-plan">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/vitrified-flooring.jpg"
+                                        alt="Open Plan" onerror="this.outerHTML='🏡'"></div>
+                                <div class="feature-card-name">Vitrified Flooring</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="basic-furniture">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image">
+                                    <img src="image/add-on/cp-fittings.jpg" alt="Basic Furniture"
+                                        onerror="this.outerHTML='🪑'">
+                                    <div class="overlay-logo"><img src="image/add-on/Delta.png" alt="Logo">
+                                    </div>
+                                </div>
+                                <div class="feature-card-name">CP Fitting</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="natural-light">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/kitchen-granite.jpg"
+                                        alt="Natural Light" onerror="this.outerHTML='☀️'">
+                                </div>
+                                <div class="feature-card-name">Kitchen Granite</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="storage">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/switches-wall.jpg" alt="Storage"
+                                        onerror="this.outerHTML='📦'">
+                                    <div class="overlay-logo"><img src="image/add-on/kolors-png-logo.png" alt="Logo">
+                                    </div>
+                                </div>
+                                <div class="feature-card-name">switches</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="bathroom-suite">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/white-paint-wall.jpeg"
+                                        alt="Bathroom Suite" onerror="this.outerHTML='🛁'">
+                                    <div class="overlay-logo"><img src="image/add-on/asianpaints-transparent.png"
+                                            alt="Logo"></div>
+                                </div>
+                                <div class="feature-card-name">Paint</div>
+                            </div>
+
+                            <div class="feature-card selected disabled" data-feature="bathroom-suite">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/ac-vrv-system.jpg"
+                                        alt="Bathroom Suite" onerror="this.outerHTML='🛁'">
+
+                                </div>
+                                <div class="feature-card-name">AC VRV System</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <!-- ADD-ONS FEATURES -->
+                    <div class="option-group">
+                        <button class="feature-toggle-btn" type="button" id="addon-toggle-btn-gf-int">Add-On Interior
+                            Options</button>
+                        <div class="feature-cards-container feature-group" id="addon-features-group-gf-int">
+                            <div class="feature-card" data-feature="sofa-set"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/9bhk-sofa-set.jpg" alt="Sofa Set"
+                                        onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">Sofa Set</div>
+                            </div>
+                            <div class="feature-card" data-feature="dining-set"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/9bhk-dining-set.jpg"
+                                        alt="Dining Set" onerror="this.outerHTML='🍽️'"></div>
+                                <div class="feature-card-name">Dining Set</div>
+                            </div>
+                            <div class="feature-card" data-feature="decor-pack"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/queen-bed.jpg" alt="Decor Pack"
+                                        onerror="this.outerHTML='🖼️'"></div>
+                                <div class="feature-card-name">Queen Bed</div>
+                            </div>
+
+                            <div class="feature-card" data-feature="accent-lighting"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/wardrobe.jpg"
+                                        alt="Accent Lighting" onerror="this.outerHTML='💡'"></div>
+                                <div class="feature-card-name">wardrobe</div>
+                            </div>
+
+                            <div class="feature-card" data-feature="sofa-set"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/tv-unit-plus-tv.jpg"
+                                        alt="Sofa Set" onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">TV plus TV unit</div>
+                            </div>
+                            <div class="feature-card" data-feature="dining-set"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/mirror.jpg" alt="Dining Set"
+                                        onerror="this.outerHTML='🍽️'"></div>
+                                <div class="feature-card-name">Mirror</div>
+                            </div>
+                            <div class="feature-card" data-feature="decor-pack"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/9bhk-modular-kitchen.jpg"
+                                        alt="Decor Pack" onerror="this.outerHTML='🖼️'"></div>
+                                <div class="feature-card-name">Modular Kitchen</div>
+                            </div>
+                            <div class="feature-card" data-feature="entertainment-unit"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/console-table.jpg"
+                                        alt="Entertainment Unit" onerror="this.outerHTML='🎮'"></div>
+                                <div class="feature-card-name">Console Table</div>
+                            </div>
+
+
+                            <div class="feature-card" data-feature="accent-lighting"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/smart-curtains.jpg"
+                                        alt="Accent Lighting" onerror="this.outerHTML='💡'"></div>
+                                <div class="feature-card-name">Smart Curtains</div>
+                            </div>
+
+                            <div class="feature-card" data-feature="accent-lighting"
+                                onclick="toggleFeature(event, this, false, 'gf-int')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/electrical-fix.jpg"
+                                        alt="Accent Lighting" onerror="this.outerHTML='💡'"></div>
+                                <div class="feature-card-name">Electrical Fixtures</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FIRST FLOOR OPTIONS -->
+                <div class="floor-section" id="ff-options">
+                    <div class="section-header">
+                        <div class="section-sub">Section 03</div>
+                        <div class="section-title">First Floor</div>
+                    </div>
+
+                    <!-- LEGEND COUNT BOX -->
+                    <div class="legent-count-box">
+                        <div class="legent-count-header">
+                            <div class="legent-count-title">Legend :</div>
+                            <button class="unitToggle">Show sq.ft</button>
+                        </div>
+
+                        <div class="legent-count-table">
+
+                            <!-- Row 1 -->
+                            <div class="row" data-floor="ff" data-point="01" data-w="5.00" data-h="4.00"
+                                data-w-ft="16.40" data-h-ft="13.12">
+                                <div class="col name"><span>1.</span> Master Suite Bedroom</div>
+                                <div class="col dimension">5.00 × 4.00</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="row" data-floor="ff" data-point="02" data-w="3.00" data-h="1.20"
+                                data-w-ft="9.84" data-h-ft="3.94">
+                                <div class="col name"><span>2.</span> Master Suite Lobby</div>
+                                <div class="col dimension">3.00 × 1.20</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 3 -->
+                            <div class="row" data-floor="ff" data-point="03" data-w="2.50" data-h="1.50"
+                                data-w-ft="8.20" data-h-ft="4.92">
+                                <div class="col name"><span>3.</span> Master Suite Toilet </div>
+                                <div class="col dimension">2.50 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 4 -->
+                            <div class="row" data-floor="ff" data-point="04" data-w="2.50" data-h="1.80"
+                                data-w-ft="8.20" data-h-ft="5.91">
+                                <div class="col name"><span>4.</span> Walking Wardrobe</div>
+                                <div class="col dimension">2.50 × 1.80</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 5 -->
+                            <div class="row" data-floor="ff" data-point="05" data-w="3.00" data-h="1.50"
+                                data-w-ft="9.84" data-h-ft="4.92">
+                                <div class="col name"><span>5.</span> Master Suite Balcony </div>
+                                <div class="col dimension">3.00 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 6 -->
+                            <div class="row" data-floor="ff" data-point="06" data-w="5.00" data-h="4.00"
+                                data-w-ft="16.40" data-h-ft="13.12">
+                                <div class="col name"><span>6.</span> Master Bedroom</div>
+                                <div class="col dimension">5.00 × 4.00</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 7 -->
+                            <div class="row" data-floor="ff" data-point="07" data-w="2.50" data-h="1.50"
+                                data-w-ft="8.20" data-h-ft="4.92">
+                                <div class="col name"><span>7.</span> Master Bedroom Toilet</div>
+                                <div class="col dimension">2.50 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 8 -->
+                            <div class="row" data-floor="ff" data-point="08" data-w="4.00" data-h="3.50"
+                                data-w-ft="13.12" data-h-ft="11.48">
+                                <div class="col name"><span>8.</span>Kid's Bedroom</div>
+                                <div class="col dimension">4.00 × 3.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 9 -->
+                            <div class="row" data-floor="ff" data-point="09" data-w="2.50" data-h="1.50"
+                                data-w-ft="8.20" data-h-ft="4.92">
+                                <div class="col name"><span>9.</span> Kid's Bedroom Toilet</div>
+                                <div class="col dimension">2.50 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 10 -->
+                            <div class="row" data-floor="ff" data-point="10" data-w="3.00" data-h="1.50"
+                                data-w-ft="9.84" data-h-ft="4.92">
+                                <div class="col name"><span>10.</span> Balcony</div>
+                                <div class="col dimension">3.00 × 1.50</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Row 11 -->
+                            <div class="row" data-floor="ff" data-point="11" data-w="3.00" data-h="1.20"
+                                data-w-ft="9.84" data-h-ft="3.94">
+                                <div class="col name"><span>11.</span> Passage</div>
+                                <div class="col dimension">3.00 × 1.20</div>
+                                <div class="col area"></div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- STANDARD FEATURES -->
+                    <div class="option-group">
+                        <div class="group-label">Standard Features (Included)</div>
+                        <div class="feature-cards-container feature-group" id="standard-features-group-ff">
+                            <div class="feature-card selected disabled" data-feature="bedroom-suite">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/vitrified-flooring.jpg"
+                                        alt="Bedroom Suite" onerror="this.outerHTML='🛏️'"></div>
+                                <div class="feature-card-name">Vitrified Flooring</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="wardrobe">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/wooden-flooring.jpg"
+                                        alt="Wardrobe" onerror="this.outerHTML='👗'"></div>
+                                <div class="feature-card-name">Wooden Flooring</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="ensuite">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/cp-fittings.jpg" alt="Ensuite"
+                                        onerror="this.outerHTML='🚿'">
+                                    <div class="overlay-logo"><img src="image/add-on/Delta.png" alt="Logo">
+                                    </div>
+                                </div>
+                                <div class="feature-card-name">CP fittings</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="balcony">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/switches-wall.jpg" alt="Balcony"
+                                        onerror="this.outerHTML='🌇'">
+                                    <div class="overlay-logo"><img src="image/add-on/kolors-png-logo.png" alt="Logo">
+                                    </div>
+                                </div>
+                                <div class="feature-card-name">Switches</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="study-corner">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/white-paint-wall.jpeg"
+                                        alt="Study Corner" onerror="this.outerHTML='💼'">
+                                    <div class="overlay-logo"><img src="image/add-on/asianpaints-transparent.png"
+                                            alt="Logo"></div>
+                                </div>
+                                <div class="feature-card-name">Paint</div>
+                            </div>
+
+                            <div class="feature-card selected disabled" data-feature="study-corner">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/ac-vrv-system.jpg"
+                                        alt="Study Corner" onerror="this.outerHTML='💼'">
+
+                                </div>
+                                <div class="feature-card-name">AC VRV System</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADD-ONS FEATURES -->
+                    <div class="option-group">
+                        <button class="feature-toggle-btn" type="button" id="addon-toggle-btn-ff">Add-On Interior
+                            Options</button>
+                        <div class="feature-cards-container feature-group" id="addon-features-group-ff">
+                            <div class="feature-card" data-feature="premium-furnishings"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/king-size-bed.jpg"
+                                        alt="Premium Furnishings" onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">King Size Bed 2X</div>
+                            </div>
+                            <div class="feature-card" data-feature="tv-unit"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/queen-bed.jpg" alt="TV Unit"
+                                        onerror="this.outerHTML='📺'"></div>
+                                <div class="feature-card-name">Queen Size Bed 4X</div>
+                            </div>
+                            <div class="feature-card" data-feature="artwork-pack"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/side-table2.jpg"
+                                        alt="Artwork Pack" onerror="this.outerHTML='🖼️'"></div>
+                                <div class="feature-card-name">Side Tables 12X</div>
+                            </div>
+                            <div class="feature-card" data-feature="smart-lighting"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/coffee-table.jpg"
+                                        alt="Smart Lighting" onerror="this.outerHTML='💡'"></div>
+                                <div class="feature-card-name">Coffee Table With Chair 2X</div>
+                            </div>
+                            <div class="feature-card" data-feature="lounging-area"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/walkin-wardrobe1.jpg"
+                                        alt="Lounging Area" onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">Walkin Wardrobe 2X</div>
+                            </div>
+
+                            <div class="feature-card" data-feature="premium-furnishings"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/wardrobe.jpg"
+                                        alt="Premium Furnishings" onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">Wardrobe 4X</div>
+                            </div>
+                            <div class="feature-card" data-feature="tv-unit"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/tv-unit-plus-tv.jpg"
+                                        alt="TV Unit" onerror="this.outerHTML='📺'"></div>
+                                <div class="feature-card-name">TV plus TV Unit 6X</div>
+                            </div>
+                            <div class="feature-card" data-feature="artwork-pack"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/mirror.jpg" alt="Artwork Pack"
+                                        onerror="this.outerHTML='🖼️'"></div>
+                                <div class="feature-card-name">Mirror</div>
+                            </div>
+                            <div class="feature-card" data-feature="smart-lighting"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/console-table.jpg"
+                                        alt="Smart Lighting" onerror="this.outerHTML='💡'"></div>
+                                <div class="feature-card-name">Console Table</div>
+                            </div>
+                            <div class="feature-card" data-feature="lounging-area"
+                                onclick="toggleFeature(event, this, false, 'ff')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/bathtub.jpg" alt="Lounging Area"
+                                        onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">Bathtub</div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TERRACE OPTIONS -->
+                <div class="floor-section" id="tf-options">
+                    <div class="section-header">
+                        <div class="section-sub">Section 04</div>
+                        <div class="section-title">Terrace</div>
+                    </div>
+
+                    <!-- LEGEND COUNT BOX -->
+                    <div class="legent-count-box">
+                        <div class="legent-count-header">
+                            <div class="legent-count-title">Legend :</div>
+                            <button class="unitToggle">Show sq.ft</button>
+                        </div>
+
+                        <div class="legent-count-table">
+
+                            <!-- Row 1 -->
+                            <div class="row" data-floor="tf" data-point="01" data-w="5.00" data-h="4.00"
+                                data-w-ft="16.40" data-h-ft="13.12">
+
+                                <div class="col name"><span>1.</span>Terrace</div>
+                                <div class="col dimension">5.00 × 4.00</div>
+                                <div class="col area"></div>
+                            </div>
+
+                            <!-- Add more rows same way -->
+
+                        </div>
+                    </div>
+
+                    <!-- STANDARD FEATURES -->
+                    <div class="option-group">
+                        <div class="group-label">Standard Features (Included)</div>
+                        <div class="feature-cards-container feature-group" id="standard-features-group-tf">
+                            <div class="feature-card selected disabled" data-feature="roof-deck">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/terrace-tiles.jpg"
+                                        alt="Roof Deck" onerror="this.outerHTML='🏖️'"></div>
+                                <div class="feature-card-name">Terrace Tiles</div>
+                            </div>
+                            <div class="feature-card selected disabled" data-feature="planters">
+                                <div class="feature-card-checkbox">✓</div>
+                                <div class="feature-card-image"><img src="image/add-on/ac-outdoor-unit.jpg"
+                                        alt="Planters" onerror="this.outerHTML='🌿'"></div>
+                                <div class="feature-card-name">AC Outdoor Unit</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ADD-ONS FEATURES -->
+                    <div class="option-group">
+                        <button class="feature-toggle-btn" type="button" id="addon-toggle-btn-tf">Add-On
+                            Options</button>
+                        <div class="feature-cards-container feature-group" id="addon-features-group-tf">
+                            <div class="feature-card" data-feature="garden-furniture"
+                                onclick="toggleFeature(event, this, false, 'tf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/counter-top.jpg"
+                                        alt="Garden Furniture" onerror="this.outerHTML='🛋️'"></div>
+                                <div class="feature-card-name">Counter Top plus Sink</div>
+                            </div>
+                            <div class="feature-card" data-feature="outdoor-bar"
+                                onclick="toggleFeature(event, this, false, 'tf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/sofa-set-with-coffee-table.jpg"
+                                        alt="Outdoor Bar" onerror="this.outerHTML='🍸'"></div>
+                                <div class="feature-card-name">Sofa set with coffee Table & puffy</div>
+                            </div>
+                            <div class="feature-card" data-feature="fire-pit"
+                                onclick="toggleFeature(event, this, false, 'tf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/granite-seating.jpg"
+                                        alt="Fire Pit" onerror="this.outerHTML='🔥'"></div>
+                                <div class="feature-card-name">Granite Seating</div>
+                            </div>
+                            <div class="feature-card" data-feature="green-wall"
+                                onclick="toggleFeature(event, this, false, 'tf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/green-lawn-terrace.jpg"
+                                        alt="Green Wall" onerror="this.outerHTML='🌿'"></div>
+                                <div class="feature-card-name">Artificial Green Lawn</div>
+                            </div>
+                            <div class="feature-card" data-feature="jacuzzi"
+                                onclick="toggleFeature(event, this, false, 'tf')">
+                                <div class="feature-card-checkbox"></div>
+                                <div class="feature-card-image"><img src="image/add-on/plants-and-shurbs.jpg"
+                                        alt="Jacuzzi" onerror="this.outerHTML='🛁'"></div>
+                                <div class="feature-card-name">Plants and shurbs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUMMARY SECTION -->
+                <div class="floor-section" id="summary-options">
+                    <div class="section-header">
+                        <div class="section-sub">Section 05</div>
+                        <div class="section-title">Villa Summary</div>
+                    </div>
+
+                    <div class="villa-description-container">
+                        <div class="villa-description-title-right">8 BHK VILLA</div>
+
+                        <!-- Ground Floor + First Floor side by side -->
+                        <div class="floor-plans-row">
+                            <div class="floor-plan-block">
+                                <h3 class="description-section-heading">Ground Floor Plan</h3>
+                                <table class="description-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Carpet</th>
+                                            <th>Sq.Mt</th>
+                                            <th>Sq.Ft</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">RERA</td>
+                                            <td>170.00</td>
+                                            <td>1,829.86</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Pool</td>
+                                            <td>30.00</td>
+                                            <td>322.92</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Useable</td>
+                                            <td>180.00</td>
+                                            <td>1,937.50</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="floor-plan-block">
+                                <h3 class="description-section-heading">First Floor Plan</h3>
+                                <table class="description-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Carpet</th>
+                                            <th>Sq.Mt</th>
+                                            <th>Sq.Ft</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">RERA</td>
+                                            <td>190.00</td>
+                                            <td>2,045.14</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Balcony</td>
+                                            <td>20.00</td>
+                                            <td>215.28</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Useable</td>
+                                            <td>210.00</td>
+                                            <td>2,260.42</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Total Area (left) & Terrace (right) side by side -->
+                        <div class="terrace-total-row">
+                            <div class="total-block">
+                                <h3 class="description-section-heading">Total Area</h3>
+                                <table class="description-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Total</th>
+                                            <th>Sq.Mt</th>
+                                            <th>Sq.Ft</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">RERA Carpet</td>
+                                            <td>360.00</td>
+                                            <td>3,875.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label-cell">Useable Carpet</td>
+                                            <td>390.00</td>
+                                            <td>4,197.92</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="terrace-block">
+                                <h3 class="description-section-heading">Terrace</h3>
+                                <table class="description-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Area</th>
+                                            <th>Sq.Mt</th>
+                                            <th>Sq.Ft</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="label-cell">Terrace</td>
+                                            <td>200.00</td>
+                                            <td>2,152.78</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div><!-- end left-scroll -->
+
+            <!-- ── NEXT BUTTON FOOTER ── -->
+            <div class="right-footer">
+                <div class="footer-actions">
+                    <button class="prev-btn" id="prev-btn" onclick="goPrev()" disabled>Back</button>
+                    <div class="step-hint" id="step-hint">Step 1 of 5</div>
+                    <button class="next-btn" id="next-btn" onclick="goNext()">
+                        <span id="next-btn-label">Next — Ground Floor</span>
+                        <span class="next-btn-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+
+        </aside>
+
+
+
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <div class="confirm-modal-overlay" id="addon-confirm-modal">
+        <div class="confirm-modal">
+            <h3 id="addon-confirm-title">Confirm your selection</h3>
+            <p id="addon-confirm-message">You need to select all add-on options before proceeding. Press confirm to
+                select all add-ons and update the preview image.</p>
+            <div class="confirm-modal-actions">
+                <button class="modal-cancel-btn" type="button" onclick="closeAddonConfirmModal()">Cancel</button>
+                <button class="modal-confirm-btn" type="button" id="addon-confirm-button"
+                    onclick="confirmAddonAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- script full page -->
+    <script>
+        // ── STATE ──
+        const floors = ['gf', 'gf-int', 'ff', 'tf', 'summary'];
+        let currentFloorIndex = 0;
+
+        const state = {
+            activeFloor: 'gf',
+            villa: {
+                name: 'Villa 11',
+                type: 'Villa',
+                category: 'RESIDENTIAL - PREMIUM VILLA',
+                series: 'A7-01',
+                configuration: '9 BHK',
+                builtUpArea: '280 sqm',
+                status: 'Available'
+            },
+            gf: {
+                garden: 'standard',
+                interior: 'unfurnished',
+                selectedAddOns: new Set()
+            },
+            'gf-int': {
+                option: 'unfurnished',
+                selectedAddOns: new Set()
+            },
+            ff: {
+                option: 'unfurnished',
+                selectedAddOns: new Set()
+            },
+            tf: {
+                option: 'unfurnished',
+                selectedAddOns: new Set()
+            }
+        };
+
+        // ── VILLA INFO FUNCTIONS ──
+        function updateVillaInfo(villaData) {
+            if (!villaData) return;
+
+            state.villa = { ...state.villa, ...villaData };
+
+            document.getElementById('villa-name').textContent = state.villa.name || 'Villa';
+            document.getElementById('villa-category').textContent = state.villa.category || 'RESIDENTIAL - PREMIUM VILLA';
+            document.getElementById('villa-series').textContent = state.villa.series || '-';
+            document.getElementById('villa-area').textContent = state.villa.builtUpArea || '-';
+        }
+
+        function initVillaInfoFromStorage() {
+            const stored = localStorage.getItem('selectedVilla') || localStorage.getItem('villaConfig') || localStorage.getItem('comboState') || localStorage.getItem('rhsState') || localStorage.getItem('lhsState');
+            if (!stored) return;
+
+            try {
+                const raw = JSON.parse(stored);
+                const villaData = raw && typeof raw === 'object'
+                    ? raw.villa || raw
+                    : null;
+                if (!villaData || typeof villaData !== 'object') return;
+
+                updateVillaInfo({
+                    name: villaData.name || villaData.type || villaData.series || 'Villa',
+                    category: villaData.category || 'RESIDENTIAL - PREMIUM VILLA',
+                    series: villaData.series || villaData.type || villaData.configuration || '-',
+                    configuration: villaData.configuration || villaData.beds || '-',
+                    builtUpArea: villaData.builtUpArea || villaData.size || villaData.area || '-'
+                });
+            } catch (err) {
+                console.warn('Unable to parse selected villa data from storage', err);
+            }
+        }
+
+        function selectVilla(villaElement) {
+            if (!villaElement) return;
+
+            const villaData = {
+                name: villaElement.getAttribute('data-villa-name') || 'Villa',
+                type: villaElement.getAttribute('data-villa-type') || 'Villa',
+                category: villaElement.getAttribute('data-villa-category') || 'RESIDENTIAL',
+                series: villaElement.getAttribute('data-villa-series') || '-',
+                configuration: villaElement.getAttribute('data-villa-config') || '-',
+                builtUpArea: villaElement.getAttribute('data-villa-area') || '-',
+                status: villaElement.getAttribute('data-villa-status') || 'Available'
+            };
+
+            updateVillaInfo(villaData);
+            localStorage.setItem('selectedVilla', JSON.stringify(villaData));
+
+            document.querySelectorAll('[data-villa-name]').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            villaElement.classList.add('selected');
+        }
+
+        function scrollToFloor(floorId) {
+            const scrollContainer = document.querySelector('.left-scroll');
+            const targetSection = document.getElementById(floorId + '-options');
+
+            if (scrollContainer && targetSection) {
+                const villaInfoSection = document.getElementById('villa-info-section');
+                if (villaInfoSection) {
+                    const offset = villaInfoSection.offsetHeight + 20;
+                    const targetPosition = targetSection.offsetTop - offset;
+                    scrollContainer.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+
+        // ── NEXT BUTTON LOGIC ──
+        const nextLabels = ['Next — Ground Floor', 'Next — First Floor', 'Next — Terrace', 'Next — Summary', 'Complete Configuration'];
+        const stepHints = ['Step 1 of 5', 'Step 2 of 5', 'Step 3 of 5', 'Step 4 of 5', 'Step 5 of 5'];
+        const floorBadges = ['Villa Layout', 'Ground Floor', 'First Floor', 'Terrace', 'Summary'];
+        const progressPct = ['20%', '40%', '60%', '80%', '100%'];
+
+        function goNext() {
+            if (currentFloorIndex < floors.length - 1) {
+                currentFloorIndex++;
+                switchFloor(floors[currentFloorIndex], currentFloorIndex);
+            } else {
+                // Save configuration to localStorage and navigate to summary
+                saveConfigurationAndNavigate();
+            }
+        }
+
+        // ── HELPER: collect {name, image} for all selected cards in a container ──
+        function collectCards(containerEl) {
+            const cards = [];
+            containerEl.querySelectorAll('.feature-card.selected').forEach(card => {
+                const nameEl = card.querySelector('.feature-card-name');
+                const imgEl = card.querySelector('.feature-card-image img');
+                cards.push({
+                    name: nameEl ? nameEl.textContent.trim() : '',
+                    image: imgEl ? imgEl.getAttribute('src') : ''
+                });
+            });
+            return cards;
+        }
+
+        // ── HELPER: collect legend items for the current floor ──
+        function collectLegend(floor) {
+            const legend = [];
+            if (floor === 'gf') {
+                document.querySelectorAll('.legend-list li').forEach(li => {
+                    legend.push({
+                        name: li.textContent.trim(),
+                        point: li.dataset.point,
+                        floor: li.dataset.floor
+                    });
+                });
+            } else {
+                document.querySelectorAll(`.row[data-floor="${floor}"]`).forEach(row => {
+                    const nameEl = row.querySelector('.col.name');
+                    const dimEl = row.querySelector('.col.dimension');
+                    legend.push({
+                        name: nameEl ? nameEl.textContent.trim() : '',
+                        dimension: dimEl ? dimEl.textContent.trim() : '',
+                        point: row.dataset.point,
+                        floor: row.dataset.floor
+                    });
+                });
+            }
+            return legend;
+        }
+
+        function saveConfigurationAndNavigate() {
+            try {
+                const configData = {
+                    timestamp: new Date().toISOString(),
+                    villaType: 'combo',
+                    villa: state.villa,
+                    floors: {
+                        gf: {
+                            garden: state.gf.garden,
+                            addons: Array.from(state.gf.selectedAddOns),
+                            standardCards: collectCards(document.getElementById('standard-features-group')),
+                            addonCards: collectCards(document.getElementById('addon-features-group-gf')),
+                            legend: collectLegend('gf'),
+                            features: [] // GF has no standard features list like others
+                        },
+                        'gf-int': {
+                            option: state['gf-int'].option,
+                            addons: Array.from(state['gf-int'].selectedAddOns),
+                            standardCards: collectCards(document.getElementById('standard-features-group-gf-int')),
+                            addonCards: collectCards(document.getElementById('addon-features-group-gf-int')),
+                            legend: collectLegend('gf-int')
+                        },
+                        ff: {
+                            option: state.ff.option,
+                            addons: Array.from(state.ff.selectedAddOns),
+                            standardCards: collectCards(document.getElementById('standard-features-group-ff')),
+                            addonCards: collectCards(document.getElementById('addon-features-group-ff')),
+                            legend: collectLegend('ff')
+                        },
+                        tf: {
+                            option: state.tf.option,
+                            addons: Array.from(state.tf.selectedAddOns),
+                            standardCards: collectCards(document.getElementById('standard-features-group-tf')),
+                            addonCards: collectCards(document.getElementById('addon-features-group-tf')),
+                            legend: collectLegend('tf')
+                        }
+                    }
+                };
+
+                localStorage.setItem('comboState', JSON.stringify(configData));
+                localStorage.setItem('villaConfig', JSON.stringify(configData));
+
+                showToast('Configuration Saved! Redirecting to Summary...');
+                setTimeout(() => { window.location.href = 'summary.html'; }, 1500);
+
+            } catch (err) {
+                console.error('Error saving configuration:', err);
+                showToast('Error saving configuration. Please try again.');
+            }
+        }
+
+        // Go back to previous floor
+        function goPrev() {
+            if (currentFloorIndex > 0) {
+                currentFloorIndex--;
+                switchFloor(floors[currentFloorIndex], currentFloorIndex);
+            }
+        }
+
+        function updateNextBtn() {
+            const idx = currentFloorIndex;
+            const btn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const label = document.getElementById('next-btn-label');
+
+            document.getElementById('step-hint').textContent = stepHints[idx];
+            label.textContent = nextLabels[idx];
+            prevBtn.disabled = idx === 0;
+
+            if (idx === floors.length - 1) {
+                btn.classList.add('finish-btn');
+            } else {
+                btn.classList.remove('finish-btn');
+            }
+        }
+
+        // ── FLOOR SWITCHING ──
+        function switchFloor(floor, indexOrEvent) {
+            const idx = typeof indexOrEvent === 'number' ? indexOrEvent : floors.indexOf(floor);
+            currentFloorIndex = idx;
+            state.activeFloor = floor;
+
+            // default selections for ff/tf if not set
+            if (floor === 'gf-int' && state.gf.interior === null) {
+                state.gf.interior = 'unfurnished';
+            }
+            if (floor === 'ff' && state.ff.option === null) {
+                state.ff.option = 'unfurnished';
+            }
+            if (floor === 'tf' && state.tf.option === null) {
+                state.tf.option = 'unfurnished';
+            }
+
+            // update sections
+            document.querySelectorAll('.floor-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(floor + '-options').classList.add('active');
+
+            // update badge & progress
+            document.getElementById('floor-badge').textContent = floorBadges[idx];
+            document.getElementById('progress-fill').style.width = progressPct[idx];
+
+            updateNextBtn();
+            const scrollContainer = document.querySelector('.left-scroll');
+            if (scrollContainer) {
+                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            syncCanvasImages();
+            updateKeyStatusPanel();
+            updateDayNightSectionVisibility();
+            updateLegendOverlayVisibility();
+        }
+
+        // ── IMAGE SWITCHING ──
+        function syncCanvasImages() {
+            const f = state.activeFloor;
+            let targetId;
+
+            if (f === 'gf') {
+                // Ground Floor - show garden images
+                const hasAnyAddOn = state['gf'].selectedAddOns.size > 0;
+                targetId = hasAnyAddOn ? 'img-gf-garden-furnished' : 'img-gf-garden-standard';
+            } else if (f === 'gf-int') {
+                // Ground Floor Interior - show interior images
+                const hasAnyAddOn = state['gf-int'].selectedAddOns.size > 0;
+                targetId = hasAnyAddOn ? 'img-gf-int-furnished' : 'img-gf-int-unfurnished';
+            } else if (f === 'ff') {
+                // First Floor
+                const hasAnyAddOn = state.ff.selectedAddOns.size > 0;
+                targetId = hasAnyAddOn ? 'img-ff-furnished' : 'img-ff-unfurnished';
+            } else if (f === 'tf') {
+                // Terrace
+                const hasAnyAddOn = state.tf.selectedAddOns.size > 0;
+                targetId = hasAnyAddOn ? 'img-tf-furnished' : 'img-tf-unfurnished';
+            }
+
+            if (!targetId) return;
+
+            const currentVisible = document.querySelector('.plan-img.visible');
+            if (currentVisible && currentVisible.id === targetId) {
+                return;
+            }
+
+            showLoaderAndSwitch(targetId);
+        }
+
+        function updateKeyStatusPanel() {
+            const panel = document.getElementById('keyStatusPanel');
+            const img = document.getElementById('keyStatusImage');
+            if (!panel || !img) return;
+
+            const activeFloor = state.activeFloor;
+            const sourceEl = panel.querySelector(`.status-source[data-floor="${activeFloor}"]`);
+
+            if (!sourceEl) {
+                panel.classList.add('hidden');
+                return;
+            }
+
+            img.src = sourceEl.dataset.src || '';
+            img.alt = sourceEl.dataset.alt || '';
+            panel.classList.remove('hidden');
+        }
+
+        // ── FEATURE GROUP TOGGLE ──
+        function toggleFeatureGroup(group, floor) {
+            const isAddOns = group === 'addons';
+            const groupEl = document.getElementById(isAddOns ? `addon-features-group-${floor}` : `standard-features-group-${floor}`);
+            const toggleBtn = document.getElementById(`addon-toggle-btn-${floor}`);
+
+            if (!groupEl) return;
+
+            if (groupEl.classList.contains('hidden')) {
+                groupEl.classList.remove('hidden');
+                if (toggleBtn) toggleBtn.textContent = 'Hide Add-On Options';
+            } else {
+                groupEl.classList.add('hidden');
+                if (toggleBtn) toggleBtn.textContent = 'Add-On Options';
+            }
+        }
+
+        // ── FEATURE CARD TOGGLE ──
+        let pendingAddOnFloor = null;
+        let pendingAddOnAction = null;
+
+        function toggleFeature(event, element, isDisabled, floor) {
+            if (isDisabled) return; // Cannot toggle standard features
+            event.preventDefault();
+
+            const groupId = element.closest('.feature-cards-container')?.id || '';
+            const isAddOnGroup = groupId.startsWith('addon-features-group');
+            const feature = element.getAttribute('data-feature');
+            const selectedAddOns = state[floor] && state[floor].selectedAddOns;
+            if (!selectedAddOns) return;
+
+            if (isAddOnGroup) {
+                if (!selectedAddOns.has(feature)) {
+                    pendingAddOnFloor = floor;
+                    pendingAddOnAction = 'select';
+                    openAddonConfirmModal();
+                    return;
+                }
+
+                if (selectedAddOns.has(feature)) {
+                    pendingAddOnFloor = floor;
+                    pendingAddOnAction = 'unselect';
+                    openAddonConfirmModal();
+                    return;
+                }
+            }
+        }
+
+        function openAddonConfirmModal() {
+            const modal = document.getElementById('addon-confirm-modal');
+            const title = document.getElementById('addon-confirm-title');
+            const message = document.getElementById('addon-confirm-message');
+            const button = document.getElementById('addon-confirm-button');
+            if (!modal || !title || !message || !button) return;
+
+            if (pendingAddOnAction === 'select') {
+                title.textContent = 'Confirm add-on selection';
+                message.textContent = 'You need to select all add-on options before proceeding. Press confirm to select all add-ons and update the preview image.';
+                button.textContent = 'Select all';
+            } else if (pendingAddOnAction === 'unselect') {
+                title.textContent = 'Confirm add-on removal';
+                message.textContent = 'You need to unselect all add-on options before proceeding. Press confirm to remove all add-ons and restore the original image.';
+                button.textContent = 'Unselect all';
+            }
+
+            modal.classList.add('visible');
+        }
+
+        function closeAddonConfirmModal() {
+            const modal = document.getElementById('addon-confirm-modal');
+            if (!modal) return;
+            modal.classList.remove('visible');
+            pendingAddOnFloor = null;
+            pendingAddOnAction = null;
+        }
+
+        function confirmAddonAction() {
+            if (!pendingAddOnFloor || !pendingAddOnAction) return;
+
+            const groupEl = document.getElementById(`addon-features-group-${pendingAddOnFloor}`);
+            if (!groupEl) return;
+
+            const selectedAddOns = state[pendingAddOnFloor].selectedAddOns;
+            groupEl.querySelectorAll('.feature-card').forEach(card => {
+                const feature = card.getAttribute('data-feature');
+                const checkbox = card.querySelector('.feature-card-checkbox');
+
+                if (pendingAddOnAction === 'select') {
+                    selectedAddOns.add(feature);
+                    card.classList.add('selected');
+                    if (checkbox) checkbox.textContent = '✓';
+                } else if (pendingAddOnAction === 'unselect') {
+                    selectedAddOns.delete(feature);
+                    card.classList.remove('selected');
+                    if (checkbox) checkbox.textContent = '';
+                }
+            });
+
+            closeAddonConfirmModal();
+            syncCanvasImages();
+        }
+
+        // ── CONFIRM ADD-ONS ──
+        function confirmAddOns(floor) {
+            showToast('Changes Confirmed!');
+            syncCanvasImages();
+        }
+
+        // ── GARDEN TAB ──
+        function setGardenTab(val, el) {
+            state.gf.garden = val;
+            el.parentElement.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            // Sync canvas image when garden tab changes
+            syncCanvasImages();
+        }
+
+        // ── GF INTERIOR ──
+        function setGFInteriorOption(val) {
+            state.gf.interior = val;
+            document.getElementById('gf-int-unfurnished').classList.toggle('active', val === 'unfurnished');
+            document.getElementById('gf-int-furnished').classList.toggle('active', val === 'furnished');
+            document.getElementById('gf-int-unfurnished').querySelector('.check').textContent = val === 'unfurnished' ? '✓' : '';
+            document.getElementById('gf-int-furnished').querySelector('.check').textContent = val === 'furnished' ? '✓' : '';
+            syncCanvasImages();
+        }
+
+        // ── FF OPTIONS ──
+        function setFFOption(val) {
+            state.ff.option = val;
+            document.getElementById('ff-unfurnished').classList.toggle('active', val === 'unfurnished');
+            document.getElementById('ff-furnished').classList.toggle('active', val === 'furnished');
+            document.getElementById('ff-unfurnished').querySelector('.check').textContent = val === 'unfurnished' ? '✓' : '';
+            document.getElementById('ff-furnished').querySelector('.check').textContent = val === 'furnished' ? '✓' : '';
+            if (state.activeFloor === 'ff') syncCanvasImages();
+        }
+
+        // ── TF OPTIONS ──
+        function setTFOption(val) {
+            state.tf.option = val;
+            document.getElementById('tf-unfurnished').classList.toggle('active', val === 'unfurnished');
+            document.getElementById('tf-furnished').classList.toggle('active', val === 'furnished');
+            document.getElementById('tf-unfurnished').querySelector('.check').textContent = val === 'unfurnished' ? '✓' : '';
+            document.getElementById('tf-furnished').querySelector('.check').textContent = val === 'furnished' ? '✓' : '';
+            if (state.activeFloor === 'tf') syncCanvasImages();
+        }
+
+        // ── TOAST ──
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
+        }
+
+        const dayNightStates = [
+            { key: 'day', iconClass: 'fa-sun' },
+            { key: 'evening', iconClass: 'fa-cloud-sun' },
+            { key: 'night', iconClass: 'fa-moon' }
+        ];
+        let currentDayNightIndex = 0;
+
+        function showDayNightState() {
+            const stateData = dayNightStates[currentDayNightIndex];
+            document.querySelectorAll('.day-night-img').forEach(img => {
+                const isActive = img.dataset.state === stateData.key;
+                img.classList.toggle('visible', isActive);
+                img.classList.toggle('night', img.dataset.state === 'night');
+            });
+
+            const icon = document.getElementById('favIcon');
+            const toggleBtn = document.getElementById('dayNightToggleBtn');
+
+            if (icon) icon.className = `fas fav-icon ${stateData.iconClass}`;
+            if (toggleBtn) toggleBtn.classList.toggle('active', stateData.key === 'night');
+        }
+
+        function toggleDayNightView() {
+            currentDayNightIndex = (currentDayNightIndex + 1) % dayNightStates.length;
+            showDayNightState();
+        }
+
+        function initDayNightViews() {
+            const toggleBtn = document.getElementById('dayNightToggleBtn');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', toggleDayNightView);
+            }
+            showDayNightState();
+        }
+
+        function updateDayNightSectionVisibility() {
+            const section = document.getElementById('dayNightSection');
+            const isSummary = state.activeFloor === 'summary';
+            if (!section) return;
+            section.classList.toggle('active', isSummary);
+
+            document.querySelectorAll('.plan-img').forEach(img => {
+                img.style.display = isSummary ? 'none' : '';
+            });
+
+            if (isSummary) {
+                showDayNightState();
+            }
+        }
+
+        // ── INIT ──
+        initVillaInfoFromStorage();
+        window.addEventListener('pageshow', initVillaInfoFromStorage);
+        updateNextBtn();
+        updateKeyStatusPanel();
+        updateDayNightSectionVisibility();
+        initDayNightViews();
+
+        const btn = document.querySelector('.next-btn');
+
+        btn.addEventListener('mouseenter', () => {
+            if (!btn.classList.contains('animate')) {
+                btn.classList.add('animate');
+            }
+        });
+
+
+        // loading animation and image switch logic
+        const loader = document.getElementById('imageLoader');
+        const loaderText = document.getElementById('loaderText');
+        const loaderProgress = document.getElementById('loaderProgress');
+
+        function showLoaderAndSwitch(nextImageId) {
+            const allImages = document.querySelectorAll('.plan-img');
+
+            loader.classList.add('active');
+
+            const steps = [0, 25, 50, 100];
+            let i = 0;
+
+            function runStep() {
+                const value = steps[i];
+
+                // Update text
+                loaderText.textContent = value + "%";
+
+                // Rotate circle (progress feel)
+                loaderProgress.style.transform = `rotate(${45 + value * 3.6}deg)`;
+
+                if (i < steps.length - 1) {
+                    i++;
+                    setTimeout(runStep, 180);
+                } else {
+                    setTimeout(() => {
+                        allImages.forEach(img => {
+                            img.classList.remove('visible', 'fade-in');
+                        });
+
+                        const nextImg = document.getElementById(nextImageId);
+                        if (nextImg) {
+                            nextImg.classList.add('visible', 'fade-in');
+                            syncVisibleOverlay();
+                        }
+
+                        loader.classList.remove('active');
+                    }, 200);
+                }
+            }
+
+            runStep();
+        }
+    </script>
+
+    <!-- script for plan overly number points -->
+    <script>
+        let selectedLegendPoint = null;
+
+        // Makes the number-point overlay match the ACTUAL visible image box
+        // (object-fit: contain can letterbox the image inside .plan-stage —
+        // this reads the real rendered image rectangle and sizes/positions
+        // the overlay to match it exactly, at any screen size or aspect ratio)
+        function syncPlanOverlay(overlayEl) {
+            if (!overlayEl) return;
+            const stage = overlayEl.closest('.plan-stage');
+            const img = stage ? stage.querySelector('.plan-img.visible') : null;
+            if (!stage || !img) return;
+
+            const fitMode = getComputedStyle(img).objectFit;
+
+            if (fitMode === 'fill') {
+                overlayEl.style.left = '0';
+                overlayEl.style.top = '0';
+                overlayEl.style.width = '100%';
+                overlayEl.style.height = '100%';
+                overlayEl.style.right = 'auto';
+                overlayEl.style.bottom = 'auto';
+                return;
+            }
+
+            if (!img.naturalWidth || !img.naturalHeight) return;
+
+            const stageRect = stage.getBoundingClientRect();
+            const containerRatio = stageRect.width / stageRect.height;
+            const imageRatio = img.naturalWidth / img.naturalHeight;
+
+            let renderW, renderH, offsetX, offsetY;
+            if (imageRatio > containerRatio) {
+                renderW = stageRect.width;
+                renderH = renderW / imageRatio;
+                offsetX = 0;
+                offsetY = (stageRect.height - renderH) / 2;
+            } else {
+                renderH = stageRect.height;
+                renderW = renderH * imageRatio;
+                offsetY = 0;
+                offsetX = (stageRect.width - renderW) / 2;
+            }
+
+            const zoomHost = stage.closest('.center-canvas');
+            const zoomFactor = zoomHost ? (parseFloat(getComputedStyle(zoomHost).zoom) || 1) : 1;
+            offsetX /= zoomFactor;
+            offsetY /= zoomFactor;
+            renderW /= zoomFactor;
+            renderH /= zoomFactor;
+
+            overlayEl.style.left = offsetX + 'px';
+            overlayEl.style.top = offsetY + 'px';
+            overlayEl.style.width = renderW + 'px';
+            overlayEl.style.height = renderH + 'px';
+            overlayEl.style.right = 'auto';
+            overlayEl.style.bottom = 'auto';
+        }
+
+        function syncVisibleOverlay() {
+            const visibleOverlay = document.querySelector('.plan-overlay[style*="display: block"]');
+            if (visibleOverlay) syncPlanOverlay(visibleOverlay);
+        }
+
+        function updateLegendOverlayVisibility() {
+            const overlayGf = document.getElementById('plan-point-overlay-gf');
+            const overlayGfInt = document.getElementById('plan-point-overlay-gf-int');
+            const overlayFf = document.getElementById('plan-point-overlay-ff');
+            const overlayTf = document.getElementById('plan-point-overlay-tf');
+            if (overlayGf) overlayGf.style.display = state.activeFloor === 'gf' ? 'block' : 'none';
+            if (overlayGfInt) overlayGfInt.style.display = state.activeFloor === 'gf-int' ? 'block' : 'none';
+            if (overlayFf) overlayFf.style.display = state.activeFloor === 'ff' ? 'block' : 'none';
+            if (overlayTf) overlayTf.style.display = state.activeFloor === 'tf' ? 'block' : 'none';
+            requestAnimationFrame(syncVisibleOverlay);
+        }
+
+        function clearLegendSelection() {
+            document.querySelectorAll('.legend-list li.active, .row.active, .plan-point.active').forEach(el => el.classList.remove('active'));
+        }
+
+        function setLegendPointActive(point, floor, persist = false) {
+            clearLegendSelection();
+            if (!point || !floor) return;
+
+            const legendItem = document.querySelector(`.legend-list li[data-floor="${floor}"][data-point="${point}"]`);
+            const legendRows = document.querySelectorAll(`.row[data-floor="${floor}"][data-point="${point}"]`);
+            const planPoints = document.querySelectorAll(`.plan-point[data-floor="${floor}"][data-point="${point}"]`);
+
+            if (legendItem) legendItem.classList.add('active');
+            legendRows.forEach(row => row.classList.add('active'));
+            planPoints.forEach(pt => pt.classList.add('active'));
+
+            if (persist) {
+                selectedLegendPoint = { floor, point };
+            }
+        }
+
+        function restoreLegendSelection() {
+            if (selectedLegendPoint && selectedLegendPoint.floor && selectedLegendPoint.point) {
+                setLegendPointActive(selectedLegendPoint.point, selectedLegendPoint.floor, true);
+            } else {
+                clearLegendSelection();
+            }
+        }
+
+        function attachLegendOverlayEvents() {
+            document.querySelectorAll('.legend-list li').forEach(item => {
+                const point = item.dataset.point;
+                const floor = item.dataset.floor || 'gf';
+                item.addEventListener('click', () => {
+                    if (selectedLegendPoint && selectedLegendPoint.floor === floor && selectedLegendPoint.point === point) {
+                        clearLegendSelection();
+                        selectedLegendPoint = null;
+                    } else {
+                        setLegendPointActive(point, floor, true);
+                    }
+                });
+                item.addEventListener('mouseenter', () => setLegendPointActive(point, floor, false));
+                item.addEventListener('mouseleave', restoreLegendSelection);
+            });
+
+            document.querySelectorAll('.row[data-point][data-floor]').forEach(row => {
+                const point = row.dataset.point;
+                const floor = row.dataset.floor;
+                row.addEventListener('click', () => {
+                    if (selectedLegendPoint && selectedLegendPoint.floor === floor && selectedLegendPoint.point === point) {
+                        clearLegendSelection();
+                        selectedLegendPoint = null;
+                    } else {
+                        setLegendPointActive(point, floor, true);
+                    }
+                });
+                row.addEventListener('mouseenter', () => setLegendPointActive(point, floor, false));
+                row.addEventListener('mouseleave', restoreLegendSelection);
+            });
+
+            document.querySelectorAll('.plan-point').forEach(pointBtn => {
+                const point = pointBtn.dataset.point;
+                const floor = pointBtn.dataset.floor;
+                pointBtn.addEventListener('click', event => {
+                    event.stopPropagation();
+                    if (selectedLegendPoint && selectedLegendPoint.floor === floor && selectedLegendPoint.point === point) {
+                        clearLegendSelection();
+                        selectedLegendPoint = null;
+                    } else {
+                        setLegendPointActive(point, floor, true);
+                    }
+                });
+                pointBtn.addEventListener('mouseenter', () => setLegendPointActive(point, floor, false));
+                pointBtn.addEventListener('mouseleave', restoreLegendSelection);
+            });
+
+            // Add click handler to plan-stage to clear selection when clicking elsewhere
+            document.querySelector('.plan-stage').addEventListener('click', () => {
+                clearLegendSelection();
+                selectedLegendPoint = null;
+            });
+        }
+
+        // initialize overlay events now that DOM is loaded
+        attachLegendOverlayEvents();
+        updateLegendOverlayVisibility();
+
+        window.addEventListener('load', syncVisibleOverlay);
+        window.addEventListener('resize', syncVisibleOverlay);
+    </script>
+
+    <!--script for legent section -->
+    <script>
+        const toggleBtns = document.querySelectorAll(".unitToggle");
+
+        toggleBtns.forEach(btn => {
+            let showSqFt = false;
+            const section = btn.closest('.floor-section');
+            const rows = section.querySelectorAll('.row');
+
+            // calculate & render
+            function render() {
+                rows.forEach(row => {
+                    const dimensionEl = row.querySelector(".dimension");
+                    const areaEl = row.querySelector(".area");
+
+                    let w, h, area, unit;
+
+                    if (showSqFt) {
+                        w = parseFloat(row.dataset.wFt);
+                        h = parseFloat(row.dataset.hFt);
+                        area = w * h;
+                        unit = "sq.ft";
+
+                        dimensionEl.innerText = `${w.toFixed(2)} × ${h.toFixed(2)}`;
+                    } else {
+                        w = parseFloat(row.dataset.w);
+                        h = parseFloat(row.dataset.h);
+                        area = w * h;
+                        unit = "sq.m";
+
+                        dimensionEl.innerText = `${w.toFixed(2)} × ${h.toFixed(2)}`;
+                    }
+
+                    areaEl.innerText = area.toFixed(2) + " " + unit;
+                });
+            }
+
+            // toggle button
+            btn.addEventListener("click", () => {
+                showSqFt = !showSqFt;
+                btn.innerText = showSqFt ? "Show sq.m" : "Show sq.ft";
+                render();
+            });
+
+            // initial load
+            render();
+        });
+    </script>
+
+    <!-- Floating Buttons 
+    <div class="floating-buttons">
+        <a href="tel:919876543210" class="floating-btn all-btn" title="Contact All">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/919876543210" class="floating-btn whatsapp-btn" title="Contact on WhatsApp"
+            target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+    -->
+
+    <script src="Configure.js"></script>
+</body>
+
+</html>

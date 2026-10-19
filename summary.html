@@ -1,0 +1,3870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Summary | Antaaya Villas</title>
+    <!-- Favicon -->
+    <link rel="icon" href="image/AVL White SVG .svg" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/favicon-size.svg">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+           RESET & BASE
+        ═══════════════════════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #1a1a1a;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url('image/summary/last-page.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            transform: scale(1.1);
+            opacity: 0.55;
+            z-index: 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           SLIDE — 1920 × 1080 px (16:9 widescreen, matches the PDF)
+           ALL pages are IDENTICAL in size — like PPT slides
+        ═══════════════════════════════════════════════════════════ */
+        .page {
+            width: 1280px;
+            /*1280px ← change from 1920px */
+            height: 720px;
+            /*720px ← change from 930/1080px */
+            margin: 5px auto;
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.671);
+            z-index: 1;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           SHARED: DISCLAIMER FOOTER (appears on all pages)
+        ═══════════════════════════════════════════════════════════ */
+        .slide-disclaimer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            line-height: 1.3;
+            z-index: 10;
+        }
+
+        .slide-disclaimer h1 {
+            font-size: 10px;
+            font-weight: 700;
+            color: #f1f1f1;
+            margin-bottom: 4px;
+        }
+
+        .slide-disclaimer p {
+            margin-bottom: 0;
+            font-size: 9px;
+            color: #ebebeb;
+        }
+
+
+
+        .slide-disclaimer-light {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: transparent;
+            padding: 20px 40px;
+            line-height: 1.3;
+            z-index: 10;
+            border-top: none;
+        }
+
+        .slide-disclaimer-light h1 {
+            font-size: 10px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 4px;
+        }
+
+        .slide-disclaimer-light p {
+            margin-bottom: 0;
+            font-size: 9px;
+            color: #000000;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 1 — HERO COVER
+           Full-bleed landscape photo, logo top-right, headline bottom-left
+        ═══════════════════════════════════════════════════════════ */
+        #page-1 .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/summary-hero.jpg');
+            background-size: cover;
+            background-position: center 35%;
+        }
+
+        #page-1 .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.144) 0%, rgba(0, 0, 0, 0.301) 100%);
+        }
+
+        #page-1 .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            padding: 50px 70px 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #page-1 .top-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        #page-1 .brand-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: -20px;
+        }
+
+        #page-1 .presenting-label {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #76ca09;
+        }
+
+        #page-1 .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #page-1 .logo-row img {
+            height: auto;
+            width: 150px;
+        }
+
+        #page-1 .logo-sep {
+            font-size: 32px;
+            color: rgb(255, 255, 255);
+            line-height: 1;
+        }
+
+        #page-1 .hero-text {
+            position: absolute;
+            bottom: 140px;
+            left: 60px;
+        }
+
+        #page-1 .where-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            padding: 0 5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0;
+        }
+
+        #page-1 .main-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 50px;
+            line-height: 1.0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 6px;
+        }
+
+        #page-1 .main-heading .meets {
+            font-size: 28px;
+            font-style: normal;
+            display: block;
+        }
+
+        #page-1 .main-heading .nature {
+            font-size: 50px;
+            display: block;
+        }
+
+
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 2 — SECONDARY COVER (villa exterior render)
+        ═══════════════════════════════════════════════════════════ */
+        #page-2 .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/summary-page2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-2 .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 60px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.438) 0%, rgba(0, 0, 0, 0.295) 100%);
+        }
+
+        #page-2 .brand-logo {
+            margin-bottom: 20px;
+        }
+
+
+
+        #page-2 .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        #page-2 .meta-row {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 10px;
+        }
+
+        #page-2 .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        #page-2 .meta-label {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #76ca09;
+        }
+
+        #page-2 .meta-val {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 400;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           INTERIOR PAGE BASE
+        ═══════════════════════════════════════════════════════════ */
+        .slide-inner {
+            width: 100%;
+            height: 100%;
+            padding: 5px 10px 70px;
+            /* tighter padding = more room for cards */
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .slide-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1.5px solid #76ca09;
+            flex-shrink: 0;
+        }
+
+
+
+        .slide-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #111;
+            letter-spacing: 0.01em;
+        }
+
+        .slide-logo {
+            height: auto;
+            width: 120px;
+            opacity: 1;
+        }
+
+        .slide-body {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        #page-4 .master-layout-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #page-4 .master-layout-banner {
+            position: absolute;
+            top: 120px;
+            left: 80px;
+            z-index: 4;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #111;
+        }
+
+        #page-4 .master-layout-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+        }
+
+        #page-4 .master-layout-image-wrap .master-layout-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border: none;
+        }
+
+        #page-4 .master-layout-image-wrap .master-layout-logo {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 200px;
+            height: auto;
+            z-index: 5;
+        }
+
+        #page-4 .slide-inner {
+            padding: 0;
+        }
+
+
+
+        #page-3 .slide-inner {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 0;
+            background: #fff;
+            font-family: 'Georgia', serif;
+            padding: 30px 40px;
+        }
+
+        /* ── TOP SECTION ── */
+        #page-3 .top-section {
+            display: flex;
+            width: 100%;
+            height: 300px;
+            gap: 6px;
+        }
+
+        #page-3 .top-left {
+            width: 50%;
+            overflow: hidden;
+        }
+
+        #page-3 .top-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        #page-3 .top-right {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0;
+            background: #fff;
+            gap: 20px;
+        }
+
+
+
+        #page-3 .tagline {
+            margin-top: 120px;
+            text-align: left;
+            align-self: flex-start;
+            padding: 10px 35px;
+        }
+
+        #page-3 .tagline-label {
+            font-size: 18px;
+            color: #7a7a6e;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin-bottom: 0;
+        }
+
+        #page-3 .embrace {
+            font-weight: 500;
+            color: #555;
+            font-size: 30px;
+            letter-spacing: 0.01em;
+        }
+
+        #page-3 .tagline-highlight {
+            font-size: 18px;
+            color: #7a7a6e;
+            font-weight: 400;
+        }
+
+        #page-3 .tagline-highlight strong {
+            font-size: 38px;
+            font-weight: 500;
+            color: #76ca09;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ── BOTTOM SECTION ── */
+        #page-3 .bottom-section {
+            display: flex;
+            width: 100%;
+            height: 300px;
+            gap: 0;
+        }
+
+        #page-3 .bottom-left,
+        #page-3 .bottom-right {
+            width: 50%;
+            overflow: hidden;
+        }
+
+        #page-3 .bottom-left img,
+        #page-3 .bottom-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 3 — PROJECT OVERVIEW
+        ═══════════════════════════════════════════════════════════ */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            height: 100%;
+        }
+
+        .overview-left h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 18px;
+        }
+
+        .overview-left p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 16px;
+        }
+
+        .spec-card {
+            background: #f8f8f8;
+            border-radius: 8px;
+            padding: 28px 32px;
+        }
+
+        .spec-item {
+            padding: 13px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #76ca09;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        .spec-value {
+            font-size: 18px;
+            color: #111;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 4 — LOCATION
+        ═══════════════════════════════════════════════════════════ */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            height: 100%;
+        }
+
+        .col-section-head {
+            font-size: 14px;
+            font-weight: 700;
+            color: #76ca09;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 14px;
+        }
+
+        .col-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .map-box {
+            border: 2px dashed #76ca09;
+            border-radius: 8px;
+            background: #f9fdf4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+            min-height: 300px;
+        }
+
+        .map-box .pin {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .map-box strong {
+            font-size: 20px;
+            color: #111;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .map-box small {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .amenity-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .amenity-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 4A — MASTER LAYOUT image
+        ═══════════════════════════════════════════════════════════ */
+        #page-4a .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/master-lauout-page4a.JPG');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-4a .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-4a .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-4a .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 5A — VILLA LAYOUT image 1
+        ═══════════════════════════════════════════════════════════ */
+        #page-5a .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/villa-layout-page5a.JPG');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-5a .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-5a .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-5a .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 5B — VILLA LAYOUT image 2
+        ═══════════════════════════════════════════════════════════ */
+        #page-5b .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/villa-layout-page5b.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-5b .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-5b .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-5b .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 9A — FLOOR FEATURES IMAGE 1
+        ═══════════════════════════════════════════════════════════ */
+        #page-9a .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/villa-layout-page9a.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-9a .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-9a .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-9a .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 9B — FLOOR FEATURES IMAGE 2
+        ═══════════════════════════════════════════════════════════ */
+        #page-9b .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/villa-layout-page9b.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-9b .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-9b .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-9b .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 11A — CLUBEHOUSE IMAGE 1
+        ═══════════════════════════════════════════════════════════ */
+        #page-11a .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/clubhouse-page11a.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-11a .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-11a .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-11a .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 11B — CLUBEHOUSE IMAGE 2
+        ═══════════════════════════════════════════════════════════ */
+        #page-11b .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/clubhouse-page11b.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-11b .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-11b .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-11b .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 15A — Map2
+        ═══════════════════════════════════════════════════════════ */
+        #page-15a .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/map2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-15a .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-15a .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-15a .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 18 — Villas Specifications image
+        ═══════════════════════════════════════════════════════════ */
+        #page-18 .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/Specifications.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-18 .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-18 .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-18 .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 17A — VILLAS Amenities IMAGE 1
+        ═══════════════════════════════════════════════════════════ */
+        #page-17a .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/avlclub.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-17a .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-17a .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-17a .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 17B — VILLAS Amenities IMAGE 2
+        ═══════════════════════════════════════════════════════════ */
+        #page-17b .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/avlclub2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-17b .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-17b .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-17b .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+
+
+
+        /* ═══════════════════════════════════════════════════════════
+           FLOOR PLAN PAGES
+        ═══════════════════════════════════════════════════════════ */
+        .floor-grid {
+            display: grid;
+            grid-template-columns: 46% 1fr;
+            gap: 48px;
+            height: 100%;
+        }
+
+        .floor-img-wrap {
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .floor-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .floor-right {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .floor-plan-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            padding-bottom: 10px;
+            border-bottom: 1.5px solid #76ca09;
+        }
+
+        .feat-cat {
+            font-size: 10px;
+            font-weight: 700;
+            color: #76ca09;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 0;
+            display: none;
+        }
+
+        .feat-ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .feat-ul li {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .legend-col-head {
+            font-size: 12px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 6px;
+        }
+
+        .leg-item {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           FEATURE CARDS (standard features visual grid)
+        ═══════════════════════════════════════════════════════════ */
+        .feature-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            /* 8 per row for smaller cards */
+            gap: 10px;
+            margin-top: 0;
+            overflow-y: auto;
+            max-height: 380px;
+            padding-right: 8px;
+        }
+
+        .feature-card {
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card-img {
+            width: 100%;
+            height: 70px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-card-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 6px 8px;
+            font-size: 9px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+            text-align: center;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        /* EXTERIOR LAYOUT — full-bleed plan left, info right */
+        .exterior-layout {
+            display: grid;
+            grid-template-columns: 2.2fr minmax(220px, 320px) 220px;
+            gap: 1px;
+            height: 100%;
+            align-items: start;
+        }
+
+        .ext-img-wrap {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: none;
+            padding: 10px 0;
+
+        }
+
+        .ext-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ext-img-heading {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #000000;
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 5px 24px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .ext-top {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-end;
+            padding-top: 180px;
+            padding-right: 50px;
+        }
+
+
+
+        .ext-villa-img {
+
+            width: 200px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .legend-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            width: 100%;
+            max-width: 370px;
+            justify-self: start;
+            align-self: start;
+            margin-left: -40px;
+            height: 640px;
+            padding: 130px 0 0;
+
+        }
+
+        .legend-card-box {
+            background: transparent;
+            padding: 18px 16px;
+            height: 100%;
+            overflow-y: auto;
+
+        }
+
+        .legend-card-box h5 {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .legend-card-box .legend-table {
+            display: grid;
+            gap: 8px;
+        }
+
+        .legend-card-box .legend-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+            align-items: center;
+            padding: 2px 0;
+        }
+
+        .legend-card-box .legend-col {
+            font-size: 13px;
+            line-height: 1.1;
+            color: #000000;
+            word-break: break-word;
+        }
+
+        .legend-card-box .legend-col.dim {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .legend-card-box .leg-item {
+            font-size: 14px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .Summary-legend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .Summary-legend-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #000000;
+            margin: 0;
+        }
+
+        .Summary-legend-list li span {
+            font-weight: 500;
+            color: #000000;
+            min-width: 18px;
+            display: inline-block;
+        }
+
+        /* LEGEND POINTS ON LAYOUT */
+        .legend-point {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.658);
+            color: #000;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 13 — SECONDARY COVER (villa exterior render)
+        ═══════════════════════════════════════════════════════════ */
+        #page-13 .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/entrance-page13.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-13 .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 40px;
+
+        }
+
+        #page-13 .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-13 .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 14 — SECONDARY COVER (villa exterior render)
+        ═══════════════════════════════════════════════════════════ */
+        #page-14 .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/pool-page14.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #page-14 .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding: 50px 50px 30px;
+
+        }
+
+        #page-14 .brand-logo {
+            margin-bottom: 10px;
+        }
+
+
+
+        #page-14 .brand-logo img {
+            width: 200px;
+            height: auto;
+        }
+
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 19 — CENTERED BRAND LOGOS
+        ═══════════════════════════════════════════════════════════ */
+        #page-19 .slide-inner {
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100% - 140px);
+        }
+
+        #page-19 .brand-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            width: 100%;
+            max-width: 780px;
+            padding: 0 40px;
+        }
+
+        #page-19 .brand-divider {
+            width: 0.5px;
+            height: 100px;
+            background: rgb(0, 0, 0);
+            flex-shrink: 0;
+        }
+
+        #page-19 .page-19-logo {
+            width: 260px;
+            height: auto;
+        }
+
+        #page-19 .slide-header,
+        #page-19 .slide-body,
+        #page-19 .legal-text {
+            display: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 20 — BACK COVER
+        ═══════════════════════════════════════════════════════════ */
+        #page-last .bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('image/summary/last-page.jpg');
+            background-size: cover;
+            background-position: center 60%;
+        }
+
+        #page-last .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.438) 0%, rgba(0, 0, 0, 0.295) 100%);
+        }
+
+        #page-last .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px;
+        }
+
+        /* Logo + text side by side, centered */
+        #page-last .center-block {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        #page-last img.back-logo {
+            height: auto;
+            width: 280px;
+            opacity: 0.92;
+            flex-shrink: 0;
+        }
+
+        #page-last .center-text {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+        }
+
+
+
+        #page-last .build-tagline {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 36px;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.88);
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        /* Akruti logo — bottom right */
+        #page-last .akruti-block {
+            position: absolute;
+            bottom: 80px;
+            right: 48px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #page-last .akruti-logo {
+            height: auto;
+            width: 220px;
+        }
+
+        #page-last .slide-disclaimer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            font-size: 9px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.6);
+            z-index: 10;
+        }
+
+        #page-last .slide-disclaimer h1 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #f1f1f1;
+            margin-bottom: 6px;
+        }
+
+        #page-last .slide-disclaimer p {
+            margin-bottom: 0;
+            font-size: 9px;
+            color: #ebebeb;
+        }
+
+
+
+
+        /* ═══════════════════════════════════════════════════════════
+           DOWNLOAD BUTTON
+        ═══════════════════════════════════════════════════════════ */
+        .download-bar {
+            text-align: center;
+            padding: 46px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .download-btn-secondary {
+            background: transparent;
+            color: #76ca09;
+            border: 2px solid #76ca09;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            outline: none !important;
+        }
+
+        .download-btn-secondary:hover {
+            background: #76ca09;
+            color: #000000;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #76ca09;
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none !important;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .download-btn:hover {
+            background: #5fa107;
+            transform: translateY(-2px);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+            transform: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PRINT — 1920×1080 landscape widescreen
+           @page sets 16:9 ratio; each .page is one slide/page
+        ═══════════════════════════════════════════════════════════ */
+        /* ═══ PRINT (@page + @media) ═══ */
+        @page {
+            size: 13.333in 7.5in;
+            /* 1280×720 at 96dpi = perfect 16:9 PPT */
+            margin: 0;
+        }
+
+        @media print {
+
+            *,
+            *::before,
+            *::after {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                background: #fff;
+                width: 13.333in;
+            }
+
+            .download-bar {
+                display: none !important;
+            }
+
+            .page {
+                width: 13.333in !important;
+                /* = 1280px */
+                height: 7.5in !important;
+                /* = 720px  */
+                margin: 0 !important;
+                box-shadow: none !important;
+                page-break-after: always;
+                page-break-inside: avoid;
+                break-after: page;
+                break-inside: avoid;
+                overflow: hidden !important;
+            }
+
+            .page:last-of-type {
+                page-break-after: auto;
+                break-after: auto;
+            }
+        }
+
+        /* hidden util */
+        .hidden {
+            display: none !important;
+        }
+
+        #page-9 .slide-inner,
+        #page-10 .slide-inner {
+            width: 100%;
+            min-height: 100%;
+            padding: 15px 56px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 14px;
+        }
+
+        .overlay-logo-container {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            z-index: 10;
+        }
+
+        .overlay-logo {
+            width: 200px;
+            height: auto;
+            z-index: 10;
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           PAGE 16 — SPECIFICATIONS
+        ═══════════════════════════════════════════════════════════ */
+
+        #page-16 .slide-inner {
+            padding: 20px 50px 28px;
+        }
+
+        #page-16 .page-16-content {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.9fr 0.55fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        #page-16 .page-16-left {
+            display: flex;
+            justify-content: center;
+        }
+
+        #page-16 .page-16-tables {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            align-items: center;
+            width: 100%;
+        }
+
+        #page-16 .page-16-table-block,
+        #page-16 .page-16-total-table-block {
+            width: 400px;
+
+            padding: 18px;
+
+
+        }
+
+        #page-16 .page-16-table-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #000000;
+            padding: 10px 0 18px;
+            text-align: center;
+        }
+
+        #page-16 .page-16-spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin: 0 auto 15px;
+        }
+
+        #page-16 .page-16-spec-table th,
+        #page-16 .page-16-spec-table td {
+            border: 0.5px solid #dddddd;
+            padding: 7px 12px;
+            text-align: center;
+        }
+
+        #page-16 .page-16-spec-table .section-row td {
+            background: #ffffff;
+            color: #000000;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            padding: 8px 12px;
+            border: none;
+        }
+
+        #page-16 .page-16-spec-table th {
+            background: #e6e6e6;
+            color: #000000;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        #page-16 .page-16-spec-table tbody tr:nth-child(even) {
+            background: #ffffff;
+        }
+
+        #page-16 .page-16-spec-table tbody tr:nth-child(odd) {
+            background: #f7f7f7;
+        }
+
+        #page-16 .page-16-middle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 80px 0;
+        }
+
+        #page-16 .page-16-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 18px;
+            padding: 250px 0;
+            margin-left: 60px;
+        }
+
+        #page-16 .page-16-addons {
+            margin-top: 0;
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            min-height: auto;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #page-16 .page-16-addon-card {
+            flex: 1 1 180px;
+            min-width: 180px;
+            max-width: 220px;
+            text-align: left;
+        }
+
+        #page-16 .page-16-addon-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 6px;
+            text-align: left;
+            justify-items: left;
+        }
+
+        #page-16 .page-16-total-box {
+            margin: 0;
+            padding: 22px 20px;
+            color: #000000;
+            align-self: stretch;
+            width: 100%;
+            max-width: 280px;
+
+            border-radius: 16px;
+
+            text-align: center;
+        }
+
+        #page-16 .page-16-total-heading {
+            margin-bottom: 14px;
+        }
+
+
+
+        #page-16 .page-16-addon-card {
+            flex: 1 1 150px;
+            min-width: 150px;
+            max-width: 160px;
+        }
+
+
+
+        #page-16 .page-16-addon-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+        }
+
+        #page-16 .page-16-addon-card .addon-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 10px;
+        }
+
+        #page-16 .page-16-addon-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 5px;
+        }
+
+        #page-16 .page-16-addon-card ul li {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #000000;
+        }
+
+        #page-16 .page-16-total-box {
+            margin-bottom: 80px;
+            margin-right: 120px;
+            padding: 12px 20px;
+            color: #000000;
+            align-self: flex-end;
+            min-width: 220px;
+
+
+        }
+
+        #page-16 .page-16-total-heading {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #76ca09;
+            margin-bottom: 10px;
+        }
+
+        #page-16 .page-16-total-item {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        #page-16 .page-16-total-item span {
+            font-weight: 700;
+            color: #111;
+
+        }
+
+        /* Feature Page Tabs */
+        .features-tab-container {
+            display: none;
+        }
+
+        .feature-tab-btn {
+            display: none;
+        }
+
+        .feature-addon-section {
+            margin-top: 12px;
+        }
+
+        /* Page 9, 10, 11, 12 custom styles */
+        #page-9 .section-heading,
+        #page-10 .section-heading {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 10px 0 5px;
+            width: 100%;
+        }
+
+        #page-9 .feature-section-title,
+        #page-10 .feature-section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111;
+            margin: 0;
+            letter-spacing: 0.02em;
+            text-align: left;
+        }
+
+        #page-9 .slide-body,
+        #page-10 .slide-body {
+            flex: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            min-height: 0;
+        }
+
+        #page-9 .slide-body .standerd-heading,
+        #page-10 .slide-body .standerd-heading,
+        #page-9 .slide-body .addon-heading,
+        #page-10 .slide-body .addon-heading {
+            font-size: 11px;
+            font-weight: 700;
+            color: #76ca09;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        #page-15 .slide-inner {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .Summary-map {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+   PAGE 17 — VILLAS AMENITIES
+═══════════════════════════════════════════════════════════════════ */
+        #page-17 .slide-inner {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #page-17 .page-17-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        #page-17 .page-17-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: blur(6px);
+            transform: scale(1.08);
+        }
+
+        #page-17 .page-17-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.473);
+        }
+
+        #page-17 .page-17-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            padding: 190px 70px 68px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 90px;
+        }
+
+        #page-17 .page-17-elegance,
+        #page-17 .page-17-worldclass {
+            flex: 0 1 420px;
+        }
+
+        #page-17 .page-17-worldclass {
+            padding-left: 10px;
+            border-left: none;
+        }
+
+        #page-17 .page-17-block-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 18px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        #page-17 .page-17-block-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 42px;
+            height: 2px;
+            background: #a3e04a;
+        }
+
+        #page-17 .page-17-amenity-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 11px;
+            max-width: 440px;
+        }
+
+        #page-17 .page-17-amenity-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #f5f5f5;
+            line-height: 1.3;
+            letter-spacing: 0.01em;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+        }
+
+        #page-17 .page-17-amenity-list li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #a3e04a;
+            flex-shrink: 0;
+        }
+
+        #page-17 .overlay-logo-container {
+            z-index: 10;
+        }
+
+        #page-17 .overlay-logo-container {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            z-index: 10;
+        }
+    </style>
+
+    <!-- Hidden Top-Right Nav Toggle -->
+    <div class="corner-nav" id="corner-nav">
+        <button class="corner-nav-toggle" id="corner-nav-toggle" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="corner-nav-menu" id="corner-nav-menu">
+            <a href="#" class="corner-nav-link">Gallery</a>
+            <a href="SiteVisit-Record.html" class="corner-nav-link">Site Visit Record</a>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 1 — HERO COVER
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-1">
+        <div class="bg"></div>
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="top-bar">
+                <div class="brand-group">
+                    <span class="presenting-label">Presenting</span>
+                    <div class="logo-row">
+                        <img src="image/Akruti White Background Logo.png" alt="Akruti">
+                        <span class="logo-sep">|</span>
+                        <img src="image/avl-logo-white.png" alt="Antaaya Villas">
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-text">
+                <p class="where-label">Where</p>
+                <h1 class="main-heading">
+                    <span>LUXURY</span><br>
+                    <span class="meets">Meets</span>
+                    <span class="nature">NATURE!</span>
+                </h1>
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 2 — SECONDARY COVER (Villa Exterior)
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-2">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <img src="image/avl-logo-white.png " alt="Antaaya Villas">
+            </div>
+            <div>
+                <div class="meta-row">
+                    <div class="meta-item"><span class="meta-label">Villa</span><span class="meta-val"
+                            id="villaName">ANTAAYA VILLAS</span></div>
+                    <div class="meta-item"><span class="meta-label">Series</span><span class="meta-val"
+                            id="villaSeries">A1-01</span></div>
+                    <div class="meta-item"><span class="meta-label">Plot Area</span><span class="meta-val"
+                            id="villaArea">280
+                            sq.m</span></div>
+                    <div class="meta-item"><span class="meta-label">Configuration</span><span class="meta-val"
+                            id="villaConfig">4.5 BHK</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 3 — THREAD COVER 
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-3">
+        <div class="slide-inner">
+            <!-- TOP SECTION -->
+            <div class="top-section">
+                <div class="top-left">
+                    <img src="image/summary/Antaaya Villas images-images-9.jpg" alt="Villa entrance">
+                </div>
+                <div class="top-right">
+
+                    <div class="tagline">
+                        <p class="tagline-label"><span class="embrace">Embrace</span> a life of</p>
+                        <p class="tagline-highlight">Unparalled <strong>LUXURY!</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTTOM SECTION -->
+            <div class="bottom-section">
+                <div class="bottom-left">
+                    <img src="image/summary/Antaaya Villas images-images-2.jpg" alt="Villa details">
+                </div>
+                <div class="bottom-right">
+                    <img src="image/summary/Antaaya Villas images-images-1.jpg" alt="Villa living">
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 4A — MASTER LAYOUT image
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-4a">
+        <div class="bg"></div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo-white.png" alt="Antaaya" class="overlay-logo">
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 4 — MASTER LAYOUT
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-4">
+        <div class="slide-inner">
+            <div class="master-layout-card">
+                <div class="master-layout-banner">MASTER LAYOUT :</div>
+                <div class="master-layout-image-wrap">
+                    <img class="master-layout-img" src="image/master-layout-svg-new.svg" alt="Master Layout Image">
+                </div>
+            </div>
+        </div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1> DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 5A — VILLA LAYOUT image 1
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-5a">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <!--add logo-->
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 5B — VILLA LAYOUT image 2
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-5b">
+        <div class="bg"></div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo-white.png" alt="Antaaya" class="overlay-logo">
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 5 — VILLA LAYOUT
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-5">
+        <div class="slide-inner">
+
+            <div class="slide-body">
+                <div class="exterior-layout">
+                    <div class="ext-img-wrap">
+                        <img id="gf-plan-image" src="image/rhs-villas/first-plan.png" alt="Ground Floor Exterior">
+                        <div class="ext-img-heading">Villa Layout</div>
+                    </div>
+                    <div class="legend-cards">
+                        <div class="legend-card-box">
+                            <h5>Legend</h5>
+                            <div id="gf-legend"></div>
+                        </div>
+                    </div>
+                    <div class="ext-top">
+                        <img class="ext-villa-img" src="image/villas/key-section-exterior.png" alt="Antaaya Villas">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 6 — GROUND FLOOR  LAYOUT
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-6">
+        <div class="slide-inner">
+            <div class="slide-body">
+                <div class="exterior-layout">
+                    <div class="ext-img-wrap">
+                        <img id="gf-int-plan-image" src="image/rhs-villas/second-plan-with-outer-furniture.png"
+                            alt="Ground Floor Interior">
+                        <div class="ext-img-heading">Ground Floor</div>
+                    </div>
+                    <div class="legend-cards">
+                        <div class="legend-card-box">
+                            <h5>Legend</h5>
+                            <div id="gf-int-legend"></div>
+                        </div>
+                    </div>
+                    <div class="ext-top">
+
+                        <img class="ext-villa-img" src="image/villas/key-section-ground-floor.png" alt="Key Section">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 7 — FIRST FLOOR LAYOUT
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-7">
+        <div class="slide-inner">
+            <div class="slide-body">
+                <div class="exterior-layout">
+                    <div class="ext-img-wrap">
+                        <img id="ff-plan-image" src="image/rhs-villas/third-plan-without-furniture.png"
+                            alt="First Floor">
+                        <div class="ext-img-heading">First Floor</div>
+                    </div>
+                    <div class="legend-cards">
+                        <div class="legend-card-box">
+                            <h5>Legend</h5>
+                            <div id="ff-legend"></div>
+                        </div>
+                    </div>
+                    <div class="ext-top">
+
+                        <img class="ext-villa-img" src="image/villas/key-section-first-floor.png" alt="Key Section">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 8 — TERRACE LAYOUT
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-8">
+        <div class="slide-inner">
+            <div class="slide-body">
+                <div class="exterior-layout">
+                    <div class="ext-img-wrap">
+                        <img id="tf-plan-image" src="image/rhs-villas/terrace-without-furniture.png" alt="Terrace">
+                        <div class="ext-img-heading">Terrace</div>
+                    </div>
+                    <div class="legend-cards">
+                        <div class="legend-card-box">
+                            <h5>Legend</h5>
+                            <div id="tf-legend"></div>
+                        </div>
+                    </div>
+                    <div class="ext-top">
+
+                        <img class="ext-villa-img" src="image/villas/key-section-terrace.png" alt="Key Section">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 9A — FLOOR FEATURES IMAGE 1
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-9a">
+        <div class="bg"></div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo-white.png" alt="Antaaya" class="overlay-logo">
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 9B — FLOOR FEATURES IMAGE 2
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-9b">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <img src="image/avl-logo-white.png " alt="Antaaya Villas">
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 9 — COMBINED GROUND FLOOR FEATURES (GF + GF INTERIOR)
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-9">
+        <div class="slide-inner">
+            <div class="section-heading">
+                <h3 class="feature-section-title">Villa Layout — Features</h3>
+            </div>
+
+            <div class="slide-body">
+                <div class="standerd-heading">Standard Features</div>
+                <div class="feature-cards-grid" id="gf-standard-cards"></div>
+
+                <div class="feature-addon-section">
+                    <div class="addon-heading" id="gf-addon-heading">Add-On Features</div>
+                    <div class="feature-cards-grid" id="gf-addon-cards"></div>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <h3 class="feature-section-title">Ground Floor — Features</h3>
+            </div>
+
+            <div class="slide-body">
+                <div class="standerd-heading">Standard Features</div>
+                <div class="feature-cards-grid" id="gf-int-standard-cards"></div>
+
+                <div class="feature-addon-section">
+                    <div class="addon-heading" id="gf-int-addon-heading">Add-On Features</div>
+                    <div class="feature-cards-grid" id="gf-int-addon-cards"></div>
+                </div>
+            </div>
+        </div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 10 — FIRST FLOOR FEATURES AND TERRACE FEATURES
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-10">
+        <div class="slide-inner">
+            <div class="section-heading">
+                <h3 class="feature-section-title">First Floor — Features</h3>
+            </div>
+
+            <div class="slide-body">
+                <div class="standerd-heading">Standard Features</div>
+                <div class="feature-cards-grid" id="ff-standard-cards"></div>
+
+                <div class="feature-addon-section">
+                    <div class="addon-heading" id="ff-addon-heading">Add-On Features</div>
+                    <div class="feature-cards-grid" id="ff-addon-cards"></div>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <h3 class="feature-section-title">Terrace — Features</h3>
+            </div>
+
+            <div class="slide-body">
+                <div class="standerd-heading">Standard Features</div>
+                <div class="feature-cards-grid" id="tf-standard-cards"></div>
+
+                <div class="feature-addon-section">
+                    <div class="addon-heading" id="tf-addon-heading">Add-On Features</div>
+                    <div class="feature-cards-grid" id="tf-addon-cards"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 11A — CLUBEHOUSE IMAGE 1
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-11a">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <img src="image/avl-logo-white.png " alt="Antaaya Villas">
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 11B — CLUBEHOUSE IMAGE 2
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-11b">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <img src="image/avl-logo-white.png " alt="Antaaya Villas">
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 11 — CLUBEHOUSE
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-11">
+        <div class="slide-inner">
+
+            <div class="slide-body">
+                <div class="exterior-layout">
+                    <div class="ext-img-wrap">
+                        <img id="clubhouse-plan-image" src="image/villas/clubhouse-with-num.png"
+                            alt="Ground Floor Exterior">
+                        <div class="ext-img-heading">Clubhouse</div>
+                    </div>
+                    <div class="legend-cards">
+                        <div class="legend-card-box">
+                            <h5>Legend</h5>
+                            <ul class="Summary-legend-list">
+                                <li><span>1.</span> Entrance Porch</li>
+                                <li><span>2.</span> Staircase</li>
+                                <li><span>3.</span> Auditorium Hall</li>
+                                <li><span>4.</span> Auditorium Toilet</li>
+                                <li><span>5.</span> Pantry</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ext-top">
+                        <img class="ext-villa-img" src="image/villas/key-section-clubhouse.png" alt="Antaaya Villas">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 12 — CLUBHOUSE TERRACE
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-12">
+        <div class="slide-inner">
+
+            <div class="slide-body">
+                <div class="exterior-layout">
+                    <div class="ext-img-wrap">
+                        <img id="clubehouse-terrace-plan-image" src="image/villas/clubhouse-tarr-with-num.png"
+                            alt="Ground Floor Exterior">
+                        <div class="ext-img-heading">Clubhouse Terrace</div>
+                    </div>
+                    <div class="legend-cards">
+                        <div class="legend-card-box">
+                            <h5>Legend</h5>
+                            <ul class="Summary-legend-list">
+                                <li><span>1.</span> Staircase</li>
+                                <li><span>2.</span> Gymnasium</li>
+                                <li><span>3.</span> Terrace Seating</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ext-top">
+                        <img class="ext-villa-img" src="image/villas/key-section-clubhouse-terrace.png"
+                            alt="Antaaya Villas">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 13 — ENTRANCE + OUTRO
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-13">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <img src="image/avl-logo-white.png " alt="Antaaya Villas">
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 14 — SWEEMING POOL
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-14">
+        <div class="bg"></div>
+        <div class="content">
+            <div class="brand-logo">
+                <img src="image/avl-logo-white.png " alt="Antaaya Villas">
+            </div>
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 16 — VILLAS CONFIGURATION CHART
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-16">
+        <div class="slide-inner">
+            <div class="page-16-content">
+                <div class="page-16-left">
+                    <div class="page-16-tables">
+                        <!--4.5 BHK-->
+                        <div id="page-16-4-5-block" class="page-16-table-block">
+                            <div class="page-16-table-title">Alara Villas</div>
+                            <table class="page-16-spec-table">
+                                <tbody>
+                                    <tr class="section-row">
+                                        <td colspan="3">Ground Floor Plan</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Carpet</th>
+                                        <th>Sq.Mt</th>
+                                        <th>Sq.Ft</th>
+                                    </tr>
+                                    <tr>
+                                        <td>RERA</td>
+                                        <td>85.00</td>
+                                        <td>914.93</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pool</td>
+                                        <td>15.00</td>
+                                        <td>161.46</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Useable</td>
+                                        <td>90.00</td>
+                                        <td>968.75</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="page-16-spec-table">
+                                <tbody>
+                                    <tr class="section-row">
+                                        <td colspan="3">First Floor Plan</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Carpet</th>
+                                        <th>Sq.Mt</th>
+                                        <th>Sq.Ft</th>
+                                    </tr>
+                                    <tr>
+                                        <td>RERA</td>
+                                        <td>95.00</td>
+                                        <td>1,022.57</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Balcony</td>
+                                        <td>10.00</td>
+                                        <td>107.64</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Useable</td>
+                                        <td>105.00</td>
+                                        <td>1,130.21</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="page-16-spec-table">
+                                <tbody>
+                                    <tr class="section-row">
+                                        <td colspan="3">Terrace</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Area</th>
+                                        <th>Sq.Mt</th>
+                                        <th>Sq.Ft</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Terrace</td>
+                                        <td>100.00</td>
+                                        <td>1,076.39</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 8 BHK-->
+                        <div id="page-16-9-block" class="page-16-table-block">
+                            <div class="page-16-table-title">Emira Villas</div>
+                            <table class="page-16-spec-table">
+                                <tbody>
+                                    <tr class="section-row">
+                                        <td colspan="3">Ground Floor Plan</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Carpet</th>
+                                        <th>Sq.Mt</th>
+                                        <th>Sq.Ft</th>
+                                    </tr>
+                                    <tr>
+                                        <td>RERA</td>
+                                        <td>170.00</td>
+                                        <td>1,829.86</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pool</td>
+                                        <td>30.00</td>
+                                        <td>322.92</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Useable</td>
+                                        <td>180.00</td>
+                                        <td>1,937.50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="page-16-spec-table">
+                                <tbody>
+                                    <tr class="section-row">
+                                        <td colspan="3">First Floor Plan</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Carpet</th>
+                                        <th>Sq.Mt</th>
+                                        <th>Sq.Ft</th>
+                                    </tr>
+                                    <tr>
+                                        <td>RERA</td>
+                                        <td>190.00</td>
+                                        <td>2,045.14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Balcony</td>
+                                        <td>20.00</td>
+                                        <td>215.28</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Useable</td>
+                                        <td>210.00</td>
+                                        <td>2,260.42</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="page-16-spec-table">
+                                <tbody>
+                                    <tr class="section-row">
+                                        <td colspan="3">Terrace</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Area</th>
+                                        <th>Sq.Mt</th>
+                                        <th>Sq.Ft</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Terrace</td>
+                                        <td>200.00</td>
+                                        <td>2,152.78</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-16-middle">
+                    <div id="page-16-4-5-total-block" class="page-16-total-table-block">
+                        <div class="page-16-table-title">Alara Total Area</div>
+                        <table class="page-16-spec-table">
+                            <tbody>
+                                <tr class="section-row">
+                                    <td colspan="3">Total Area</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <th>Sq.Mt</th>
+                                    <th>Sq.Ft</th>
+                                </tr>
+                                <tr>
+                                    <td>RERA Carpet</td>
+                                    <td>180.00</td>
+                                    <td>1,937.50</td>
+                                </tr>
+                                <tr>
+                                    <td>Useable Carpet</td>
+                                    <td>195.00</td>
+                                    <td>2,098.96</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="page-16-9-total-block" class="page-16-total-table-block">
+                        <div class="page-16-table-title">Emira Total Area</div>
+                        <table class="page-16-spec-table">
+                            <tbody>
+                                <tr class="section-row">
+                                    <td colspan="3">Total Area</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <th>Sq.Mt</th>
+                                    <th>Sq.Ft</th>
+                                </tr>
+                                <tr>
+                                    <td>RERA Carpet</td>
+                                    <td>360.00</td>
+                                    <td>3,875.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Useable Carpet</td>
+                                    <td>390.00</td>
+                                    <td>4,197.92</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="page-16-addons">
+                        <div id="page-16-4-5-addon-card" class="page-16-addon-card">
+                            <div class="addon-label">5 BHK</div>
+                            <ul>
+                                <li>+ Servant Room</li>
+                                <li>+ Terrace</li>
+                                <li>+ Private Pool</li>
+                                <li>+ 2 Car Park</li>
+                            </ul>
+                        </div>
+                        <div id="page-16-9-addon-card" class="page-16-addon-card">
+                            <div class="addon-label">8 BHK</div>
+                            <ul>
+                                <li>+ Servant Room</li>
+                                <li>+ Terrace</li>
+                                <li>+ 2 Private Pool</li>
+                                <li>+ 4 Car Park</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-16-right">
+                    <div class="page-16-total-box">
+                        <div class="page-16-total-heading">Total Units</div>
+                        <div id="page-16-4-5-total" class="page-16-total-item">5 BHK VILLAS — <span>17 NOS</span>
+                        </div>
+                        <div id="page-16-9-total" class="page-16-total-item">8 BHK VILLAS — <span>3 NOS</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 15 — MAP 
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-15">
+        <div class="slide-inner">
+            <img src="image/avl-map-with-logo.jpg" alt="Location Map" class="Summary-map">
+        </div>
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo.png" alt="Antaaya" class="overlay-logo">
+        </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 15A — Map2
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-15a">
+        <div class="bg"></div>
+        <div class="content">
+            <!--add logo-->
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 17A — VILLAS Amenities IMAGE 1
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-17a">
+        <div class="bg"></div>
+        <div class="content">
+            <!-- Add logo -->
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 17 — VILLAS Amenities
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-17">
+        <div class="slide-inner">
+
+            <div class="page-17-bg">
+                <img src="image/summary/connection-bg.jpg" alt="Antaaya Villas">
+            </div>
+
+            <div class="page-17-content">
+
+                <div class="page-17-elegance">
+                    <div class="page-17-block-title">The Elegance</div>
+                    <ul class="page-17-amenity-list">
+                        <li>Private Swimming Pool for Every Villa</li>
+                        <li>Private Landscaped Gardens</li>
+                        <li>Separate Servant's Room</li>
+                        <li>Elegant False Ceilings in All Major Spaces</li>
+                        <li>Advanced 3-Tier Security with CCTV Surveillance</li>
+                        <li>Luxury Bathtub in the Master Bathroom</li>
+                        <li>Dedicated Car Parking for Every Villa</li>
+                        <li>Usable Terrace Spaces</li>
+                    </ul>
+                </div>
+
+                <div class="page-17-worldclass">
+                    <div class="page-17-block-title">World Class Amenities</div>
+                    <ul class="page-17-amenity-list">
+                        <li>Wide Internal Roads with Street Lighting</li>
+                        <li>Premium Cabana Sit-Outs</li>
+                        <li>Dedicated Kids' Play Arena</li>
+                        <li>Indoor Games &amp; Recreation Room</li>
+                        <li>Expansive Green Lawns</li>
+                        <li>Multipurpose Hall</li>
+                        <li>Landscaped Jogging Track</li>
+                        <li>State-of-the-Art Gymnasium</li>
+                        <li>Dedicated Yoga Lawn</li>
+                        <li>Outdoor Sit-Out Zones</li>
+                        <li>Landscaped Walking Trails</li>
+                        <li>Lush Green Landscaped Spaces</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- VILLA LOGO -->
+        <div class="overlay-logo-container">
+            <img src="image/avl-logo-white.png" alt="Antaaya" class="overlay-logo">
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 17B — VILLAS Amenities IMAGE 2
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-17b">
+        <div class="bg"></div>
+        <div class="content">
+            <!-- Add logo -->
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 18 — VILLAS SPECIFICATIONS IMAGE
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-18">
+        <div class="bg"></div>
+        <div class="content">
+            <!-- Add logo -->
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 19 — DEVELOPER LOGOS
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-19">
+        <div class="slide-inner">
+            <div class="brand-row">
+                <img src="image/avl-logo.png" alt="Antaaya" class="page-19-logo">
+                <span class="brand-divider"></span>
+                <img src="image/Akruti Black Logo (Fetured Project).png" alt="Akruti" class="page-19-logo">
+            </div>
+        </div>
+        <div class="slide-disclaimer-light">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+     SLIDE 20 — BACK COVER
+═══════════════════════════════════════════ -->
+    <div class="page" id="page-last">
+        <div class="bg"></div>
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="center-block">
+                <img src="image/avl-logo-white.png" alt="Antaaya Villas" class="back-logo">
+                <div class="center-text">
+                    <p class="build-tagline">Build Memories Forever!</p>
+                </div>
+            </div>
+        </div>
+        <div class="akruti-block">
+            <img src="image/Akruti White Background Logo.png" alt="Akruti" class="akruti-logo">
+        </div>
+        <div class="slide-disclaimer">
+            <h1>DISCLAIMER:</h1>
+            <p>This brochure is purely conceptual representation and not a legal offering. AI images in this brochure
+                are merely for presentation and not literal. The images are only indicative of furniture arrangement,
+                furniture and accessories will not be provided by the developer.
+                All plans are subject to accommodate the changes as per sanction authority. All dimensions mentioned in
+                the drawings may vary/differ due to construction contingencies and site conditions. All dimensions are
+                shown from unfurnished surfaces.</p>
+        </div>
+    </div>
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="download-bar">
+        <a href="index.html" class="download-btn download-btn-secondary">
+            ⚙&nbsp; Configure More
+        </a>
+        <button id="printBtn" class="download-btn" onclick="triggerPrint()">⬇&nbsp; Download Brochure PDF</button>
+    </div>
+
+    <!-- Main Script -->
+    <script>
+        /* ════════════════════════════════════════════
+           DATA & IMAGE MAP
+        ════════════════════════════════════════════ */
+        const floorImageMap = {
+            gf: { standard: 'first-plan.png', furnished: 'first-plan-with-furniture.png' },
+            'gf-int': { unfurnished: 'second-plan-with-outer-furniture.png', furnished: 'second-plan-with-outer-and inner-furniture.png' },
+            ff: { unfurnished: 'third-plan-without-furniture.png', furnished: 'third-plan-with-furniture.png' },
+            tf: { unfurnished: 'terrace-without-furniture.png', furnished: 'terrace-with-furniture.png' }
+        };
+
+        const legendPositions = {
+            rhs: {
+                gf: [
+                    { top: '88%', left: '62%' }, // 1. Entrance Gate
+                    { top: '74%', left: '62%' }, // 2. Driveway
+                    { top: '80%', left: '41%' }, // 3. Front Lawn / Garden Seating Area
+                    { top: '72%', left: '41%' }, // 4. Entrance Pathway
+                    { top: '32%', left: '61%' }, // 5. Swimming Pool
+                    { top: '12%', left: '55%' }, // 6. Pool Deck / Lounger Area
+                    { top: '13%', left: '37%' }, // 7. Back Lawn / Sit Out Area
+                    { top: '4%', left: '33%' }, // 8. Back Entrance Gate
+                ],
+                'gf-int': [
+                    { top: '60%', left: '41%' }, // 1. Entrance Porch
+                    { top: '30%', left: '41%' }, // 2. Living Area
+                    { top: '43%', left: '49%' }, // 3. Dining Area
+                    { top: '60%', left: '49%' }, // 4. Guest Bedroom
+                    { top: '51%', left: '49%' }, // 5. Guest Bedroom Toilet
+                    { top: '60%', left: '33%' }, // 6. Kitchen
+                    { top: '51%', left: '31.5%' },  // 7. Servants Room
+                    { top: '51%', left: '37%' }, // 8. Powder Toilet
+                    { top: '43%', left: '29.5%' }, // 9. Staircase
+                    { top: '49%', left: '41%' }, // 10. Passage
+                    { top: '30%', left: '61%' }, // 11. Swimming Pool
+                ],
+                ff: [
+                    { top: '28%', left: '40%' }, // 1. Master Bedroom
+                    { top: '28%', left: '32%' }, // 2. Master Toilet
+                    { top: '35%', left: '32%' }, // 3. Walking Wardrobe
+                    { top: '18%', left: '40%' }, // 4. Balcony
+                    { top: '62.5%', left: '49.5%' }, // 5. 1st Bedroom
+                    { top: '51%', left: '49%' }, // 6. 1st Bedroom Toilet
+                    { top: '63%', left: '32%' }, // 7. 2nd Bedroom
+                    { top: '51%', left: '34%' }, // 8. 2nd Bedroom Toilet
+                    { top: '71%', left: '43%' }, // 9. Study Room
+                    { top: '51%', left: '41%' }, // 10. Balcony
+                    { top: '43%', left: '53%' }, // 11. Family Lounge
+                ],
+                tf: [
+                    { top: '43%', left: '47%' }, // 1. Terrace
+                ],
+            },
+            lhs: {
+                gf: [
+                    { top: '88%', left: '33%' }, // 1. Entrance Gate
+                    { top: '75%', left: '33%' }, // 2. Driveway
+                    { top: '79%', left: '53%' }, // 3. Front Lawn / Garden Seating Area
+                    { top: '72%', left: '53%' }, // 4. Entrance Pathway
+                    { top: '31%', left: '33%' }, // 5. Swimming Pool
+                    { top: '13%', left: '40%' }, // 6. Pool Deck / Lounger Area
+                    { top: '14%', left: '57%' }, // 7. Back Lawn / Sit Out Area
+                    { top: '5%', left: '61.5%' }, // 8. Back Entrance Gate
+                ],
+                'gf-int': [
+                    { top: '61%', left: '53%' }, // 1. Entrance Porch
+                    { top: '32%', left: '53%' }, // 2. Living Area
+                    { top: '43%', left: '44%' }, // 3. Dining Area
+                    { top: '60%', left: '43%' }, // 4. Guest Bedroom
+                    { top: '51.5%', left: '45%' }, // 5. Guest Bedroom Toilet
+                    { top: '60%', left: '61.5%' }, // 6. Kitchen
+                    { top: '51%', left: '62.5%' }, // 7. Servants Room
+                    { top: '51%', left: '58%' }, // 8. Powder Toilet
+                    { top: '43%', left: '64.5%' }, // 9. Staircase
+                    { top: '49%', left: '53%' }, // 10. Passage
+                    { top: '31%', left: '33%' }, // 11. Swimming Pool
+                ],
+                ff: [
+                    { top: '28%', left: '54%' }, // 1. Master Bedroom
+                    { top: '28.5%', left: '62.5%' }, // 2. Master Toilet
+                    { top: '35%', left: '62.5%' }, // 3. Walking Wardrobe
+                    { top: '18%', left: '54%' }, // 4. Balcony
+                    { top: '63%', left: '42%' }, // 5. 1st Bedroom
+                    { top: '51%', left: '45%' }, // 6. 1st Bedroom Toilet
+                    { top: '63%', left: '60%' }, // 7. 2nd Bedroom
+                    { top: '51%', left: '61%' }, // 8. 2nd Bedroom Toilet
+                    { top: '71%', left: '52%' }, // 9. Study Room
+                    { top: '51%', left: '53%' }, // 10. Balcony
+                    { top: '43%', left: '41%' }, // 11. Family Lounge
+                ],
+                tf: [
+                    { top: '44%', left: '47%' }, // 1. Terrace
+                ],
+            },
+            combo: {
+                gf: [
+                    { top: '85%', left: '15%', point: '01' },
+                    { top: '85%', left: '79.5%', point: '01' },
+                    { top: '74%', left: '15%', point: '02' },
+                    { top: '74%', left: '79.5%', point: '02' },
+                    { top: '74%', left: '47%', point: '03' },
+                    { top: '70%', left: '34%', point: '04' },
+                    { top: '31%', left: '17%', point: '05' },
+                    { top: '31%', left: '78%', point: '05' },
+                    { top: '15%', left: '20.5%', point: '06' },
+                    { top: '15%', left: '74%', point: '06' },
+                    { top: '16%', left: '47%', point: '07' },
+                    { top: '7%', left: '52%', point: '08' },
+                    { top: '7%', left: '43%', point: '08' },
+                ],
+                'gf-int': [
+                    { top: '59%', left: '34.3%', point: '01' },
+                    { top: '50%', left: '34.5%', point: '02' },
+                    { top: '32%', left: '47%', point: '03' },
+                    { top: '44.5%', left: '47%', point: '04' },
+                    { top: '59%', left: '23%', point: '05' },
+                    { top: '50%', left: '26.5%', point: '06' },
+                    { top: '59%', left: '41%', point: '07' },
+                    { top: '50%', left: '41.5%', point: '08' },
+                    { top: '59%', left: '50.5%', point: '09' },
+                    { top: '50%', left: '53%', point: '10' },
+                    { top: '50%', left: '60%', point: '11' },
+                    { top: '51%', left: '68%', point: '12' },
+                    { top: '32%', left: '16.5%', point: '13' },
+                    { top: '32%', left: '77%', point: '14' },
+                ],
+                ff: [
+                    { top: '30%', left: '34%', point: '01' },
+                    { top: '30%', left: '60%', point: '01' },
+                    { top: '40.5%', left: '25.5%', point: '02' },
+                    { top: '40.5%', left: '68%', point: '02' },
+                    { top: '29%', left: '43%', point: '03' },
+                    { top: '29%', left: '51%', point: '03' },
+                    { top: '35%', left: '43%', point: '04' },
+                    { top: '35%', left: '51%', point: '04' },
+                    { top: '19.5%', left: '35%', point: '05' },
+                    { top: '19.5%', left: '60%', point: '05' },
+                    { top: '62%', left: '67%', point: '06' },
+                    { top: '62%', left: '24%', point: '06' },
+                    { top: '50%', left: '67.5%', point: '07' },
+                    { top: '50%', left: '27%', point: '07' },
+                    { top: '62%', left: '51%', point: '08' },
+                    { top: '62%', left: '41%', point: '08' },
+                    { top: '50%', left: '53%', point: '09' },
+                    { top: '50%', left: '41.5%', point: '09' },
+                    { top: '69%', left: '61%', point: '10' },
+                    { top: '69%', left: '34%', point: '10' },
+                    { top: '49%', left: '60%', point: '11' },
+                    { top: '49%', left: '34.5%', point: '11' },
+                ],
+                tf: [
+                    { top: '34%', left: '47%', point: '01' },
+                ],
+            }
+        };
+
+
+
+        function featureCardHTML(card) {
+            // card = { name, image }  — comes directly from rhs.html saved data
+            const imgHTML = card.image
+                ? `<img src="${card.image}" alt="${card.name}" onerror="this.parentElement.innerHTML='<span style=\\'font-size:36px\\'>🏡</span>'">`
+                : `<span style="font-size:36px">🏡</span>`;
+            return `<div class="feature-card">
+                <div class="feature-card-img">${imgHTML}</div>
+                <div class="feature-card-name">${card.name}</div>
+            </div>`;
+        }
+
+        function renderFeaturePage(stdId, addonHeadingId, addonId, stdCards, addonCards) {
+            const stdEl = document.getElementById(stdId);
+            const headingEl = document.getElementById(addonHeadingId);
+            const addEl = document.getElementById(addonId);
+            if (!stdEl) return;
+
+            stdEl.innerHTML = stdCards.map(c => featureCardHTML(c)).join('');
+
+            const hasAddons = Array.isArray(addonCards) && addonCards.length > 0;
+            if (headingEl) headingEl.style.display = hasAddons ? 'block' : 'none';
+            if (addEl) {
+                addEl.style.display = hasAddons ? 'grid' : 'none';
+                addEl.innerHTML = hasAddons ? addonCards.map(c => featureCardHTML(c)).join('') : '';
+            }
+        }
+
+        function renderLegendPoints(imageId, rooms, positions, floor) {
+            const imgEl = document.getElementById(imageId);
+            if (!imgEl) return;
+            const imgWrap = imgEl.parentElement;
+            if (!imgWrap) return;
+            // Clear existing points
+            const existing = imgWrap.querySelectorAll('.legend-point');
+            existing.forEach(e => e.remove());
+            if (!Array.isArray(positions)) return;
+            positions.forEach((pos, index) => {
+                if (!pos || !pos.top || !pos.left) return;
+                const point = document.createElement('div');
+                point.className = 'legend-point';
+                const pointNumber = pos.point || (rooms[index] && rooms[index].number) || String(index + 1).padStart(2, '0');
+                point.textContent = pointNumber;
+                point.dataset.point = pointNumber;
+                if (floor) {
+                    point.dataset.floor = floor;
+                }
+                point.style.top = pos.top;
+                point.style.left = pos.left;
+                imgWrap.appendChild(point);
+            });
+        }
+
+        function updatePage16Visibility() {
+            const showCombo = summaryData.villaType === 'combo';
+            const show4 = !showCombo;
+            [
+                { id: 'page-16-4-5-block', show: show4 },
+                { id: 'page-16-9-block', show: showCombo },
+                { id: 'page-16-4-5-total-block', show: show4 },
+                { id: 'page-16-9-total-block', show: showCombo },
+                { id: 'page-16-4-5-addon-card', show: show4 },
+                { id: 'page-16-9-addon-card', show: showCombo },
+                { id: 'page-16-4-5-total', show: show4 },
+                { id: 'page-16-9-total', show: showCombo }
+            ].forEach(entry => {
+                const el = document.getElementById(entry.id);
+                if (el) el.style.display = entry.show ? '' : 'none';
+            });
+        }
+
+        let summaryData = {
+            villa: { name: 'Villa 1', series: 'A1-01', area: '280 sqm', category: 'RESIDENTIAL – PREMIUM VILLA', configuration: '4.5 BHK', status: 'Available' },
+            floors: {
+                gf: {
+                    legend: ['01. Entrance Gate', '02. Driveway', '03. Front Lawn / Garden Seating Area', '04. Entrance Pathway', '05. Swimming Pool', '06. Pool Deck / Lounger Area', '07. Back Lawn / Sit Out Area', '08. Back Entrance Gate'],
+                    addons: [], features: ['Front & Back Lawn', 'Landscape', 'Swimming Pool', 'Pathway Paving'],
+                    standardCards: [], addonCards: []
+                },
+                'gf-int': {
+                    rooms: [{ name: '01. Entrance Porch', dim: '2.00 × 2.00' }, { name: '02. Living Area', dim: '6.50 × 4.50' }, { name: '03. Dining Area', dim: '4.00 × 3.00' }, { name: '04. Guest Bedroom', dim: '4.00 × 3.50' }, { name: '05. Guest Bedroom Toilet', dim: '2.50 × 1.50' }, { name: '06. Kitchen', dim: '3.50 × 3.00' }, { name: '07. Servants Room', dim: '2.50 × 2.00' }, { name: '08. Powder Toilet', dim: '1.50 × 1.50' }, { name: '09. Passage', dim: '3.00 × 1.20' }, { name: '10. Staircase', dim: '3.00 × 2.50' }, { name: '11. Swimming Pool', dim: '6.00 × 2.50' }],
+                    addons: [], features: ['Vitrified Flooring', 'CP Fitting', 'Kitchen Granite', 'Switches', 'Paint'],
+                    standardCards: [], addonCards: []
+                },
+                ff: {
+                    rooms: [{ name: '01. Master Bedroom', dim: '5.00 × 4.00' }, { name: '02. Master Toilet', dim: '2.50 × 1.50' }, { name: '03. Walking Wardrobe', dim: '2.50 × 1.80' }, { name: '04. Balcony', dim: '3.00 × 1.50' }, { name: '05. 1st Bedroom', dim: '4.00 × 3.50' }, { name: '06. 1st Bedroom Toilet', dim: '2.50 × 1.50' }, { name: '07. 2nd Bedroom', dim: '4.00 × 3.50' }, { name: '08. 2nd Bedroom Toilet', dim: '2.50 × 1.50' }, { name: '09. Balcony', dim: '3.00 × 1.50' }, { name: '10. Passage', dim: '3.00 × 1.20' }, { name: '11. Home Theatre Room', dim: '4.50 × 3.50' }],
+                    addons: [], features: ['Vitrified Flooring', 'Wooden Flooring', 'CP Fittings', 'Switches', 'Paint'],
+                    standardCards: [], addonCards: []
+                },
+                tf: {
+                    rooms: [{ name: '01. Terrace', dim: '5.00 × 4.00' }],
+                    addons: [], features: ['Terrace Tiles', 'AC Outdoor Unit'],
+                    standardCards: [], addonCards: []
+                }
+            }
+        };
+
+        function initializeData() {
+            try {
+                const stored = [
+                    { key: 'villaConfig', item: localStorage.getItem('villaConfig') },
+                    { key: 'comboState', item: localStorage.getItem('comboState') },
+                    { key: 'lhsState', item: localStorage.getItem('lhsState') },
+                    { key: 'rhsState', item: localStorage.getItem('rhsState') }
+                ].find(entry => entry.item);
+                const raw = stored ? stored.item : null;
+                const rawKey = stored ? stored.key : null;
+                const fallback = localStorage.getItem('selectedVilla');
+                let config = null;
+                if (raw) { try { config = JSON.parse(raw); } catch (e) { } }
+                if (!config && fallback) { try { config = { villa: JSON.parse(fallback), floors: {} }; } catch (e) { } }
+                if (config && config.villa) {
+                    const v = config.villa;
+                    summaryData.villa.name = v.name || v.type || summaryData.villa.name;
+                    summaryData.villa.series = v.series || v.type || summaryData.villa.series;
+                    summaryData.villa.area = v.area || v.size || v.builtUpArea || summaryData.villa.area;
+                    summaryData.villa.category = v.category || summaryData.villa.category;
+                    summaryData.villa.configuration = v.configuration || v.beds || summaryData.villa.configuration;
+                }
+                if (config && config.villaType) {
+                    summaryData.villaType = config.villaType;
+                } else if (rawKey === 'comboState') {
+                    summaryData.villaType = 'combo';
+                } else if (rawKey === 'lhsState') {
+                    summaryData.villaType = 'lhs';
+                } else if (rawKey === 'rhsState') {
+                    summaryData.villaType = 'rhs';
+                } else {
+                    summaryData.villaType = 'rhs';
+                }
+                if (config && config.floors) {
+                    ['gf', 'gf-int', 'ff', 'tf'].forEach(f => {
+                        const src = config.floors[f];
+                        if (!src) return;
+                        // Rich card arrays (new format)
+                        if (src.standardCards) summaryData.floors[f].standardCards = src.standardCards;
+                        if (src.addonCards) summaryData.floors[f].addonCards = src.addonCards;
+                        if (src.addons && src.addons.length) summaryData.floors[f].addons = src.addons;
+                        if (src.rooms && Array.isArray(src.rooms)) summaryData.floors[f].rooms = src.rooms;
+                        if (src.legend && Array.isArray(src.legend)) summaryData.floors[f].legend = src.legend;
+                        if (src.features && Array.isArray(src.features)) summaryData.floors[f].features = src.features;
+                    });
+                }
+                summaryData.villaType = config && config.villaType ? config.villaType : 'rhs';
+            } catch (e) { }
+        }
+
+        const li = t => `<li>${t}</li>`;
+        const leg = t => `<div class="leg-item">${t}</div>`;
+
+
+        function formatLegendArea(dim) {
+            if (!dim) return '';
+            const parts = dim.replace(/\s/g, '').split(/[×xX]/);
+            if (parts.length !== 2) return '';
+            const width = parseFloat(parts[0]);
+            const height = parseFloat(parts[1]);
+            if (Number.isNaN(width) || Number.isNaN(height)) return '';
+            return `${(width * height).toFixed(2)} sq.m`;
+        }
+
+        function renderLegendTable(id, rows) {
+            const el = document.getElementById(id);
+            if (!el || !Array.isArray(rows)) return;
+            const tableRows = rows.map(room => {
+                if (typeof room === 'string' || !room.dimension) {
+                    return `
+                        <div class="legend-row legend-row-full">
+                            <div class="legend-col name" style="grid-column: 1 / -1">${room.name || room}</div>
+                        </div>
+                    `;
+                }
+                return `
+                    <div class="legend-row">
+                        <div class="legend-col name">${room.name}</div>
+                        <div class="legend-col dim">${room.dimension || room.dim || '-'}</div>
+                    </div>
+                `;
+            }).join('');
+            el.innerHTML = `
+                <div class="legend-table">
+                    ${tableRows}
+                </div>
+            `;
+        }
+
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        function setHTML(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = value;
+        }
+
+        function renderContent() {
+            // Cover meta
+            setText('villaName', summaryData.villa.name);
+            setText('villaSeries', summaryData.villa.series);
+            setText('villaArea', summaryData.villa.area);
+            setText('villaConfig', summaryData.villa.configuration);
+            document.getElementById('villaSeries').textContent = summaryData.villa.series;
+            document.getElementById('villaArea').textContent = summaryData.villa.area;
+            document.getElementById('villaConfig').textContent = summaryData.villa.configuration;
+            // Overview
+            setText('overviewConfig', summaryData.villa.configuration);
+            setText('overviewArea', summaryData.villa.area);
+            setText('overviewSeries', summaryData.villa.series);
+            setText('overviewCategory', summaryData.villa.category);
+
+            // GF Exterior
+            const gf = summaryData.floors.gf;
+            renderLegendTable('gf-legend', gf.legend);
+            renderFeaturePage('gf-standard-cards', 'gf-addon-heading', 'gf-addon-cards', summaryData.floors.gf['standardCards'], summaryData.floors.gf['addonCards']);
+
+            // GF Interior
+            const gi = summaryData.floors['gf-int'], giA = gi.addons.length > 0;
+            setText('gf-int-floor-title', `Ground Floor Interior — ${giA ? 'Furnished' : 'Unfurnished'}`);
+            setHTML('gf-int-standard-features', gi.features.map(li).join(''));
+            renderLegendTable('gf-int-legend', gi.legend);
+            renderFeaturePage('gf-int-standard-cards', 'gf-int-addon-heading', 'gf-int-addon-cards', summaryData.floors['gf-int']['standardCards'], summaryData.floors['gf-int']['addonCards']);
+
+            // First Floor
+            const ff = summaryData.floors.ff, ffA = ff.addons.length > 0;
+            setText('ff-floor-title', `First Floor — ${ffA ? 'Furnished' : 'Unfurnished'}`);
+            setHTML('ff-standard-features', ff.features.map(li).join(''));
+            renderLegendTable('ff-legend', ff.legend);
+            renderFeaturePage('ff-standard-cards', 'ff-addon-heading', 'ff-addon-cards', summaryData.floors.ff['standardCards'], summaryData.floors.ff['addonCards']);
+
+            // Terrace
+            const tf = summaryData.floors.tf, tfA = tf.addons.length > 0;
+            setText('tf-floor-title', `Terrace — ${tfA ? 'Furnished' : 'Unfurnished'}`);
+            setHTML('tf-standard-features', tf.features.map(li).join(''));
+            renderLegendTable('tf-legend', tf.legend);
+            renderFeaturePage('tf-standard-cards', 'tf-addon-heading', 'tf-addon-cards', summaryData.floors.tf['standardCards'], summaryData.floors.tf['addonCards']);
+
+
+
+            // Plan images
+            const villaFolder = summaryData.villaType === 'combo' ? 'combo' : (summaryData.villaType === 'lhs' ? 'lhs-villa' : 'rhs-villas');
+            const upd = (id, floor, k0, k1) => {
+                document.getElementById(id).src = `image/${villaFolder}/${floorImageMap[floor][summaryData.floors[floor].addons.length > 0 ? k1 : k0]}`;
+            };
+            upd('gf-plan-image', 'gf', 'standard', 'furnished');
+            upd('gf-int-plan-image', 'gf-int', 'unfurnished', 'furnished');
+            upd('ff-plan-image', 'ff', 'unfurnished', 'furnished');
+            upd('tf-plan-image', 'tf', 'unfurnished', 'furnished');
+
+            // Legend points on images
+            const parseRooms = (data) => {
+                const formatNumber = (value) => {
+                    const trimmed = String(value).trim();
+                    if (/^\d+$/.test(trimmed)) {
+                        return trimmed.padStart(2, '0');
+                    }
+                    return trimmed;
+                };
+
+                if (Array.isArray(data)) {
+                    return data.map(item => {
+                        let raw = null;
+                        if (typeof item === 'string') {
+                            raw = item;
+                        } else if (item.name) {
+                            raw = item.name;
+                        }
+                        if (!raw) return null;
+                        const parts = raw.split('. ');
+                        return {
+                            number: formatNumber(parts[0]),
+                            name: parts.slice(1).join('. ')
+                        };
+                    }).filter(Boolean);
+                }
+                return [];
+            };
+            const activeLegendMap = legendPositions[summaryData.villaType] || legendPositions.rhs;
+            renderLegendPoints('gf-plan-image', parseRooms(gf.legend), activeLegendMap.gf, 'gf');
+            renderLegendPoints('gf-int-plan-image', parseRooms(gi.rooms), activeLegendMap['gf-int'], 'gf-int');
+            renderLegendPoints('ff-plan-image', parseRooms(ff.rooms), activeLegendMap.ff, 'ff');
+            renderLegendPoints('tf-plan-image', parseRooms(tf.rooms), activeLegendMap.tf, 'tf');
+            updatePage16Visibility();
+        }
+
+        /* ── Ensure every image (especially SVG logos) is fully decoded
+       before html2canvas captures the page ── */
+        function waitForImages() {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            return Promise.all(imgs.map(img => {
+                if (img.complete && img.naturalWidth !== 0) {
+                    return img.decode ? img.decode().catch(() => { }) : Promise.resolve();
+                }
+                return new Promise(resolve => {
+                    img.addEventListener('load', () => {
+                        (img.decode ? img.decode().catch(() => { }) : Promise.resolve()).then(resolve);
+                    }, { once: true });
+                    img.addEventListener('error', resolve, { once: true });
+                });
+            }));
+        }
+
+        /* ── GENERATE & DOWNLOAD PDF DIRECTLY (no print dialog) ── */
+        async function triggerPrint() {
+            const btn = document.getElementById('printBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳&nbsp; Preparing images…';
+            btn.disabled = true;
+            document.body.classList.add('pdf-export-mode');
+
+            try {
+                await waitForImages();
+
+                const { jsPDF } = window.jspdf;
+                const pages = document.querySelectorAll('.page');
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'px',
+                    format: [1280, 720],
+                    compress: true
+                });
+
+                for (let i = 0; i < pages.length; i++) {
+                    btn.innerHTML = `⏳&nbsp; Rendering page ${i + 1} of ${pages.length}…`;
+
+                    const canvas = await html2canvas(pages[i], {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        imageTimeout: 15000,
+                        backgroundColor: '#ffffff',
+                        logging: false
+                    });
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.92);
+                    if (i > 0) pdf.addPage([1280, 720], 'landscape');
+                    pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
+                }
+
+                pdf.save('Antaaya-Villas-Brochure.pdf');
+            } catch (err) {
+                console.error('PDF generation failed:', err);
+                alert('Something went wrong while generating the PDF. Please try again.');
+            } finally {
+                document.body.classList.remove('pdf-export-mode');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => { initializeData(); renderContent(); });
+    </script>
+
+    <!-- Responsive Zoom Scale handle by Js code (For All Device) -->
+    <script>
+        (function () {
+            const BREAKPOINTS = [
+                { max: 1440, min: 1025, scale: 0.8 },
+                { max: 1024, min: 769, scale: 0.7 },
+                { max: 768, min: 426, scale: 0.55 },
+                { max: 425, min: 0, scale: 0.3 }
+            ];
+
+            function getScale() {
+                const w = window.innerWidth;
+                for (const bp of BREAKPOINTS) {
+                    if (w <= bp.max && w >= bp.min) return bp.scale;
+                }
+                return null; // wider than 1440 — no scaling, full size
+            }
+
+            function wrapPage(page) {
+                if (page.parentElement.classList.contains('page-scale-wrapper')) return page.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'page-scale-wrapper';
+                wrapper.style.width = '100%';
+                wrapper.style.overflow = 'visible';
+                wrapper.style.display = 'flex';
+                wrapper.style.justifyContent = 'center';
+                page.parentNode.insertBefore(wrapper, page);
+                wrapper.appendChild(page);
+                return wrapper;
+            }
+
+            function unwrapPage(page) {
+                const wrapper = page.parentElement;
+                if (!wrapper.classList.contains('page-scale-wrapper')) return;
+                wrapper.parentNode.insertBefore(page, wrapper);
+                wrapper.remove();
+            }
+
+            function applyScale() {
+                const scale = getScale();
+                const isExporting = document.body.classList.contains('pdf-export-mode');
+
+                document.querySelectorAll('.page').forEach(page => {
+                    if (scale && !isExporting) {
+                        const wrapper = wrapPage(page);
+                        wrapper.style.height = (720 * scale) + 'px';
+                        wrapper.style.marginBottom = '5px';
+                        page.style.transform = `scale(${scale})`;
+                        page.style.transformOrigin = 'top center';
+                        page.style.flexShrink = '0';
+                        page.style.marginTop = '0';
+                        page.style.marginBottom = '0';
+                    } else {
+                        page.style.transform = '';
+                        page.style.transformOrigin = '';
+                        page.style.flexShrink = '';
+                        page.style.marginTop = '';
+                        page.style.marginBottom = '';
+                        unwrapPage(page);
+                    }
+                });
+
+                // download-bar scales along the same tiers, no wrapper needed
+                const bar = document.querySelector('.download-bar');
+                if (bar) {
+                    bar.style.transform = scale ? `scale(${scale})` : '';
+                    bar.style.transformOrigin = 'top center';
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', applyScale);
+            window.addEventListener('resize', applyScale);
+
+            const origTriggerPrint = window.triggerPrint;
+            if (typeof origTriggerPrint === 'function') {
+                window.triggerPrint = async function (...args) {
+                    applyScale();
+                    const result = await origTriggerPrint.apply(this, args);
+                    applyScale();
+                    return result;
+                };
+            }
+        })();
+    </script>
+
+
+    <script src="Configure.js"></script>
+</body>
+
+</html>

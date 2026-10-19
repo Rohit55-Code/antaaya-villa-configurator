@@ -1,0 +1,20 @@
+# ── Real credentials — never commit ─────────────────────────
+config.php
+
+# ── Original (confidential) plans — keep them out of the repo ─
+# If you ever copy the real plan images back in for local work,
+# put them in a folder with this name so Git ignores them.
+_private/
+
+# ── Editor / OS files ───────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# ── Archives / backups ──────────────────────────────────────
+*.zip
+*.rar
+*.7z
